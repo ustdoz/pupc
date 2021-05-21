@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::group(['middleware' => 'auth', 'prefix' => 'detainees'], function() {
+    Route::get('/', 'DetaineesController@index')->name('detainees');
+    Route::get('create', 'DetaineesController@create')->name('detainees.create');
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
