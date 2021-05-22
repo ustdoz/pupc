@@ -16,11 +16,17 @@ Route::get('/', function () {
 });
 
 
-Route::group(['middleware' => 'auth', 'prefix' => 'detainees'], function() {
-    Route::get('/', 'DetaineesController@index')->name('detainees');
-    Route::get('create', 'DetaineesController@create')->name('detainees.create');
-});
+// Route::group(['middleware' => 'auth', 'prefix' => 'detainees'], function() {
+// 	// Route::resource('detainees', 'DetaineesController');
 
+//     Route::get('/', 'DetaineesController@index')->name('detainees');
+//     Route::get('create', 'DetaineesController@create')->name('detainees.create');
+//     // Route::post('', function() {
+//     //     //
+//     // });
+// });
+
+Route::resource('detainees', 'DetaineesController');
 
 Auth::routes();
 

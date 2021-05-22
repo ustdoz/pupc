@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Detainee;
+use Validator;
 
 class DetaineesController extends Controller
 {
@@ -35,7 +37,20 @@ class DetaineesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd(Validator::make($request->all(), [
+            'item_name' => 'bail|required|max:255',
+            'sku_no' => 'required|alpha_num',
+            'price' => 'required|numeric',
+        ])->validate());
+        $data = Validator::make($request->all(), [
+            'item_name' => 'bail|required|max:255',
+            'sku_no' => 'required|alpha_num',
+            'price' => 'required|numeric',
+        ])->validate();
+
+        dd($data);
+
+        dd($request->all());
     }
 
     /**
