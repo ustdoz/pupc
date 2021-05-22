@@ -24,6 +24,7 @@ class DetaineesController extends Controller
     public function create()
     {
         return view('detainees.create');
+        // return view('detainees.test');
     }
 
     /**

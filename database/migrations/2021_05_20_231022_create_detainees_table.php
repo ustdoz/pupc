@@ -21,8 +21,6 @@ class CreateDetaineesTable extends Migration
             $table->date('birth_date')->nullable();
             $table->date('detained_date')->nullable();
             $table->date('released_date')->nullable();
-            
-            
             $table->timestamps();
         });
     }
