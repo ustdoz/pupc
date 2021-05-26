@@ -26,7 +26,7 @@ Route::get('/', function () {
 //     // });
 // });
 
-Route::resource('detainees', 'DetaineesController');
+Route::resource('detainees', 'DetaineesController')->middleware('auth');
 
 Auth::routes();
 
