@@ -17,18 +17,18 @@
                     <form method="POST" action="{{ route('detainees.store') }}">
                         @csrf
                         
-                        <div class="form-group">
-                            <label>Name</label>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" placeholder="First Name" name="first_name" autocomplete="off">
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" placeholder="Middle Name" name="middle_name" autocomplete="off">
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" placeholder="Last Name" name="last_name" autocomplete="off">
-                                </div>
+                            <div class="form-group">
+                                <label>Name</label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" placeholder="First Name" name="first_name" autocomplete="off">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" placeholder="Middle Name" name="middle_name" autocomplete="off">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" placeholder="Last Name" name="last_name" autocomplete="off">
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">

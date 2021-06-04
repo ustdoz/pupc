@@ -15,6 +15,10 @@ class Detainee extends Model
     	'birth_date', 'detained_date', 'released_date', 
     ];
 
+    protected $appends = [
+    	'age',
+    ];
+
 	public function setBirthDateAttribute($value)
 	{
 		$this->attributes['birth_date'] = $value ? Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d') : null;
@@ -28,5 +32,14 @@ class Detainee extends Model
 	public function setReleasedDateAttribute($value)
 	{
 		$this->attributes['released_date'] = $value ? Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d') : null;
+	}
+
+	public function getAgeAttribute()
+	{
+		if (!$this->attributes['birth_date']) {
+			return 'N/A';
+		}
+
+		return Carbon::createFromFormat('Y-m-d', $this->attributes['birth_date'])->diff(Carbon::now())->format('%y');
 	}
 }
