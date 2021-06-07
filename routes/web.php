@@ -18,3 +18,6 @@ Route::group(['prefix' => 'detainees', 'middleware' => 'auth'], function() {
 
 Route::resource('detainees', 'DetaineesController')->middleware('auth');
 
+Route::get('export', 'MyController@export')->name('export');
+Route::get('importExportView', 'MyController@importExportView');
+Route::post('import', 'MyController@import')->name('import');
