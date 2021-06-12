@@ -294,22 +294,25 @@ class DetaineesController extends Controller
 
     public function subsistence()
     {
-
         $date_start = $this->date['start']->format('Y-m-d');
         $date_end = $this->date['end']->format('Y-m-d');
 
         $detainees = Detainee::orderBy('last_name')
             ->where(function($query) use ($date_start, $date_end) {
-                $query->whereDate('detained_date', '>=', $date_start);
                 $query->whereDate('detained_date', '<=', $date_end);
-            })->orWhere(function($query) use ($date_start, $date_end) {
+            })->where(function($query) use ($date_start, $date_end) {
                 $query->whereDate('released_date', '>=', $date_start);
-                $query->whereDate('released_date', '<=', $date_end);
-            })->orWhereNull('released_date')
-                            ->get();
+                $query->orWhereNull('released_date');
+            })->get();
 
-        $detainees->map(function($item) {
+        $recap = [];
+        $_start = Carbon::createFromFormat('Y-m-d', $this->date['start']->format('Y-m-d'));
+        while ($_start < $this->date['end']) {
+            $recap[$_start->format('Y-m-d')] = 0;
+            $_start = $_start->addDay();
+        }
 
+        $detainees->map(function($item) use (&$recap) {
             $_date_start = $item->detained_date;
             $_date_end = $item->released_date;
 
@@ -317,9 +320,20 @@ class DetaineesController extends Controller
                 $_date_start = $this->date['start'];
             }
 
-            if (is_null($_date_end)) {
+            if ($item->released_date > $this->date['end'] || is_null($_date_end)) {
                 $_date_end = $this->date['end'];
             }
+
+            foreach ($recap as $recap_date => $recap_value) {
+                $recap_carbon = Carbon::createFromFormat('Y-m-d', $recap_date);
+                // dump($_date_start->format('Y-m-d') . ', ' . $recap_carbon->format('Y-m-d') . ', ' . $_date_end->format('Y-m-d') . ' = ' . ($recap_carbon->between($_date_start, $_date_end) ? 'YES' : 'NO'));
+
+                if ($recap_carbon->between($_date_start, $_date_end) || $recap_carbon->format('Y-m-d') == $_date_start->format('Y-m-d') || $recap_carbon->format('Y-m-d') == $_date_end->format('Y-m-d')) {
+                    $recap[$recap_date]++;
+                }
+            }
+
+            // dump('------------------------------------------------------------------');
 
             $item->days_detained = $_date_start->diffInDays($_date_end) + 1;
             $item->total_budget = $item->days_detained * config('detainees.allowance_amount');
@@ -327,32 +341,8 @@ class DetaineesController extends Controller
             return $item;
         });
 
-        return view('detainees.subsistence', compact('detainees'));
-
-
-        // dd($this->filter['year'], $this->filter['month']);
-        $_date = Carbon::now();
-        // dd(config()->view);
-        // dd($_date->month, $_date->endOfMonth()->day);
-
-        $year = $_date->year;
-        $month = ($_date->month < 10) ? ('0' + $_date->month) : $_date->month;
-        // dd($month);
-        $start_day = '01';
-        $end_day = $_date->endOfMonth()->day;
-        $start_date = implode('-', [$year, $month, $start_day]);
-        $end_date = implode('-', [$year, $month, $end_day]);
-
-        $detainees = Detainee::orderBy('last_name');
-        $detainees = $detainees->where(function($query) use ($start_date, $end_date) {
-            $query->whereDate('released_date', '>=', $start_date);
-            $query->whereDate('released_date', '<=', $end_date);
-        })
-        ->orWhereNull('released_date');
-
-        $detainees = $detainees->get();
-
-        $general_detainees_data = $this->_generateGeneralDetaineesData($detainees);
+        $detainees_total_budget = array_sum($recap) * config('detainees.allowance_amount');
+        dd($recap, $detainees_total_budget);
 
         return view('detainees.subsistence', compact('detainees'));
     }
