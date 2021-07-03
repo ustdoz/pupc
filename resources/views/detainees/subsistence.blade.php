@@ -64,15 +64,13 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         <div class="col-md-12">
                                             <div class="float-right">
-                                                <span class="h4">Download: </span>
-                                                <a class="btn btn-primary" href="{{ route('detainees.create') }}">CVS</a>
-                                                <a class="btn btn-primary" href="{{ route('detainees.create') }}">XLS</a>
+                                                
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -86,6 +84,7 @@
                         <div class="card-header">
                             <span class="h2">Detainees</span>
                             <div class="float-right">
+                                <a class="btn btn-danger" href="{{ request()->fullUrl() . '&download' }}">Download Excel</a>
                                 <a class="btn btn-primary" href="{{ route('detainees.create') }}">Add New</a>
                             </div>
                         </div>

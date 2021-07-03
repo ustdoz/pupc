@@ -7,6 +7,9 @@ use App\Detainee;
 use Validator;
 use Session;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DetaineesExport;
+use App\Exports\SubsistenceRecapExport;
 
 class DetaineesController extends Controller
 {
@@ -22,6 +25,8 @@ class DetaineesController extends Controller
         'end' => null,
     ];
 
+    protected $download = false;
+
     public function __construct()
     {
         $date_now = Carbon::now();
@@ -31,6 +36,10 @@ class DetaineesController extends Controller
         $start = [$this->filter['year'], $this->filter['month'], '01'];
         $this->date['start'] = Carbon::createFromFormat('Y-m-d H:i:s', implode('-', $start) . ' 00:00:00');
         $this->date['end'] = Carbon::createFromFormat('Y-m-d H:i:s', implode('-', $start) . ' 00:00:00')->endOfMonth();
+
+        if (request()->has('download')) {
+            $this->download = true;
+        }
     }
 
     /**
@@ -260,7 +269,14 @@ class DetaineesController extends Controller
         // $detainees_total_budget = array_sum($recap) * config('detainees.allowance_amount');
         $data['total_budget'] = $detainees->sum('total_budget');
         $data['total_detainees'] = $detainees->count();
+        $data['month_year'] = $this->date['start']->format('F Y');
         // dd($data);
+
+        if ($this->download) {
+            // Download subsistence and recap
+            $detainees_export = new SubsistenceRecapExport($detainees, $recap, $data);
+            return Excel::download($detainees_export, $data['month_year'] . ' ' . time() . '.xls');
+        }
 
         return view('detainees.subsistence', compact('data', 'detainees', 'recap'));
     }
