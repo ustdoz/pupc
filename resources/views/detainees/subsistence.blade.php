@@ -84,7 +84,7 @@
                         <div class="card-header">
                             <span class="h2">Detainees</span>
                             <div class="float-right">
-                                <a class="btn btn-danger" href="{{ request()->fullUrl() . '&download' }}">Download Excel</a>
+                                <a class="btn btn-danger" href="{{ request()->fullUrlWithQuery(['download' => true]) }}">Download Excel</a>
                                 <a class="btn btn-primary" href="{{ route('detainees.create') }}">Add New</a>
                             </div>
                         </div>

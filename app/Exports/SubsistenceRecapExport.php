@@ -27,8 +27,14 @@ class SubsistenceRecapExport implements WithMultipleSheets
     {
         $sheets = [];
 
-        $sheets[] = new SubsistenceExport($this->detainees, $this->data);
-        $sheets[] = new RecapExport($this->recap, $this->data);
+        $subsistence = new SubsistenceExport($this->detainees, $this->data);
+
+        // $subsistence->mergeCells('A2:A3');
+
+        $recap = new RecapExport($this->recap, $this->data);
+
+        $sheets[] = $subsistence;
+        $sheets[] = $recap;
         // $sheets[] = new RecapExport($this->recap, $this->data);
 
 
