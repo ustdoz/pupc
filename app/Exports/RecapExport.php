@@ -66,7 +66,7 @@ class RecapExport implements FromArray, WithTitle
                 null,
                 null,
                 null,
-                'Total Amount:',
+                'Total Amount Requested',
                 $total_budget,
             ];
         }
@@ -115,8 +115,15 @@ class RecapExport implements FromArray, WithTitle
         // $row_names = $end_number + 3;
         // $row_titles = $row_names + 1;
 
+        $sheet->mergeCells('A1:G1');
+        $sheet->mergeCells('A2:G2');
+        $sheet->mergeCells('A3:G3');
+        $sheet->mergeCells('A4:G4');
+        $sheet->mergeCells('A5:G5');
+        $sheet->mergeCells('A6:G6');
         $sheet->mergeCells('A8:G8');
         $sheet->mergeCells('A9:C9');
+
         // $sheet->mergeCells('A1:K1');
         // $sheet->mergeCells('A2:A3');
         // // $sheet->mergeCells('B2:F2');
@@ -144,6 +151,11 @@ class RecapExport implements FromArray, WithTitle
                 ],
             ]
         ];
+
+        $text_center = ['horizontal' => 'center', 'vertical' => 'center'];
+        for ($i=1; $i <= 6; $i++) { 
+            $sheet->getStyle('A' . $i)->getAlignment()->applyFromArray($text_center);
+        }
 
         $sheet->getStyle('A9:C9')->applyFromArray($border_style);
         $sheet->getStyle('D9')->applyFromArray($border_style);
@@ -234,15 +246,15 @@ class RecapExport implements FromArray, WithTitle
     public function drawings()
     {
         $drawing = new Drawing();
-        $drawing->setName('Logo');
-        $drawing->setDescription('This is my logo');
+        // $drawing->setName('Logo');
+        // $drawing->setDescription('This is my logo');
         $drawing->setPath(public_path('/storage/pnp.png'));
         $drawing->setHeight(50);
         $drawing->setCoordinates('B3');
 
         $drawing2 = new Drawing();
-        $drawing2->setName('Other image');
-        $drawing2->setDescription('This is a second image');
+        // $drawing2->setName('Other image');
+        // $drawing2->setDescription('This is a second image');
         $drawing2->setPath(public_path('/storage/cavite.png'));
         $drawing2->setHeight(120);
         $drawing2->setCoordinates('G2');
