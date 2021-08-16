@@ -43,12 +43,14 @@ class RecapExport implements FromArray, WithTitle
                 $subsistence[] = [null, null, null, null, null, null, null];
             }
 
-            $subsistence[] = ['CPS/MPS', null, null, 'Date (MM/DD/YYY)*', 'Number of PUPC**', 'Allowance Per Day', 'Total Per day'];
+            // $subsistence[] = ['CPS/MPS', null, null, 'Date (MM/DD/YYY)*', 'Number of PUPC**', 'Allowance Per Day', 'Total Per day'];
+            $first = 1;
 
             foreach ($this->recap as $date => $detainees_count) {
                 $total = $detainees_count * $daily_allowance;
+                
                 $subsistence[] = [
-                    null,
+                    ($first ? 'CARMONA MPS' : null),
                     null,
                     null,
                     $date,
@@ -58,6 +60,8 @@ class RecapExport implements FromArray, WithTitle
                 ];
 
                 $total_budget = $total_budget + $total;
+
+                $first = 0;
             }
 
             $subsistence[] = [
@@ -133,15 +137,15 @@ class RecapExport implements FromArray, WithTitle
         // $sheet->mergeCells('J2:J3');
         // $sheet->mergeCells('K2:K3');
 
-        // $wrap_text_arr = [
-        //     'A1', 'A2', 'B2', 'B3', 'C3', 'D3', 'E3', 'F3', 'G2', 'H2', 'I2', 'J2', 'K2',
-        // ];
+        $wrap_text_arr = [
+            'A9', 'D9', 'E9', 'F9', 'G9',
+        ];
 
-        // foreach ($wrap_text_arr as $cell) {
-        //     $sheet->getStyle($cell)->getAlignment()->setWrapText(true);
-        //     $sheet->getStyle('A2')->getAlignment()->applyFromArray(['vertical' => 'center']);
-        //     $sheet->getStyle('A2')->getAlignment()->setHorizontal('center');
-        // }
+        foreach ($wrap_text_arr as $cell) {
+            $sheet->getStyle($cell)->getAlignment()->setWrapText(true);
+            $sheet->getStyle($cell)->getAlignment()->applyFromArray(['vertical' => 'center']);
+            $sheet->getStyle($cell)->getAlignment()->setHorizontal('center');
+        }
 
         $border_style = [
             'borders' => [
@@ -153,7 +157,7 @@ class RecapExport implements FromArray, WithTitle
         ];
 
         $text_center = ['horizontal' => 'center', 'vertical' => 'center'];
-        for ($i=1; $i <= 6; $i++) { 
+        for ($i=1; $i <= 8; $i++) { 
             $sheet->getStyle('A' . $i)->getAlignment()->applyFromArray($text_center);
         }
 
@@ -164,20 +168,6 @@ class RecapExport implements FromArray, WithTitle
         $sheet->getStyle('G9')->applyFromArray($border_style);
 
         $sheet->getRowDimension(9)->setRowHeight(30);
-        // $sheet->getStyle('B2:F2')->applyFromArray($border_style);
-        // $sheet->getStyle('B3')->applyFromArray($border_style);
-        // $sheet->getStyle('C3')->applyFromArray($border_style);
-        // $sheet->getStyle('D3')->applyFromArray($border_style);
-        // $sheet->getStyle('E3')->applyFromArray($border_style);
-        // $sheet->getStyle('F3')->applyFromArray($border_style);
-        // $sheet->getStyle('G2:G3')->applyFromArray($border_style);
-        // $sheet->getStyle('H2:H3')->applyFromArray($border_style);
-        // $sheet->getStyle('I2:I3')->applyFromArray($border_style);
-        // $sheet->getStyle('J2:J3')->applyFromArray($border_style);
-        // $sheet->getStyle('K2:K3')->applyFromArray($border_style);
-
-        // $sheet->getStyle('J' . ($end_number + 1))->applyFromArray($border_style);
-        // $sheet->getStyle('K' . ($end_number + 1))->applyFromArray($border_style);
 
         // $loop_arr = [
         //     'columns' => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'],
@@ -227,7 +217,23 @@ class RecapExport implements FromArray, WithTitle
         // $sheet->setCellValue('H' . $row_names, 'PMAJ JOSEPH C CARLIT');
         // $sheet->setCellValue('H' . $row_titles, 'Acting Chief of Police');
 
+        $sheet->setCellValue('A1', 'Republic of the Philippine');
+        $sheet->setCellValue('A2', 'National Police Commission');
+        $sheet->setCellValue('A3', 'PHILIPPINE NATIONAL POLICE,  POLICE REGIONAL OFFICE CALABARZON');
+        $sheet->setCellValue('A4', 'CAVITE POLICE PROVINCIAL OFFICE');
+        $sheet->setCellValue('A5', 'CARMONA MUNICIPAL POLICE STATION');
+        $sheet->setCellValue('A6', 'Brgy. Maduya, Carmona, Cavite');
+        $sheet->setCellValue('A8', 'RECAPITULATION ' . mb_strtoupper($this->data['month_year']));
+
+        $sheet->setCellValue('A9', 'CPS/MPS');
+        $sheet->setCellValue('D9', 'Date (MM/DD/YYY)*');
+        $sheet->setCellValue('E9', 'Number of PUPC**');
+        $sheet->setCellValue('F9', 'Allowance Per Day');
+        $sheet->setCellValue('G9', 'Total Per Day');
+
         return [
+            'A4' => ['font' => ['bold' => true]],
+            'A5' => ['font' => ['bold' => true]],
             // ('A' . $row_names) => [
             //     'value' => 'testsetsetsetset'
             // ],
@@ -249,15 +255,15 @@ class RecapExport implements FromArray, WithTitle
         // $drawing->setName('Logo');
         // $drawing->setDescription('This is my logo');
         $drawing->setPath(public_path('/storage/pnp.png'));
-        $drawing->setHeight(50);
-        $drawing->setCoordinates('B3');
+        // $drawing->setHeight(50);
+        $drawing->setCoordinates('A1');
 
         $drawing2 = new Drawing();
         // $drawing2->setName('Other image');
         // $drawing2->setDescription('This is a second image');
         $drawing2->setPath(public_path('/storage/cavite.png'));
-        $drawing2->setHeight(120);
-        $drawing2->setCoordinates('G2');
+        // $drawing2->setHeight(120);
+        $drawing2->setCoordinates('G1');
 
         return [$drawing, $drawing2];
     }
