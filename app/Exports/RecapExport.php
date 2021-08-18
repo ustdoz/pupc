@@ -115,6 +115,8 @@ class RecapExport implements FromArray, WithTitle
 
     public function styles(Worksheet $sheet)
     {
+        $end_number = count($this->recap);
+        dd($end_number);
         // $end_number = $this->detainees->count() + 3;
         // $row_names = $end_number + 3;
         // $row_titles = $row_names + 1;
