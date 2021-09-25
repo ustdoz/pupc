@@ -56,7 +56,7 @@ class RecapExport implements FromArray, WithTitle
                     $date,
                     $detainees_count,
                     $daily_allowance,
-                    $total,
+                    number_format($total),
                 ];
 
                 $total_budget = $total_budget + $total;
@@ -71,7 +71,7 @@ class RecapExport implements FromArray, WithTitle
                 null,
                 null,
                 'Total Amount Requested',
-                $total_budget,
+                "₱ " . number_format($total_budget),
             ];
         }
 
@@ -116,7 +116,7 @@ class RecapExport implements FromArray, WithTitle
     public function styles(Worksheet $sheet)
     {
         $end_number = count($this->recap);
-        dd($end_number);
+        // dd($end_number);
         // $end_number = $this->detainees->count() + 3;
         // $row_names = $end_number + 3;
         // $row_titles = $row_names + 1;
@@ -170,6 +170,35 @@ class RecapExport implements FromArray, WithTitle
         $sheet->getStyle('G9')->applyFromArray($border_style);
 
         $sheet->getRowDimension(9)->setRowHeight(30);
+
+        // merging cell from start of month to end of the month
+        $end_loop = $end_number + 9;
+        for ($i=10; $i <= $end_loop; $i++) { 
+            $sheet->mergeCells("A$i:C$i");
+            $sheet->getStyle("A$i:C$i")->applyFromArray($border_style);
+            $sheet->getStyle("D$i")->applyFromArray($border_style);
+            $sheet->getStyle("E$i")->applyFromArray($border_style);
+            $sheet->getStyle("F$i")->applyFromArray($border_style);
+            $sheet->getStyle("G$i")->applyFromArray($border_style);
+
+            $sheet->getStyle("D$i")->getAlignment()->applyFromArray($text_center);
+            $sheet->getStyle("E$i")->getAlignment()->applyFromArray($text_center);
+            $sheet->getStyle("F$i")->getAlignment()->applyFromArray($text_center);
+            $sheet->getStyle("G$i")->getAlignment()->applyFromArray($text_center);
+        }
+
+        $sheet->getStyle('F' . ($end_loop + 1))->applyFromArray($border_style);
+        $sheet->getStyle('G' . ($end_loop + 1))->applyFromArray($border_style);
+
+        $wrap_cell = 'F' . ($end_loop + 1);
+        $sheet->getStyle($wrap_cell)->getAlignment()->setWrapText(true);
+        $sheet->getStyle($wrap_cell)->getAlignment()->applyFromArray(['vertical' => 'center']);
+        $sheet->getStyle($wrap_cell)->getAlignment()->setHorizontal('center');
+
+        $wrap_cell = 'G' . ($end_loop + 1);
+        $sheet->getStyle($wrap_cell)->getAlignment()->setWrapText(true);
+        $sheet->getStyle($wrap_cell)->getAlignment()->applyFromArray(['vertical' => 'center']);
+        $sheet->getStyle($wrap_cell)->getAlignment()->setHorizontal('center');
 
         // $loop_arr = [
         //     'columns' => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'],
@@ -256,14 +285,14 @@ class RecapExport implements FromArray, WithTitle
         $drawing = new Drawing();
         // $drawing->setName('Logo');
         // $drawing->setDescription('This is my logo');
-        $drawing->setPath(public_path('/storage/pnp.png'));
+        $drawing->setPath(public_path('/pnp.png'));
         // $drawing->setHeight(50);
         $drawing->setCoordinates('A1');
 
         $drawing2 = new Drawing();
         // $drawing2->setName('Other image');
         // $drawing2->setDescription('This is a second image');
-        $drawing2->setPath(public_path('/storage/cavite.png'));
+        $drawing2->setPath(public_path('/cavite.png'));
         // $drawing2->setHeight(120);
         $drawing2->setCoordinates('G1');
 

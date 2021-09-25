@@ -31,9 +31,12 @@ class DetaineesController extends Controller
     {
         $date_now = Carbon::now();
         $month = request()->get('filter_month') ? : $date_now->month;
-        $this->filter['month'] = ($month > 9) ? : '0' . ((int) $month);
+        $this->filter['month'] = ($month > 9) ? $month : '0' . ((int) $month);
         $this->filter['year'] = request()->get('filter_year') ? : $date_now->year;
+
         $start = [$this->filter['year'], $this->filter['month'], '01'];
+        // dd($month, $this->filter['month'], $start);
+        
         $this->date['start'] = Carbon::createFromFormat('Y-m-d H:i:s', implode('-', $start) . ' 00:00:00');
         $this->date['end'] = Carbon::createFromFormat('Y-m-d H:i:s', implode('-', $start) . ' 00:00:00')->endOfMonth();
 
@@ -216,7 +219,16 @@ class DetaineesController extends Controller
             })->where(function($query) use ($date_start, $date_end) {
                 $query->whereDate('released_date', '>=', $date_start);
                 $query->orWhereNull('released_date');
-            })->get();
+            });
+
+        // dd($detainees->toSql());
+
+
+        $detainees = $detainees->get();
+
+        // dd($date_start, $date_end);
+
+        // dd($detainees->toArray());
 
         $recap = [];
         $_start = Carbon::createFromFormat('Y-m-d', $this->date['start']->format('Y-m-d'));
