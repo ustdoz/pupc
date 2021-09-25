@@ -35,7 +35,6 @@ class DetaineesController extends Controller
         $this->filter['year'] = request()->get('filter_year') ? : $date_now->year;
 
         $start = [$this->filter['year'], $this->filter['month'], '01'];
-        // dd($month, $this->filter['month'], $start);
         
         $this->date['start'] = Carbon::createFromFormat('Y-m-d H:i:s', implode('-', $start) . ' 00:00:00');
         $this->date['end'] = Carbon::createFromFormat('Y-m-d H:i:s', implode('-', $start) . ' 00:00:00')->endOfMonth();
@@ -53,12 +52,10 @@ class DetaineesController extends Controller
     public function index()
     {
         return $this->subsistence();
-        // dd(request()->get('test'));
 
         $detainees = Detainee::orderBy('last_name');
 
         $detainees = $detainees->get();
-        // dd($detainees->count());
 
         return view('detainees.index', compact('detainees'));
     }
@@ -225,10 +222,6 @@ class DetaineesController extends Controller
 
 
         $detainees = $detainees->get();
-
-        // dd($date_start, $date_end);
-
-        // dd($detainees->toArray());
 
         $recap = [];
         $_start = Carbon::createFromFormat('Y-m-d', $this->date['start']->format('Y-m-d'));
