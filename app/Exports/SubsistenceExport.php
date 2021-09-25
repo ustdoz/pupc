@@ -73,7 +73,7 @@ class SubsistenceExport implements FromArray, WithTitle
                 null,
                 null,
                 'TOTAL AMOUNT',
-                number_format($this->detainees->sum('total_budget')),
+                "₱ " . number_format($this->detainees->sum('total_budget')),
             ];
         }
 

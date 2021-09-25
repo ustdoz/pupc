@@ -265,6 +265,7 @@ class RecapExport implements FromArray, WithTitle
         return [
             'A4' => ['font' => ['bold' => true]],
             'A5' => ['font' => ['bold' => true]],
+            ($end_number + 10) => ['font' => ['bold' => true]],
             // ('A' . $row_names) => [
             //     'value' => 'testsetsetsetset'
             // ],
