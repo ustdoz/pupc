@@ -23,6 +23,7 @@ return [
     	2019, 2020, 2021, 2022
     ],
 
-    'names' => ['PSSg Percival Restrivera', 'PSSg Joel L Mendoza', 'PMAJ JOSEPH C CARLIT'],
+    // 'names' => ['PSSg Hernane V Quintana', 'PSSg Joel L Mendoza', 'PMAJ JOSEPH C CARLIT'],
+    'names' => ['PSSg Jober Manaig', 'PSSg Joel L Mendoza', 'PMAJ JOSEPH C CARLIT'],
     'titles' => ['In Charge of PUPC', 'Chief, Invest Section', 'Acting Chief of Police'],
 ];
