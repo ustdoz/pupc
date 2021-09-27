@@ -11,12 +11,14 @@ class SubsistenceRecapExport implements WithMultipleSheets
 
     protected $detainees = null;
     protected $recap = null;
+    protected $discharge = null;
     protected $data = null;
     
-    public function __construct($detainees = null, $recap = null, $data = null)
+    public function __construct($detainees = null, $recap = null, $discharge = null, $data = null)
     {
         $this->detainees = $detainees;
         $this->recap = $recap;
+        $this->discharge = $discharge;
         $this->data = $data;
     }
 
@@ -28,13 +30,12 @@ class SubsistenceRecapExport implements WithMultipleSheets
         $sheets = [];
 
         $subsistence = new SubsistenceExport($this->detainees, $this->data);
-
-        // $subsistence->mergeCells('A2:A3');
-
         $recap = new RecapExport($this->recap, $this->data);
+        $discharge = new DischargeExport($this->discharge, $this->data);
 
         $sheets[] = $subsistence;
         $sheets[] = $recap;
+        $sheets[] = $discharge;
         // $sheets[] = new RecapExport($this->recap, $this->data);
 
 

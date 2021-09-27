@@ -95,6 +95,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="recap-tab" data-toggle="tab" href="#recap" role="tab" aria-controls="recap" aria-selected="false">Recap</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="discharge-tab" data-toggle="tab" href="#discharge" role="tab" aria-controls="discharge" aria-selected="false">Discharge</a>
+                            </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="subsistence" role="tabpanel" aria-labelledby="subsistence-tab">
@@ -163,6 +166,45 @@
                                             <td colspan="2"></td>
                                             <td class="h4 text-right"><strong>Total :</strong></td>
                                             <td class="h4 text-center"><strong>{{ number_format($data['total_budget']) }}</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="discharge" role="tabpanel" aria-labelledby="discharge-tab">
+                                <table class="card-table table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="text-center">Blotter Entry Number</th>
+                                            <th scope="col" class="text-center">PNP Personnel in-charge of the Release of PUPC</th>
+                                            <th scope="col" class="text-center" style="width:230px;">PUPC's Full Name</th>
+                                            <th scope="col" class="text-center">Violation</th>
+                                            <th scope="col" class="text-center">Date of Entry as PUPC</th>
+                                            <th scope="col" class="text-center">Release Order Date from the Court</th>
+                                            <th scope="col" class="text-center">Date Released</th>
+                                            <th scope="col" class="text-center">Date of Updating of Release in e-Rogue</th>
+                                            <th scope="col" class="text-center">Remarks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($discharge as $discharge_detainee)
+                                            <tr>
+                                                <td class="text-center">&nbsp;</td>
+                                                <td class="text-center">NeedUpdate</td>
+                                                <td class="text-center">
+                                                    {{ $discharge_detainee->first_name }}
+                                                    {{ $discharge_detainee->middle_name }}
+                                                    {{ $discharge_detainee->last_name }}
+                                                </td>
+                                                <td class="text-center">NeedUpdate</td>
+                                                <td class="text-center">{{ $discharge_detainee->detained_date ? $discharge_detainee->detained_date->format('d/m/Y') : null }}</td>
+                                                <td class="text-center">00/00/0000</td>
+                                                <td class="text-center">{{ $discharge_detainee->released_date ? $discharge_detainee->released_date->format('d/m/Y') : null }}</td>
+                                                <td class="text-center">00/00/0000</td>
+                                                <td class="text-center">Bail Bond</td>
+                                            </tr>
+                                        @endforeach
+                                        <tr>
+                                            <td colspan="9"><center>No Discharged Detainee(s)</center></td>
                                         </tr>
                                     </tbody>
                                 </table>

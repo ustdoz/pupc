@@ -223,6 +223,8 @@ class DetaineesController extends Controller
 
         $detainees = $detainees->get();
 
+        $discharge = $this->discharge($detainees);
+
         $recap = [];
         $_start = Carbon::createFromFormat('Y-m-d', $this->date['start']->format('Y-m-d'));
         while ($_start < $this->date['end']) {
@@ -279,10 +281,19 @@ class DetaineesController extends Controller
 
         if ($this->download) {
             // Download subsistence and recap
-            $detainees_export = new SubsistenceRecapExport($detainees, $recap, $data);
+            $detainees_export = new SubsistenceRecapExport($detainees, $recap, $discharge, $data);
             return Excel::download($detainees_export, $data['month_year'] . ' ' . time() . '.xls');
         }
 
-        return view('detainees.subsistence', compact('data', 'detainees', 'recap'));
+        return view('detainees.subsistence', compact('data', 'detainees', 'recap', 'discharge'));
+    }
+
+    public function discharge($detainees)
+    {
+        $discharge = $detainees->where('released_date', '!=', null);
+
+        $discharge = $discharge->sortBy('released_date');
+
+        return $discharge;
     }
 }

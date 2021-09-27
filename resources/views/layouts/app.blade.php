@@ -21,6 +21,11 @@
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" >
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <style type="text/css">
+        div#discharge.tab-pane table thead tr th {
+            vertical-align: middle;
+        }
+    </style>
 
 </head>
 <body>
