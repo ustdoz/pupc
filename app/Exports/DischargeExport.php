@@ -25,6 +25,22 @@ class DischargeExport implements FromArray, WithTitle
     protected $discharge = null;
     protected $data = null;
 
+    protected $styles = [
+        'borders' => [
+            'borders' => [
+                'outline' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => '000000'],
+                ],
+            ],
+        ],
+        'alignment_center' => [
+            'wrapText' => true,
+            'horizontal' => 'center',
+            'vertical' => 'center',
+        ],
+    ];
+
     public function __construct($discharge = null, $data = null)
     {
         $this->discharge = $discharge;
@@ -80,7 +96,7 @@ class DischargeExport implements FromArray, WithTitle
 
     public function title(): string
     {
-        return mb_strtoupper('discharge ' . $this->data['month_year']);
+        return mb_strtoupper('DISCHARGED PUPC ' . $this->data['month_year']);
     }
 
     // public function map($invoice): array
@@ -103,13 +119,15 @@ class DischargeExport implements FromArray, WithTitle
     public function columnWidths(): array
     {
         return [
-            'A' => 11.71,
-            'B' => 8.43,
-            'C' => 4.71,
-            'D' => 19.71,
-            'E' => 14,
-            'F' => 18.14,
-            'G' => 17.43,
+            'A' => 9,
+            'B' => 17,
+            'C' => 23,
+            'D' => 15,
+            'E' => 11,
+            'F' => 11,
+            'G' => 11,
+            'H' => 11,
+            'I' => 14,
         ];
     }
 
@@ -148,7 +166,10 @@ class DischargeExport implements FromArray, WithTitle
         //     $sheet->getStyle($cell)->getAlignment()->applyFromArray(['vertical' => 'center']);
         //     $sheet->getStyle($cell)->getAlignment()->setHorizontal('center');
         // }
-
+// $sheet->getStyle($cell)->getAlignment()->applyFromArray([
+        //         'horizontal' => 'center',
+        //         'vertical' => 'center',
+        //     ]);
         // $border_style = [
         //     'borders' => [
         //         'outline' => [
@@ -248,16 +269,13 @@ class DischargeExport implements FromArray, WithTitle
         // $sheet->setCellValue('H' . $row_names, 'PMAJ JOSEPH C CARLIT');
         // $sheet->setCellValue('H' . $row_titles, 'Acting Chief of Police');
 
-        $sheet->setCellValue('A1', 'Republic of the Philippine');
-        $sheet->setCellValue('A2', 'National Police Commission');
-        $sheet->setCellValue('A3', 'PHILIPPINE NATIONAL POLICE,  POLICE REGIONAL OFFICE CALABARZON');
-        $sheet->setCellValue('A4', 'CAVITE POLICE PROVINCIAL OFFICE');
-        $sheet->setCellValue('A5', 'CARMONA MUNICIPAL POLICE STATION');
-        $sheet->setCellValue('A6', 'Brgy. Maduya, Carmona, Cavite');
+        $this->myHeader($sheet);        
 
         return [
+            // myHeader
             'A4' => ['font' => ['bold' => true]],
             'A5' => ['font' => ['bold' => true]],
+
             // ($end_number + 10) => ['font' => ['bold' => true]],
             // ('A' . $row_names) => [
             //     'value' => 'testsetsetsetset'
@@ -274,6 +292,49 @@ class DischargeExport implements FromArray, WithTitle
         ];
     }
 
+    public function myHeader(Worksheet $sheet)
+    {
+        for ($i=1; $i <= 8; $i++) { 
+            $sheet->mergeCells("A$i:I$i");
+        }
+        
+        $header_values = [
+            'A1' => 'Republic of the Philippine',
+            'A2' => 'National Police Commission',
+            'A3' => 'PHILIPPINE NATIONAL POLICE,  POLICE REGIONAL OFFICE CALABARZON',
+            'A4' => 'CAVITE POLICE PROVINCIAL OFFICE',
+            'A5' => 'CARMONA MUNICIPAL POLICE STATION',
+            'A6' => 'Brgy. Maduya, Carmona, Cavite',
+            'A8' => 'Monthly Report of Timely Release of PUPCs',
+        ];
+
+        $table_header_values = [
+            'A9' => 'Blotter Entry Number',
+            'B9' => 'PNP Personnel in-charge of the Release of PUPC',
+            'C9' => 'PUPC\'s Full Name',
+            'D9' => 'Violation',
+            'E9' => 'Date of Entry as PUPC',
+            'F9' => 'Release Order Date from the Court',
+            'G9' => 'Date Released',
+            'H9' => 'Date of Updating of Release in e-Rogue',
+            'I9' => 'Remarks',
+        ];
+
+        foreach ($header_values as $cell_id => $cell_value) {
+            $sheet->setCellValue($cell_id, $cell_value);
+            // $sheet->getStyle($cell_id)->applyFromArray($this->styles['borders']);
+            $sheet->getStyle($cell_id)->getAlignment()->applyFromArray($this->styles['alignment_center']);
+        }
+
+        foreach ($table_header_values as $cell_id => $cell_value) {
+            $sheet->setCellValue($cell_id, $cell_value);
+            $sheet->getStyle($cell_id)->applyFromArray($this->styles['borders']);
+            $sheet->getStyle($cell_id)->getAlignment()->applyFromArray($this->styles['alignment_center']);
+        }
+
+        
+    }
+
     public function drawings()
     {
         $drawing = new Drawing();
@@ -288,7 +349,7 @@ class DischargeExport implements FromArray, WithTitle
         // $drawing2->setDescription('This is a second image');
         $drawing2->setPath(public_path('/cavite.png'));
         // $drawing2->setHeight(120);
-        $drawing2->setCoordinates('G1');
+        $drawing2->setCoordinates('I1');
 
         return [$drawing, $drawing2];
     }
