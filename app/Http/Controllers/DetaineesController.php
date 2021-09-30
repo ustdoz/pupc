@@ -29,6 +29,7 @@ class DetaineesController extends Controller
 
     public function __construct()
     {
+        // dd(config('detainees.names.0'));
         $date_now = Carbon::now();
         $month = request()->get('filter_month') ? : $date_now->month;
         $this->filter['month'] = ($month > 9) ? $month : '0' . ((int) $month);

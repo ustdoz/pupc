@@ -49,9 +49,18 @@ class DischargeExport implements FromArray, WithTitle
 
     public function array(): array
     {
-        $subsistence = [];
+        $discharge = [];
 
         if ($this->discharge) {
+            // dd($this->discharge);
+
+            // $start = 10;
+
+            // foreach ($this->discharge as $pupc) {
+            //     $discharge[$start] = [$pupc->first_name];
+            //     $start++;
+            // }
+
             // $total_budget = 0;
             // $daily_allowance = config('detainees.allowance_amount');
 
@@ -91,7 +100,7 @@ class DischargeExport implements FromArray, WithTitle
             // ];
         }
 
-        return $subsistence;
+        return $discharge;
     }
 
     public function title(): string
@@ -133,143 +142,8 @@ class DischargeExport implements FromArray, WithTitle
 
     public function styles(Worksheet $sheet)
     {
-        $end_number = count($this->discharge);
-        // dd($end_number);
-        // $end_number = $this->detainees->count() + 3;
-        // $row_names = $end_number + 3;
-        // $row_titles = $row_names + 1;
-
-        // $sheet->mergeCells('A1:G1');
-        // $sheet->mergeCells('A2:G2');
-        // $sheet->mergeCells('A3:G3');
-        // $sheet->mergeCells('A4:G4');
-        // $sheet->mergeCells('A5:G5');
-        // $sheet->mergeCells('A6:G6');
-        // $sheet->mergeCells('A8:G8');
-        // $sheet->mergeCells('A9:C9');
-
-        // // $sheet->mergeCells('A1:K1');
-        // // $sheet->mergeCells('A2:A3');
-        // // // $sheet->mergeCells('B2:F2');
-        // // $sheet->mergeCells('G2:G3');
-        // // $sheet->mergeCells('H2:H3');
-        // // $sheet->mergeCells('I2:I3');
-        // // $sheet->mergeCells('J2:J3');
-        // // $sheet->mergeCells('K2:K3');
-
-        // $wrap_text_arr = [
-        //     'A9', 'D9', 'E9', 'F9', 'G9',
-        // ];
-
-        // foreach ($wrap_text_arr as $cell) {
-        //     $sheet->getStyle($cell)->getAlignment()->setWrapText(true);
-        //     $sheet->getStyle($cell)->getAlignment()->applyFromArray(['vertical' => 'center']);
-        //     $sheet->getStyle($cell)->getAlignment()->setHorizontal('center');
-        // }
-// $sheet->getStyle($cell)->getAlignment()->applyFromArray([
-        //         'horizontal' => 'center',
-        //         'vertical' => 'center',
-        //     ]);
-        // $border_style = [
-        //     'borders' => [
-        //         'outline' => [
-        //             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-        //             'color' => ['argb' => '000000'],
-        //         ],
-        //     ]
-        // ];
-
-        // $text_center = ['horizontal' => 'center', 'vertical' => 'center'];
-        // for ($i=1; $i <= 8; $i++) { 
-        //     $sheet->getStyle('A' . $i)->getAlignment()->applyFromArray($text_center);
-        // }
-
-        // $sheet->getStyle('A9:C9')->applyFromArray($border_style);
-        // $sheet->getStyle('D9')->applyFromArray($border_style);
-        // $sheet->getStyle('E9')->applyFromArray($border_style);
-        // $sheet->getStyle('F9')->applyFromArray($border_style);
-        // $sheet->getStyle('G9')->applyFromArray($border_style);
-
-        // $sheet->getRowDimension(9)->setRowHeight(30);
-
-        // // merging cell from start of month to end of the month
-        // $end_loop = $end_number + 9;
-        // for ($i=10; $i <= $end_loop; $i++) { 
-        //     $sheet->mergeCells("A$i:C$i");
-        //     $sheet->getStyle("A$i:C$i")->applyFromArray($border_style);
-        //     $sheet->getStyle("D$i")->applyFromArray($border_style);
-        //     $sheet->getStyle("E$i")->applyFromArray($border_style);
-        //     $sheet->getStyle("F$i")->applyFromArray($border_style);
-        //     $sheet->getStyle("G$i")->applyFromArray($border_style);
-
-        //     $sheet->getStyle("D$i")->getAlignment()->applyFromArray($text_center);
-        //     $sheet->getStyle("E$i")->getAlignment()->applyFromArray($text_center);
-        //     $sheet->getStyle("F$i")->getAlignment()->applyFromArray($text_center);
-        //     $sheet->getStyle("G$i")->getAlignment()->applyFromArray($text_center);
-        // }
-
-        // $sheet->getStyle('F' . ($end_loop + 1))->applyFromArray($border_style);
-        // $sheet->getStyle('G' . ($end_loop + 1))->applyFromArray($border_style);
-
-        // $wrap_cell = 'F' . ($end_loop + 1);
-        // $sheet->getStyle($wrap_cell)->getAlignment()->setWrapText(true);
-        // $sheet->getStyle($wrap_cell)->getAlignment()->applyFromArray(['vertical' => 'center']);
-        // $sheet->getStyle($wrap_cell)->getAlignment()->setHorizontal('center');
-
-        // $wrap_cell = 'G' . ($end_loop + 1);
-        // $sheet->getStyle($wrap_cell)->getAlignment()->setWrapText(true);
-        // $sheet->getStyle($wrap_cell)->getAlignment()->applyFromArray(['vertical' => 'center']);
-        // $sheet->getStyle($wrap_cell)->getAlignment()->setHorizontal('center');
-
-        // $loop_arr = [
-        //     'columns' => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'],
-        //     'row_start' => 4,
-        //     'row_end' => $end_number,
-        // ];
-
-        // foreach ($loop_arr['columns'] as $column) {
-        //     for ($i=$loop_arr['row_start']; $i <= $loop_arr['row_end']; $i++) { 
-        //         $sheet->getStyle($column . $i)->applyFromArray($border_style);
-        //     }
-        // }
-
-        // $sheet->getRowDimension(1)->setRowHeight(31.5);
-        // $sheet->getRowDimension(3)->setRowHeight(30);
-        // $sheet->getRowDimension($end_number + 1)->setRowHeight(30);
-        // $sheet->getRowDimension($end_number + 2)->setRowHeight(75);
-
-        // // $sheet->setHeight([
-        // //     1 => 31.5,
-        // //     3 => 30,
-        // //     ($end_number + 1) => 30,
-        // //     ($end_number + 2) => 75
-        // // ]);
-
-        // $align_center_arr = [
-        //     'A1', 'A2', 'A4', 'B2', 'B3', 'C3', 'D3', 'E3', 'F3', 'G2', 'H2', 'I2', 'J2', 'K2', 
-        // ];
-
-        // foreach ($align_center_arr as $cell) {
-        //     $sheet->getStyle($cell)->getAlignment()->applyFromArray([
-        //         'horizontal' => 'center',
-        //         'vertical' => 'center',
-        //     ]);
-
-        // }
-
-        // $sheet->getStyle('G4:K' . ($end_number + 1))->getAlignment()->applyFromArray([
-        //     'horizontal' => 'center',
-        //     'vertical' => 'center',
-        // ]);
-
-        // $sheet->setCellValue('A' . $row_names, 'PSSg Percival Restrivera');
-        // $sheet->setCellValue('A' . $row_titles, 'In Charge of PUPC');
-        // $sheet->setCellValue('D' . $row_names, 'PSSg Joel L Mendoza');
-        // $sheet->setCellValue('D' . $row_titles, 'Chief, Invest Section');
-        // $sheet->setCellValue('H' . $row_names, 'PMAJ JOSEPH C CARLIT');
-        // $sheet->setCellValue('H' . $row_titles, 'Acting Chief of Police');
-
         $this->myHeader($sheet);        
+        $this->myData($sheet);
 
         return [
             // myHeader
@@ -331,8 +205,33 @@ class DischargeExport implements FromArray, WithTitle
             $sheet->getStyle($cell_id)->applyFromArray($this->styles['borders']);
             $sheet->getStyle($cell_id)->getAlignment()->applyFromArray($this->styles['alignment_center']);
         }
+    }
 
-        
+    public function myData(Worksheet $sheet)
+    {
+        $cell_id = 10;
+        $cell_columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
+
+        if ($this->discharge) {
+            foreach ($this->discharge as $discharge) {
+                foreach ($cell_columns as $cell_column) {
+                    $sheet->getStyle($cell_column . $cell_id)->applyFromArray($this->styles['borders']);
+                    $sheet->getStyle($cell_column . $cell_id)->getAlignment()->applyFromArray($this->styles['alignment_center']);
+                }
+
+                $sheet->setCellValue('A' . $cell_id, null);
+                $sheet->setCellValue('B' . $cell_id, null);
+                $sheet->setCellValue('C' . $cell_id, implode(' ', [$discharge->first_name, $discharge->middle_name, $discharge->last_name]));
+                $sheet->setCellValue('D' . $cell_id, null);
+                $sheet->setCellValue('E' . $cell_id, ($discharge->detained_date ? $discharge->detained_date->format('d/m/Y') : null));
+                $sheet->setCellValue('F' . $cell_id, null);
+                $sheet->setCellValue('G' . $cell_id, ($discharge->released_date ? $discharge->released_date->format('d/m/Y') : null));
+                $sheet->setCellValue('H' . $cell_id, null);
+                $sheet->setCellValue('I' . $cell_id, null);
+
+                $cell_id++;
+            }
+        }
     }
 
     public function drawings()

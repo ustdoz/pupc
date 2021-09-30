@@ -211,12 +211,12 @@ class SubsistenceExport implements FromArray, WithTitle
             'vertical' => 'center',
         ]);
 
-        $sheet->setCellValue('A' . $row_names, 'PSSg Percival Restrivera');
-        $sheet->setCellValue('A' . $row_titles, 'In Charge of PUPC');
-        $sheet->setCellValue('D' . $row_names, 'PSSg Joel L Mendoza');
-        $sheet->setCellValue('D' . $row_titles, 'Chief, Invest Section');
-        $sheet->setCellValue('H' . $row_names, 'PMAJ JOSEPH C CARLIT');
-        $sheet->setCellValue('H' . $row_titles, 'Acting Chief of Police');
+        $sheet->setCellValue('A' . $row_names, config('detainees.names.0'));
+        $sheet->setCellValue('A' . $row_titles, config('detainees.titles.0'));
+        $sheet->setCellValue('D' . $row_names, config('detainees.names.1'));
+        $sheet->setCellValue('D' . $row_titles, config('detainees.titles.1'));
+        $sheet->setCellValue('H' . $row_names, config('detainees.names.2'));
+        $sheet->setCellValue('H' . $row_titles, config('detainees.titles.2'));
 
         return [
             // ('A' . $row_names) => [
