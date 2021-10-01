@@ -231,6 +231,25 @@ class DischargeExport implements FromArray, WithTitle
 
                 $cell_id++;
             }
+
+            // myFooter
+            $sheet->getRowDimension($cell_id)->setRowHeight(45);
+            $cell_id++;
+            $sheet->mergeCells("A$cell_id:B$cell_id");
+            $sheet->setCellValue("A$cell_id", 'Prepared by:');
+            $sheet->mergeCells("G$cell_id:H$cell_id");
+            $sheet->setCellValue("G$cell_id", 'Noted by:');
+
+            $cell_id++;
+            $sheet->getRowDimension($cell_id)->setRowHeight(30);
+            $sheet->mergeCells("A$cell_id:B$cell_id");
+            $sheet->setCellValue("A$cell_id", config('detainees.jailers.1'));
+            $sheet->mergeCells("G$cell_id:H$cell_id");
+            $sheet->setCellValue("G$cell_id", config('detainees.hepe.0'));
+
+            $cell_id++;
+            $sheet->mergeCells("G$cell_id:H$cell_id");
+            $sheet->setCellValue("G$cell_id", 'ACOP, Carmona MPS');
         }
     }
 
