@@ -262,6 +262,9 @@ class RecapExport implements FromArray, WithTitle
         $sheet->setCellValue('F9', 'Allowance Per Day');
         $sheet->setCellValue('G9', 'Total Per Day');
 
+
+        $this->myFooter($sheet, $end_loop);
+
         return [
             'A4' => ['font' => ['bold' => true]],
             'A5' => ['font' => ['bold' => true]],
@@ -279,6 +282,55 @@ class RecapExport implements FromArray, WithTitle
             // // Styling an entire column.
             // 'C'  => ['font' => ['size' => 16]],
         ];
+    }
+
+    public function myFooter(Worksheet $sheet, $row)
+    {
+        $row++;
+        $row++;
+        $row++;
+        $sheet->mergeCells("F$row:G$row");
+        $sheet->setCellValue('F' . $row, 'Prepared by:');
+        $row++;
+        $row++;
+        $sheet->mergeCells("F$row:G$row");
+        $sheet->setCellValue('F' . $row, config('detainees.jailers.2'));
+        $row++;
+        $sheet->mergeCells("F$row:G$row");
+        $sheet->setCellValue('F' . $row, 'Custodial PNCO');
+        $row++;
+        $row++;
+        $value = "     I certify under oath that the contents of this document are true and correct and I understand that any ommission or commission by falsified declaration will constitute administrative and/or criminal offense.";
+        $sheet->mergeCells("A$row:G$row");
+        $sheet->getRowDimension($row)->setRowHeight(29);
+        $sheet->getStyle('A' . $row)->getAlignment()->applyFromArray(['wrapText' => true]);
+        $sheet->setCellValue('A' . $row, $value);
+        $row++;
+        $row++;
+        $row++;
+        $sheet->mergeCells("F$row:G$row");
+        $sheet->getStyle('F' . $row)->applyFromArray(['font' => ['bold' => true]]);
+        $sheet->setCellValue('F' . $row, config('detainees.hepe.0'));
+        $row++;
+        $sheet->mergeCells("F$row:G$row");
+        $sheet->setCellValue('F' . $row, 'Acting Chief of Police');
+        $row++;
+        $row++;
+        $sheet->mergeCells("A$row:G$row");
+        $value = "     SUBSCRIBED and SWORN before me this ______ day of ________________ at ____________________.";
+        $sheet->setCellValue('A' . $row, $value);
+        $row++;
+        $row++;
+        $row++;
+        $row++;
+        $sheet->mergeCells("F$row:G$row");
+        $sheet->setCellValue('F' . $row, 'C, PIDMU');
+        $row++;
+        $sheet->mergeCells("F$row:G$row");
+        $sheet->setCellValue('F' . $row, 'Administering officer');
+        // $row++;
+        // $row++;
+        // $sheet->setCellValue('A' . $row, 'Administering officer');
     }
 
     public function drawings()

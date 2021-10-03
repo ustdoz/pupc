@@ -22,7 +22,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <style type="text/css">
-        div#discharge.tab-pane table thead tr th, div#discharge.tab-pane table thead tr th {
+        div#discharge.tab-pane table thead tr th, div#discharge.tab-pane table thead tr td {
             vertical-align: middle;
         }
     </style>
