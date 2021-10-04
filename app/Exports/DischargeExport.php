@@ -34,6 +34,14 @@ class DischargeExport implements FromArray, WithTitle
                 ],
             ],
         ],
+        'border_bottom' => [
+            'borders' => [
+                'bottom' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => '000000'],
+                ],
+            ],
+        ],
         'alignment_center' => [
             'wrapText' => true,
             'horizontal' => 'center',

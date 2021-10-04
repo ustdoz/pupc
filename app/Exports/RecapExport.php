@@ -24,6 +24,29 @@ class RecapExport implements FromArray, WithTitle
 {
     protected $recap = null;
     protected $data = null;
+    protected $styles = [
+        'borders' => [
+            'borders' => [
+                'outline' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => '000000'],
+                ],
+            ],
+        ],
+        'border_bottom' => [
+            'borders' => [
+                'bottom' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => '000000'],
+                ],
+            ],
+        ],
+        'alignment_center' => [
+            'wrapText' => true,
+            'horizontal' => 'center',
+            'vertical' => 'center',
+        ],
+    ];
 
     public function __construct($recap = null, $data = null)
     {
@@ -328,9 +351,44 @@ class RecapExport implements FromArray, WithTitle
         $row++;
         $sheet->mergeCells("F$row:G$row");
         $sheet->setCellValue('F' . $row, 'Administering officer');
-        // $row++;
-        // $row++;
-        // $sheet->setCellValue('A' . $row, 'Administering officer');
+        $row++;
+        $row++;
+        $sheet->getStyle('A' . $row)->applyFromArray(['font' => ['size' => 14]]);
+        $sheet->getStyle('B' . $row)->applyFromArray($this->styles['border_bottom']);
+        $sheet->setCellValue('A' . $row, 'Doc No.:');
+        $row++;
+        $sheet->getStyle('A' . $row)->applyFromArray(['font' => ['size' => 14]]);
+        $sheet->getStyle('B' . $row)->applyFromArray($this->styles['border_bottom']);
+        $sheet->setCellValue('A' . $row, 'Page No.:');
+        $row++;
+        $sheet->getStyle('A' . $row)->applyFromArray(['font' => ['size' => 14]]);
+        $sheet->getStyle('B' . $row)->applyFromArray($this->styles['border_bottom']);
+        $sheet->setCellValue('A' . $row, 'Book No.:');
+        $row++;
+        $sheet->getStyle('A' . $row)->applyFromArray(['font' => ['size' => 14]]);
+        $sheet->getStyle('B' . $row)->applyFromArray($this->styles['border_bottom']);
+        $sheet->setCellValue('A' . $row, 'Series of:');
+        $row++;
+        $row++;
+        $sheet->mergeCells("F$row:G$row");
+        $sheet->setCellValue('F' . $row, 'Validated and Verified by:');
+        $row++;
+        $row++;
+        $sheet->mergeCells("F$row:G$row");
+        $sheet->setCellValue('F' . $row, 'PLTCOL NOEL D NUÑEZ');
+        $row++;
+        $sheet->mergeCells("F$row:G$row");
+        $sheet->setCellValue('F' . $row, '(R7 or C, Invest)');
+        $row++;
+        $sheet->mergeCells("F$row:G$row");
+        $sheet->setCellValue('F' . $row, 'C,RIDMD or C, Invest (for NOSUs)');
+
+// Validated and Verified by:  
+    
+// PLTCOL NOEL D NUÑEZ 
+// (R7 or C, Invest)   
+// C,RIDMD or C, Invest (for NOSUs)    
+
     }
 
     public function drawings()
