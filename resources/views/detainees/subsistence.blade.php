@@ -93,10 +93,13 @@
                                 <a class="nav-link active" id="subsistence-tab" data-toggle="tab" href="#subsistence" role="tab" aria-controls="subsistence" aria-selected="true">Subsistence</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="recap-tab" data-toggle="tab" href="#recap" role="tab" aria-controls="recap" aria-selected="false">Recap</a>
+                                <a class="nav-link" id="recap-tab" data-toggle="tab" href="#recap" role="tab" aria-controls="recap" aria-selected="false">Subsistence Recap</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="discharge-tab" data-toggle="tab" href="#discharge" role="tab" aria-controls="discharge" aria-selected="false">Discharge</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="discharge-recap-tab" data-toggle="tab" href="#discharge-recap" role="tab" aria-controls="discharge-recap" aria-selected="false">Discharge Recap</a>
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
@@ -203,6 +206,39 @@
                                                 <td class="text-center">Bail Bond</td>
                                             </tr>
                                         @endforeach
+                                        <tr>
+                                            <td colspan="9"><center>No Discharged Detainee(s)</center></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="tab-pane fade" id="discharge-recap" role="tabpanel" aria-labelledby="discharge-recap-tab">
+                                <table class="card-table table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="text-center">Law Violated</th>
+                                            <th scope="col" class="text-center">No. PUPC's Released</th>
+                                            <th scope="col" class="text-center">Authority / Reason of Release</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Serious Physical Injuries</td>
+                                            <td class="text-center">3</td>
+                                            <td class="text-center">Bail Bond</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Homicide</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">RIR (Affidavit "Kasunduan")</td>
+                                        </tr>
+                                        <tr>
+                                            <td>RA 9165</td>
+                                            <td class="text-center">2</td>
+                                            <td class="text-center">Motion to Life Warrant of Arrest</td>
+                                        </tr>
+
                                         <tr>
                                             <td colspan="9"><center>No Discharged Detainee(s)</center></td>
                                         </tr>
