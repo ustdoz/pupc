@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Detainee;
+use App\Jailer;
 use Validator;
 use Session;
 use Carbon\Carbon;
@@ -29,7 +30,10 @@ class DetaineesController extends Controller
 
     public function __construct()
     {
+        // $jailer = Jailer::find(1);
+        // dd($jailer->detainees[0]->full_name);
         // dd(config('detainees.names.0'));
+
         $date_now = Carbon::now();
         $month = request()->get('filter_month') ? : $date_now->month;
         $this->filter['month'] = ($month > 9) ? $month : '0' . ((int) $month);
@@ -54,11 +58,10 @@ class DetaineesController extends Controller
     {
         return $this->subsistence();
 
-        $detainees = Detainee::orderBy('last_name');
+        // $detainees = Detainee::orderBy('last_name');
+        // $detainees = $detainees->get();
 
-        $detainees = $detainees->get();
-
-        return view('detainees.index', compact('detainees'));
+        // return view('detainees.index', compact('detainees', 'jailer'));
     }
 
     /**
@@ -68,7 +71,8 @@ class DetaineesController extends Controller
      */
     public function create()
     {
-        return view('detainees.create');
+        $jailers = Jailer::all();
+        return view('detainees.create', compact('jailers'));
         // return view('detainees.test');
     }
 
@@ -79,8 +83,15 @@ class DetaineesController extends Controller
             'middle_name' => null,
             'last_name' => null,
             'birth_date' => null,
+            'gender' => null,
+            'violation' => null,
             'detained_date' => null,
             'released_date' => null,
+            'released_blotter_number' => null,
+            'jailer_id' => null,
+            'released_date_court' => null,
+            'released_date_erogue' => null,
+            'remarks' => null,
         ];
 
         $data = array_merge($form_data, $request->only(array_keys($form_data)));
@@ -88,6 +99,11 @@ class DetaineesController extends Controller
         $data['first_name'] = $data['first_name'] ? ucwords(mb_strtolower($data['first_name'])) : null;
         $data['middle_name'] = $data['middle_name'] ? ucwords(mb_strtolower($data['middle_name'])) : null;
         $data['last_name'] = $data['last_name'] ? ucwords(mb_strtolower($data['last_name'])) : null;
+        $data['jailer_id'] = (int) $data['jailer_id'];
+
+        if (!$data['jailer_id'] || !Jailer::find($data['jailer_id'])) {
+            unset($data['jailer_id']);
+        }
 
         return $data;
     }
@@ -142,6 +158,7 @@ class DetaineesController extends Controller
      */
     public function edit($id)
     {
+        $jailers = Jailer::all();
         $detainee = Detainee::find($id);
 
         if (!$detainee) {
@@ -151,7 +168,7 @@ class DetaineesController extends Controller
             return redirect(route('detainees.index'));
         }
 
-        return view('detainees.edit', compact('detainee'));
+        return view('detainees.edit', compact('detainee', 'jailers'));
     }
 
     /**
@@ -206,7 +223,13 @@ class DetaineesController extends Controller
             'released' => 0,
             'male' => 0,
             'female' => 0,
+            'current_detainees' => 0,
+            'current_male' => 0,
+            'current_female' => 0,
         ];
+
+        $jailers = Jailer::all();
+        // dd($jailers);
 
         $date_start = $this->date['start']->format('Y-m-d');
         $date_end = $this->date['end']->format('Y-m-d');
@@ -220,8 +243,6 @@ class DetaineesController extends Controller
             });
 
         // dd($detainees->toSql());
-
-
         $detainees = $detainees->get();
 
         $discharge = $this->discharge($detainees);
@@ -270,6 +291,24 @@ class DetaineesController extends Controller
             $item->days_detained = $_date_start->diffInDays($_date_end) + 1;
             $item->total_budget = $item->days_detained * config('detainees.allowance_amount');
 
+            if ($item->gender == 'male') {
+                $data['male']++;
+
+                if (!$item->released_date) {
+                    $data['current_male']++;
+                }
+            } else if ($item->gender == 'female') {
+                $data['female']++;
+
+                if (!$item->released_date) {
+                    $data['current_female']++;
+                }
+            }
+
+            if (!$item->released_date) {
+                $data['current_detainees']++;
+            }
+
             return $item;
         });
 
@@ -286,7 +325,7 @@ class DetaineesController extends Controller
             return Excel::download($detainees_export, $data['month_year'] . ' ' . time() . '.xls');
         }
 
-        return view('detainees.subsistence', compact('data', 'detainees', 'recap', 'discharge'));
+        return view('detainees.subsistence', compact('data', 'detainees', 'recap', 'discharge', 'jailers'));
     }
 
     public function discharge($detainees)

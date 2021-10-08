@@ -37,7 +37,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label>Law Violated</label>
-                                        <textarea class="form-control" name="violation" rows="2"></textarea>
+                                        <textarea class="form-control" name="violation" rows="2">{{ $detainee->violation }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -46,9 +46,9 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Gender</label>
-                                            <select class="form-control">
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
+                                            <select class="form-control" name="gender">
+                                                <option value="male"{{ ($detainee->gender == 'male') ? ' SELECTED' : '' }}>Male</option>
+                                                <option value="female"{{ ($detainee->gender == 'female') ? ' SELECTED' : '' }}>Female</option>
                                             </select>
                                         </div>
                                     </div>
@@ -79,28 +79,29 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label>Blotter Entry Number</label>
-                                                        <input type="text" class="form-control" placeholder="Blotter Entry Number" name="last_name" autocomplete="off">
+                                                        <input type="text" class="form-control" placeholder="Blotter Entry Number" name="released_blotter_number" value="{{ $detainee->released_blotter_number }}" autocomplete="off">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Personnel in charge</label>
-                                                            <select class="form-control">
+                                                            <select class="form-control" name="jailer_id">
                                                                 <option value="0">--- SELECT PERSONNEL ---</option>
-                                                                <option value="1">PSSg Hernane V Quintana</option>
-                                                                <option value="2">PSMs Jober Manaig</option>
+                                                                @foreach ($jailers as $jailer)
+                                                                    <option value="{{ $jailer->id }}"{{ ($detainee->jailer_id == $jailer->id) ? ' SELECTED': '' }}>{{ $jailer->name }}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Court Release Date</label>
-                                                            <input id="datepicker_released_date_court" type="text" name="released_date_court" autocomplete="off">
+                                                            <input id="datepicker_released_date_court" type="text" name="released_date_court" value="{{ $detainee->released_date_court ? $detainee->released_date_court->format('m/d/Y') : null }}" autocomplete="off">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>e-Rogue Release Date</label>
-                                                            <input id="datepicker_released_date_erogue" type="text" name="released_date_erogue" autocomplete="off">
+                                                            <input id="datepicker_released_date_erogue" type="text" name="released_date_erogue" value="{{ $detainee->released_date_erogue ? $detainee->released_date_erogue->format('m/d/Y') : null }}" autocomplete="off">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -111,7 +112,7 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label>Remarks / Reason of Release</label>
-                                                        <textarea class="form-control" name="violation" rows="2"></textarea>
+                                                        <textarea class="form-control" name="remarks" rows="2">{{ $detainee->remarks }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>

@@ -8,30 +8,47 @@ use Carbon\Carbon;
 class Detainee extends Model
 {
     protected $fillable = [
-    	'first_name', 'middle_name', 'last_name', 'birth_date', 'detained_date', 'released_date', 
+    	'first_name', 'middle_name', 'last_name', 'birth_date', 'detained_date', 'released_date',
+    	'gender', 'violation', 'released_blotter_number', 'jailer_id', 'released_date_court', 'released_date_erogue', 'remarks',
     ];
 
     protected $dates = [
-    	'birth_date', 'detained_date', 'released_date', 
+    	'birth_date', 'detained_date', 'released_date',
+    	'released_date_court', 'released_date_erogue',
     ];
 
     protected $appends = [
-    	'age',
+    	'full_name', 'age',
     ];
+
+    protected function fixDate($value)
+    {
+    	return $value ? Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d') : null;
+    }
 
 	public function setBirthDateAttribute($value)
 	{
-		$this->attributes['birth_date'] = $value ? Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d') : null;
+		$this->attributes['birth_date'] = $this->fixDate($value);
 	}
 
 	public function setDetainedDateAttribute($value)
 	{
-		$this->attributes['detained_date'] = $value ? Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d') : null;
+		$this->attributes['detained_date'] = $this->fixDate($value);
 	}
 
 	public function setReleasedDateAttribute($value)
 	{
-		$this->attributes['released_date'] = $value ? Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d') : null;
+		$this->attributes['released_date'] = $this->fixDate($value);
+	}
+
+	public function setReleasedDateCourtAttribute($value)
+	{
+		$this->attributes['released_date_court'] = $this->fixDate($value);
+	}
+
+	public function setReleasedDateErogueAttribute($value)
+	{
+		$this->attributes['released_date_erogue'] = $this->fixDate($value);
 	}
 
 	public function getAgeAttribute()
@@ -41,5 +58,15 @@ class Detainee extends Model
 		}
 
 		return Carbon::createFromFormat('Y-m-d', $this->attributes['birth_date'])->diff(Carbon::now())->format('%y');
+	}
+
+	public function getFullNameAttribute()
+	{
+		return implode(' ', [$this->attributes['first_name'], $this->attributes['middle_name'], $this->attributes['last_name']]);
+	}
+
+	public function jailer()
+	{
+		return $this->beLongsTo(Jailer::class)->withDefault();
 	}
 }

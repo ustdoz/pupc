@@ -15,20 +15,25 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-md-4 text-center">
-                                                    {{-- total detained this month --}}
-                                                    <div class="h3">{{ $data['detained'] }} Detained</div>
-                                                    {{-- total released this month --}}
-                                                    <div class="h3">{{ $data['released'] }} Released</div>
+                                                    <div class="h5">{{ $data['detained'] }} Detained</div>
+                                                    <div class="h5">{{ $data['released'] }} Released</div>
                                                 </div>
                                                 <div class="col-md-4 text-center">
-                                                    {{-- total male this month --}}
-                                                    <div class="h3">0 Male</div>
-                                                    {{-- total female this month --}}
-                                                    <div class="h3">0 Female</div>
+                                                    <div class="h5">{{ $data['current_male'] }} Current Male</div>
+                                                    <div class="h5">{{ $data['current_female'] }} Current Female</div>
                                                 </div>
                                                 <div class="col-md-4 text-center">
-                                                    {{-- total detainees --}}
-                                                    <div class="h3">{{ $data['total_detainees'] }} Total Detainees</div>
+                                                    <div class="h5">{{ $data['male'] }} Total Male</div>
+                                                    <div class="h5">{{ $data['female'] }} Total Female</div>
+                                                </div>
+                                                <div class="col-md-4 text-center">
+                                                    &nbsp;
+                                                </div>
+                                                <div class="col-md-4 text-center">
+                                                    <div class="h5">{{ $data['current_detainees'] }} Current Detainees</div>
+                                                </div>
+                                                <div class="col-md-4 text-center">
+                                                    <div class="h5">{{ $data['total_detainees'] }} Total Detainees</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -104,7 +109,7 @@
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="subsistence" role="tabpanel" aria-labelledby="subsistence-tab">
-                                <table class="card-table table table-striped">
+                                <table class="card-table table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th scope="col">Last Name</th>
@@ -147,7 +152,7 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="recap" role="tabpanel" aria-labelledby="recap-tab">
-                                <table class="card-table table table-striped">
+                                <table class="card-table table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th scope="col" class="text-center">Date (DD/MM/YYYY)</th>
@@ -174,7 +179,7 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="discharge" role="tabpanel" aria-labelledby="discharge-tab">
-                                <table class="card-table table table-striped">
+                                <table class="card-table table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th scope="col" class="text-center">Blotter Entry Number</th>
@@ -191,19 +196,19 @@
                                     <tbody>
                                         @foreach ($discharge as $discharge_detainee)
                                             <tr>
-                                                <td class="text-center">&nbsp;</td>
-                                                <td class="text-center">NeedUpdate</td>
+                                                <td class="text-center">{{ $discharge_detainee->released_blotter_number }}</td>
+                                                <td class="text-center">{{ $discharge_detainee->jailer->name }}</td>
                                                 <td class="text-center">
                                                     {{ $discharge_detainee->first_name }}
                                                     {{ $discharge_detainee->middle_name }}
                                                     {{ $discharge_detainee->last_name }}
                                                 </td>
-                                                <td class="text-center">NeedUpdate</td>
+                                                <td class="text-center">{{{ $discharge_detainee->violation }}}</td>
                                                 <td class="text-center">{{ $discharge_detainee->detained_date ? $discharge_detainee->detained_date->format('d/m/Y') : null }}</td>
-                                                <td class="text-center">00/00/0000</td>
+                                                <td class="text-center">{{ $discharge_detainee->released_date_court ? $discharge_detainee->released_date->format('d/m/Y') : null }}</td>
                                                 <td class="text-center">{{ $discharge_detainee->released_date ? $discharge_detainee->released_date->format('d/m/Y') : null }}</td>
-                                                <td class="text-center">00/00/0000</td>
-                                                <td class="text-center">Bail Bond</td>
+                                                <td class="text-center">{{ $discharge_detainee->released_date_erogue ? $discharge_detainee->released_date->format('d/m/Y') : null }}</td>
+                                                <td class="text-center">{{{ $discharge_detainee->remarks }}}</td>
                                             </tr>
                                         @endforeach
                                         <tr>
@@ -214,7 +219,7 @@
                             </div>
 
                             <div class="tab-pane fade" id="discharge-recap" role="tabpanel" aria-labelledby="discharge-recap-tab">
-                                <table class="card-table table table-striped">
+                                <table class="card-table table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th scope="col" class="text-center">Law Violated</th>

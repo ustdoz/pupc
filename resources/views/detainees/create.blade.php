@@ -46,7 +46,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Gender</label>
-                                            <select class="form-control">
+                                            <select class="form-control" name="gender">
                                                 <option value="male">Male</option>
                                                 <option value="female">Female</option>
                                             </select>
@@ -79,15 +79,16 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label>Blotter Entry Number</label>
-                                                        <input type="text" class="form-control" placeholder="Blotter Entry Number" name="last_name" autocomplete="off">
+                                                        <input type="text" class="form-control" placeholder="Blotter Entry Number" name="released_blotter_number" autocomplete="off">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Personnel in charge</label>
-                                                            <select class="form-control">
+                                                            <select class="form-control" name="jailer_id">
                                                                 <option value="0">--- SELECT PERSONNEL ---</option>
-                                                                <option value="1">PSSg Hernane V Quintana</option>
-                                                                <option value="2">PSMs Jober Manaig</option>
+                                                                @foreach ($jailers as $jailer)
+                                                                    <option value="{{ $jailer->id }}">{{ $jailer->name }}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
@@ -111,7 +112,7 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label>Remarks / Reason of Release</label>
-                                                        <textarea class="form-control" name="violation" rows="2"></textarea>
+                                                        <textarea class="form-control" name="remarks" rows="2"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
