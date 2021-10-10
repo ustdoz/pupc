@@ -34,6 +34,15 @@ class DetaineesController extends Controller
         // dd($jailer->detainees[0]->full_name);
         // dd(config('detainees.names.0'));
 
+        $filter_years = [];
+
+        for ($i=2019; $i <= Carbon::now()->format('Y'); $i++) { 
+            $filter_years[] = $i;
+            $i++;
+        }
+
+        $this->filter['years'] = $filter_years;
+
         $date_now = Carbon::now();
         $month = request()->get('filter_month') ? : $date_now->month;
         $this->filter['month'] = ($month > 9) ? $month : '0' . ((int) $month);
@@ -321,9 +330,14 @@ class DetaineesController extends Controller
 
         if ($this->download) {
             // Download subsistence and recap
+            // for printing page setup please check the link below:
+            // https://github.com/PHPOffice/PHPExcel/blob/develop/Documentation/markdown/Overview/08-Recipes.md#page-setup-scaling-options
+
             $detainees_export = new SubsistenceRecapExport($detainees, $recap, $discharge, $data);
             return Excel::download($detainees_export, $data['month_year'] . ' ' . time() . '.xls');
         }
+
+        $data['filter_years'] = $this->filter['years'];
 
         return view('detainees.subsistence', compact('data', 'detainees', 'recap', 'discharge', 'jailers'));
     }

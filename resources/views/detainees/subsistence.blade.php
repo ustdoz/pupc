@@ -14,25 +14,18 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-md-4 text-center">
+                                                <div class="col-md-3">
                                                     <div class="h5">{{ $data['detained'] }} Detained</div>
                                                     <div class="h5">{{ $data['released'] }} Released</div>
                                                 </div>
-                                                <div class="col-md-4 text-center">
+                                                <div class="col-md-5">
                                                     <div class="h5">{{ $data['current_male'] }} Current Male</div>
                                                     <div class="h5">{{ $data['current_female'] }} Current Female</div>
-                                                </div>
-                                                <div class="col-md-4 text-center">
-                                                    <div class="h5">{{ $data['male'] }} Total Male</div>
-                                                    <div class="h5">{{ $data['female'] }} Total Female</div>
-                                                </div>
-                                                <div class="col-md-4 text-center">
-                                                    &nbsp;
-                                                </div>
-                                                <div class="col-md-4 text-center">
                                                     <div class="h5">{{ $data['current_detainees'] }} Current Detainees</div>
                                                 </div>
-                                                <div class="col-md-4 text-center">
+                                                <div class="col-md-4">
+                                                    <div class="h5">{{ $data['male'] }} Total Male</div>
+                                                    <div class="h5">{{ $data['female'] }} Total Female</div>
                                                     <div class="h5">{{ $data['total_detainees'] }} Total Detainees</div>
                                                 </div>
                                             </div>
@@ -55,7 +48,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <select class="form-control" name="filter_year">
-                                                    @foreach (config('detainees.years') as $year)
+                                                    @foreach ($data['filter_years'] as $year)
                                                         @if (request('filter_year'))
                                                             <option value="{{ $year }}" {{ (request('filter_year') == $year) ? 'SELECTED' : '' }}>{{ $year }}</option>
                                                         @else
@@ -211,9 +204,13 @@
                                                 <td class="text-center">{{{ $discharge_detainee->remarks }}}</td>
                                             </tr>
                                         @endforeach
-                                        <tr>
-                                            <td colspan="9"><center>No Discharged Detainee(s)</center></td>
-                                        </tr>
+
+                                        @if (!$discharge->count())
+                                            <tr>
+                                                <td colspan="9"><center>No Discharged Detainee(s)</center></td>
+                                            </tr>
+                                        @endif
+                                        
                                     </tbody>
                                 </table>
                             </div>

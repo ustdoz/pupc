@@ -227,15 +227,15 @@ class DischargeExport implements FromArray, WithTitle
                     $sheet->getStyle($cell_column . $cell_id)->getAlignment()->applyFromArray($this->styles['alignment_center']);
                 }
 
-                $sheet->setCellValue('A' . $cell_id, null);
-                $sheet->setCellValue('B' . $cell_id, null);
+                $sheet->setCellValue('A' . $cell_id, $discharge->released_blotter_number);
+                $sheet->setCellValue('B' . $cell_id, $discharge->jailer->name);
                 $sheet->setCellValue('C' . $cell_id, implode(' ', [$discharge->first_name, $discharge->middle_name, $discharge->last_name]));
-                $sheet->setCellValue('D' . $cell_id, null);
+                $sheet->setCellValue('D' . $cell_id, $discharge->violation);
                 $sheet->setCellValue('E' . $cell_id, ($discharge->detained_date ? $discharge->detained_date->format('d/m/Y') : null));
-                $sheet->setCellValue('F' . $cell_id, null);
+                $sheet->setCellValue('F' . $cell_id, ($discharge->released_date_court ? $discharge->released_date_court->format('d/m/Y') : null));
                 $sheet->setCellValue('G' . $cell_id, ($discharge->released_date ? $discharge->released_date->format('d/m/Y') : null));
-                $sheet->setCellValue('H' . $cell_id, null);
-                $sheet->setCellValue('I' . $cell_id, null);
+                $sheet->setCellValue('H' . $cell_id, ($discharge->released_date_erogue ? $discharge->released_date_erogue->format('d/m/Y') : null));
+                $sheet->setCellValue('I' . $cell_id, $discharge->remarks);
 
                 $cell_id++;
             }
