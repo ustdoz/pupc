@@ -86,6 +86,35 @@
                                 <a class="btn btn-primary" href="{{ route('detainees.create') }}">Add New</a>
                             </div>
                         </div>
+                        <div class="card-body">
+                            <form class="form-inline" action="{{ route('detainees.index') }}" method="GET">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        Acting Chief of Police  <br>
+                                        ACOP, Carmona MPS   
+
+                                    </div>
+                                    <div class="col-md-2">
+                                        Chief, Invest Section
+                                    </div>
+                                    <div class="col-md-2">
+                                        Custodial PNCO  <br>
+                                        In Charge of PUPC
+                                    </div>
+                                    
+
+                                    <div class="col-md-2">
+                                        Administering officer   
+                                    </div>
+                                    <div class="col-md-2">
+                                        (R7 or C, Invest)<br>
+                                        C,RIDMD or C, Invest (for NOSUs)    
+                                    </div>
+
+                                </div>
+                                <input type="submit" class="btn btn-danger font-weight-bold" value="Download Excel">
+                            </form>
+                        </div>
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="subsistence-tab" data-toggle="tab" href="#subsistence" role="tab" aria-controls="subsistence" aria-selected="true">Subsistence</a>
