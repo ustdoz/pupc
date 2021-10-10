@@ -86,7 +86,7 @@
                                 <a class="btn btn-primary" href="{{ route('detainees.create') }}">Add New</a>
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body d-none">
                             <form class="form-inline" action="{{ route('detainees.index') }}" method="GET">
                                 <div class="row">
                                     <div class="col-md-2">
@@ -125,7 +125,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="discharge-tab" data-toggle="tab" href="#discharge" role="tab" aria-controls="discharge" aria-selected="false">Discharge</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item d-none">
                                 <a class="nav-link" id="discharge-recap-tab" data-toggle="tab" href="#discharge-recap" role="tab" aria-controls="discharge-recap" aria-selected="false">Discharge Recap</a>
                             </li>
                         </ul>
