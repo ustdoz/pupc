@@ -25,11 +25,11 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label>Middle Name</label>
-                                        <input type="text" class="form-control" placeholder="First Name" name="middle_name" value="{{ $detainee->middle_name }}" autocomplete="off">
+                                        <input type="text" class="form-control" placeholder="Middle Name" name="middle_name" value="{{ $detainee->middle_name }}" autocomplete="off">
                                     </div>
                                     <div class="col-md-4">
                                         <label>Last Name</label>
-                                        <input type="text" class="form-control" placeholder="First Name" name="last_name" value="{{ $detainee->last_name }}" autocomplete="off">
+                                        <input type="text" class="form-control" placeholder="Last Name" name="last_name" value="{{ $detainee->last_name }}" autocomplete="off">
                                     </div>
                                 </div>
                             </div>

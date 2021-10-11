@@ -251,9 +251,9 @@ class DischargeExport implements FromArray, WithTitle
             $cell_id++;
             $sheet->getRowDimension($cell_id)->setRowHeight(30);
             $sheet->mergeCells("A$cell_id:B$cell_id");
-            $sheet->setCellValue("A$cell_id", config('detainees.jailers.2'));
+            $sheet->setCellValue("A$cell_id", (isset($this->data['jailer']) ? $this->data['jailer'] : config('detainees.jailers.2')));
             $sheet->mergeCells("G$cell_id:H$cell_id");
-            $sheet->setCellValue("G$cell_id", config('detainees.hepe.0'));
+            $sheet->setCellValue("G$cell_id", (isset($this->data['hepe']) ? $this->data['hepe'] : config('detainees.hepe.0')));
 
             $cell_id++;
             $sheet->mergeCells("G$cell_id:H$cell_id");

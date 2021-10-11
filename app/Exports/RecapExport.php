@@ -317,7 +317,7 @@ class RecapExport implements FromArray, WithTitle
         $row++;
         $row++;
         $sheet->mergeCells("F$row:G$row");
-        $sheet->setCellValue('F' . $row, config('detainees.jailers.2'));
+        $sheet->setCellValue('F' . $row, (isset($this->data['jailer']) ? $this->data['jailer'] : config('detainees.jailers.2')));
         $row++;
         $sheet->mergeCells("F$row:G$row");
         $sheet->setCellValue('F' . $row, 'Custodial PNCO');
@@ -333,7 +333,7 @@ class RecapExport implements FromArray, WithTitle
         $row++;
         $sheet->mergeCells("F$row:G$row");
         $sheet->getStyle('F' . $row)->applyFromArray(['font' => ['bold' => true]]);
-        $sheet->setCellValue('F' . $row, config('detainees.hepe.0'));
+        $sheet->setCellValue('F' . $row, (isset($this->data['hepe']) ? $this->data['hepe'] : config('detainees.hepe.0')));
         $row++;
         $sheet->mergeCells("F$row:G$row");
         $sheet->setCellValue('F' . $row, 'Acting Chief of Police');
@@ -375,7 +375,7 @@ class RecapExport implements FromArray, WithTitle
         $row++;
         $row++;
         $sheet->mergeCells("F$row:G$row");
-        $sheet->setCellValue('F' . $row, 'PLTCOL NOEL D NUÑEZ');
+        $sheet->setCellValue('F' . $row, (isset($this->data['r7_invest']) ? $this->data['r7_invest'] : 'PLTCOL NOEL D NUÑEZ'));
         $row++;
         $sheet->mergeCells("F$row:G$row");
         $sheet->setCellValue('F' . $row, '(R7 or C, Invest)');

@@ -52,10 +52,6 @@ class DetaineesController extends Controller
         
         $this->date['start'] = Carbon::createFromFormat('Y-m-d H:i:s', implode('-', $start) . ' 00:00:00');
         $this->date['end'] = Carbon::createFromFormat('Y-m-d H:i:s', implode('-', $start) . ' 00:00:00')->endOfMonth();
-
-        if (request()->has('download')) {
-            $this->download = true;
-        }
     }
 
     /**
@@ -65,7 +61,13 @@ class DetaineesController extends Controller
      */
     public function index()
     {
-        return $this->subsistence();
+        $_datas = $this->subsistence();
+
+        foreach ($_datas as $_data_key => $_data_value) {
+            $$_data_key = $_data_value;
+        }
+
+        return view('detainees.subsistence', compact('data', 'detainees', 'recap', 'discharge', 'jailers'));
 
         // $detainees = Detainee::orderBy('last_name');
         // $detainees = $detainees->get();
@@ -328,18 +330,42 @@ class DetaineesController extends Controller
         $data['month_year'] = $this->date['start']->format('F Y');
         // dd($data);
 
-        if ($this->download) {
-            // Download subsistence and recap
-            // for printing page setup please check the link below:
-            // https://github.com/PHPOffice/PHPExcel/blob/develop/Documentation/markdown/Overview/08-Recipes.md#page-setup-scaling-options
-
-            $detainees_export = new SubsistenceRecapExport($detainees, $recap, $discharge, $data);
-            return Excel::download($detainees_export, $data['month_year'] . ' ' . time() . '.xls');
-        }
-
         $data['filter_years'] = $this->filter['years'];
 
-        return view('detainees.subsistence', compact('data', 'detainees', 'recap', 'discharge', 'jailers'));
+        return [
+            'data' => $data,
+            'detainees' => $detainees,
+            'recap' => $recap,
+            'discharge' => $discharge,
+            'jailers' => $jailers,
+        ];
+    }
+
+    public function download(Request $request)
+    {
+        // Download subsistence and recap
+        // for printing page setup please check the link below:
+        // https://github.com/PHPOffice/PHPExcel/blob/develop/Documentation/markdown/Overview/08-Recipes.md#page-setup-scaling-options
+
+        $_datas = $this->subsistence();
+
+        foreach ($_datas as $_data_key => $_data_value) {
+            $$_data_key = $_data_value;
+        }
+
+        $jailer = Jailer::find($request->get('jailer_id'));
+
+        if (isset($data)) {
+            $data = array_merge($data, $request->all());
+
+            $data['jailer'] = $jailer->name;
+            // dd($data);
+        }
+
+        
+
+        $detainees_export = new SubsistenceRecapExport($detainees, $recap, $discharge, $data);
+        return Excel::download($detainees_export, $data['month_year'] . ' ' . time() . '.xls');
     }
 
     public function discharge($detainees)

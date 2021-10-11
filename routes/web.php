@@ -14,6 +14,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Detainees Routes
 Route::resource('detainees', 'DetaineesController')->middleware('auth');
 
+Route::post('detainess/download', 'DetaineesController@download')->name('detainees.download');
+
 Route::get('export', 'MyController@export')->name('export');
 Route::get('importExportView', 'MyController@importExportView');
 Route::post('import', 'MyController@import')->name('import');

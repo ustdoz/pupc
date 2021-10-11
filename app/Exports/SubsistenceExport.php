@@ -211,11 +211,11 @@ class SubsistenceExport implements FromArray, WithTitle
             'vertical' => 'center',
         ]);
 
-        $sheet->setCellValue('A' . $row_names, config('detainees.names.0'));
+        $sheet->setCellValue('A' . $row_names, (isset($this->data['jailer']) ? $this->data['jailer'] : config('detainees.names.0')));
         $sheet->setCellValue('A' . $row_titles, config('detainees.titles.0'));
-        $sheet->setCellValue('D' . $row_names, config('detainees.names.1'));
+        $sheet->setCellValue('D' . $row_names, (isset($this->data['chief_invest']) ? $this->data['chief_invest'] : config('detainees.names.1')));
         $sheet->setCellValue('D' . $row_titles, config('detainees.titles.1'));
-        $sheet->setCellValue('H' . $row_names, config('detainees.names.2'));
+        $sheet->setCellValue('H' . $row_names, (isset($this->data['hepe']) ? $this->data['hepe'] : config('detainees.names.2')));
         $sheet->setCellValue('H' . $row_titles, config('detainees.titles.2'));
 
         return [

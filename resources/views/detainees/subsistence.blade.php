@@ -78,42 +78,70 @@
 
             <div class="row mb-4">
                 <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="form-inline" action="{{ route('detainees.download', request()->all()) }}" method="POST">
+                                @csrf
+
+                                <input type="hidden" name="">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Acting Chief of Police</label>
+                                            <select class="form-control" name="hepe">
+                                                <option>PMAJ JOSEPH C CARLIT</option>
+                                                <option>PMAJ DIANNE DEL ROSARIO</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>(R7 or C, Invest)</label>
+                                            <select class="form-control" name="r7_invest">
+                                                <option>PLTCOL NOEL D NUÑEZ</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Chief, Invest Section</label>
+                                            <select class="form-control" name="chief_invest">
+                                                <option>PSSg Joel L Mendoza</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>In Charge of PUPC / Jailer</label>
+                                            <select class="form-control" name="jailer_id">
+                                                @foreach ($jailers as $jailer)
+                                                    <option value="{{ $jailer->id }}">{{ $jailer->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="text-center">
+                                            <br>
+                                            <input type="submit" class="btn btn-danger font-weight-bold" value="Download Excel">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-12">
                     <div class="card mb-4">
                         <div class="card-header">
                             <span class="h2">Detainees</span>
                             <div class="float-right">
-                                <a class="btn btn-danger" href="{{ request()->fullUrlWithQuery(['download' => true]) }}">Download Excel</a>
+                                {{-- <a class="btn btn-danger" href="{{ request()->fullUrlWithQuery(['download' => true]) }}">Download Excel</a> --}}
                                 <a class="btn btn-primary" href="{{ route('detainees.create') }}">Add New</a>
                             </div>
-                        </div>
-                        <div class="card-body d-none">
-                            <form class="form-inline" action="{{ route('detainees.index') }}" method="GET">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        Acting Chief of Police  <br>
-                                        ACOP, Carmona MPS   
-
-                                    </div>
-                                    <div class="col-md-2">
-                                        Chief, Invest Section
-                                    </div>
-                                    <div class="col-md-2">
-                                        Custodial PNCO  <br>
-                                        In Charge of PUPC
-                                    </div>
-                                    
-
-                                    <div class="col-md-2">
-                                        Administering officer   
-                                    </div>
-                                    <div class="col-md-2">
-                                        (R7 or C, Invest)<br>
-                                        C,RIDMD or C, Invest (for NOSUs)    
-                                    </div>
-
-                                </div>
-                                <input type="submit" class="btn btn-danger font-weight-bold" value="Download Excel">
-                            </form>
                         </div>
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
