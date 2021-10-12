@@ -5,15 +5,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Authentication Routes
+// Authentication Route
 Auth::routes();
 
 // Home Route
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Detainees Routes
-Route::resource('detainees', 'DetaineesController')->middleware('auth');
+// Settings Route
+Route::resource('settings', 'SettingsController')->middleware('auth');
 
+// Detainees Route
+Route::resource('detainees', 'DetaineesController')->middleware('auth');
 Route::post('detainess/download', 'DetaineesController@download')->name('detainees.download');
 
 Route::get('export', 'MyController@export')->name('export');
