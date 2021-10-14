@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-11">
-                                    <input type="text" class="form-control" placeholder="R7 Invest Name" name="name" value="{{ $jailer->name }}" autocomplete="off">
+                                    <input type="text" class="form-control" placeholder="R7 Invest Name" name="name" value="{{ $r7_invest->name }}" autocomplete="off">
                                 </div>
                                 <div class="col-md-1">
                                     <button type="submit" class="btn btn-primary">Submit</button>
