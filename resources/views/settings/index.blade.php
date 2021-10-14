@@ -20,23 +20,19 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <span class="h2">Detainees Setting</span>
-                            {{-- <div class="float-right">
-                                <a class="btn btn-danger" href="{{ request()->fullUrlWithQuery(['download' => true]) }}">Download Excel</a>
-                                <a class="btn btn-primary" href="{{ route('detainees.create') }}">Add New</a>
-                            </div> --}}
                         </div>
-                        <ul class="nav nav-tabs" role="tablist">
+                        <ul class="nav nav-tabs mt-1 mb-3" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="chief_police-tab" data-toggle="tab" href="#chief_police" role="tab" aria-controls="chief_police" aria-selected="true">Chief of Police</a>
+                                <a class="nav-link active" id="chief_police-tab" data-toggle="tab" href="#chief_police" role="tab" aria-controls="chief_police" aria-selected="true">Chief of Police ({{ $chief_police->count() }})</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="chief_invest-tab" data-toggle="tab" href="#chief_invest" role="tab" aria-controls="chief_invest" aria-selected="false">Chief Invest</a>
+                                <a class="nav-link" id="chief_invest-tab" data-toggle="tab" href="#chief_invest" role="tab" aria-controls="chief_invest" aria-selected="false">Chief Invest ({{ $chief_invest->count() }})</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="r7_invest-tab" data-toggle="tab" href="#r7_invest" role="tab" aria-controls="r7_invest" aria-selected="false">R7 Invest</a>
+                                <a class="nav-link" id="r7_invest-tab" data-toggle="tab" href="#r7_invest" role="tab" aria-controls="r7_invest" aria-selected="false">R7 Invest ({{ $r7_invest->count() }})</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="jailers-tab" data-toggle="tab" href="#jailers" role="tab" aria-controls="jailers" aria-selected="false">Jailers</a>
+                                <a class="nav-link" id="jailers-tab" data-toggle="tab" href="#jailers" role="tab" aria-controls="jailers" aria-selected="false">Jailers ({{ $jailers->count() }})</a>
                             </li>
                         </ul>
                         <div class="tab-content" id="detainees_setting_content">
@@ -46,15 +42,23 @@
                                         <tr>
                                             <th scope="col" style="width:150px;">ID</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col" style="width:200px;" class="text-center">Add New</th>
+                                            <th scope="col" style="width:200px;" class="text-center"><a href="{{ route('settings.create.chief_police') }}" class="btn btn-primary">Add New</a></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Sample</td>
-                                            <td>Sample</td>
-                                            <td class="text-center">Sample</td>
-                                        </tr>
+                                        @if ($chief_police->count())
+                                            @foreach ($chief_police as $chiefpolice)
+                                                <tr>
+                                                    <td>{{ $chiefpolice->id }}</td>
+                                                    <td>{{ $chiefpolice->name }}</td>
+                                                    <td class="text-center"><a href="{{ route('settings.edit.chief_police', ['id' => $chiefpolice->id]) }}">Edit</a></td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="3" class="text-center">No record(s) found</td>
+                                            </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
@@ -64,15 +68,23 @@
                                         <tr>
                                             <th scope="col" style="width:150px;">ID</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col" style="width:200px;" class="text-center">Add New</th>
+                                            <th scope="col" style="width:200px;" class="text-center"><a href="{{ route('settings.create.chief_invest') }}" class="btn btn-primary">Add New</a></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Sample</td>
-                                            <td>Sample</td>
-                                            <td class="text-center">Sample</td>
-                                        </tr>
+                                        @if ($chief_invest->count())
+                                            @foreach ($chief_invest as $chiefinvest)
+                                                <tr>
+                                                    <td>{{ $chiefinvest->id }}</td>
+                                                    <td>{{ $chiefinvest->name }}</td>
+                                                    <td class="text-center"><a href="{{ route('settings.edit.chief_invest', ['id' => $chiefinvest->id]) }}">Edit</a></td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="3" class="text-center">No record(s) found</td>
+                                            </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
@@ -82,15 +94,23 @@
                                         <tr>
                                             <th scope="col" style="width:150px;">ID</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col" style="width:200px;" class="text-center">Add New</th>
+                                            <th scope="col" style="width:200px;" class="text-center"><a href="{{ route('settings.create.r7_invest') }}" class="btn btn-primary">Add New</a></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Sample</td>
-                                            <td>Sample</td>
-                                            <td class="text-center">Sample</td>
-                                        </tr>
+                                        @if ($r7_invest->count())
+                                            @foreach ($r7_invest as $r7invest)
+                                                <tr>
+                                                    <td>{{ $r7invest->id }}</td>
+                                                    <td>{{ $r7invest->name }}</td>
+                                                    <td class="text-center"><a href="{{ route('settings.edit.r7_invest', ['id' => $r7invest->id]) }}">Edit</a></td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="3" class="text-center">No record(s) found</td>
+                                            </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
@@ -100,15 +120,23 @@
                                         <tr>
                                             <th scope="col" style="width:150px;">ID</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col" style="width:200px;" class="text-center">Add New</th>
+                                            <th scope="col" style="width:200px;" class="text-center"><a href="{{ route('settings.create.jailer') }}" class="btn btn-primary">Add New</a></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Sample</td>
-                                            <td>Sample</td>
-                                            <td class="text-center">Sample</td>
-                                        </tr>
+                                        @if ($jailers->count())
+                                            @foreach ($jailers as $jailer)
+                                                <tr>
+                                                    <td>{{ $jailer->id }}</td>
+                                                    <td>{{ $jailer->name }}</td>
+                                                    <td class="text-center"><a href="{{ route('settings.edit.jailer', ['id' => $jailer->id]) }}">Edit</a></td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="3" class="text-center">No record(s) found</td>
+                                            </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>

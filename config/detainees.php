@@ -32,6 +32,10 @@ return [
     	'PMAJ JOSEPH C CARLIT',
     ],
 
+    'chief_police' => [
+    	'PMAJ JOSEPH C CARLIT',
+    ],
+
     // 'names' => ['PSSg Hernane V Quintana', 'PSSg Joel L Mendoza', 'PMAJ JOSEPH C CARLIT'],
     // 'names' => ['PSSg Percival Restrivera', 'PSSg Joel L Mendoza', 'PMAJ JOSEPH C CARLIT'],
     'titles' => ['In Charge of PUPC', 'Chief, Invest Section', 'Acting Chief of Police'],

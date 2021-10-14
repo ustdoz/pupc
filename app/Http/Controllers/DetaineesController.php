@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Detainee;
+use App\ChiefPolice;
+use App\ChiefInvest;
+use App\R7Invest;
 use App\Jailer;
+use App\Exports\DetaineesExport;
+use App\Exports\SubsistenceRecapExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Validator;
 use Session;
 use Carbon\Carbon;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\DetaineesExport;
-use App\Exports\SubsistenceRecapExport;
 
 class DetaineesController extends Controller
 {
@@ -67,7 +70,9 @@ class DetaineesController extends Controller
             $$_data_key = $_data_value;
         }
 
-        return view('detainees.subsistence', compact('data', 'detainees', 'recap', 'discharge', 'jailers'));
+        // dd(get_defined_vars());
+
+        return view('detainees.subsistence', compact('data', 'detainees', 'recap', 'discharge', 'chief_police', 'chief_invest', 'r7_invest', 'jailers'));
 
         // $detainees = Detainee::orderBy('last_name');
         // $detainees = $detainees->get();
@@ -99,7 +104,10 @@ class DetaineesController extends Controller
             'detained_date' => null,
             'released_date' => null,
             'released_blotter_number' => null,
-            'jailer_id' => null,
+            'chief_police_id' => 0,
+            'chief_invest_id' => 0,
+            'r7_invest_id' => 0,
+            'jailer_id' => 0,
             'released_date_court' => null,
             'released_date_erogue' => null,
             'remarks' => null,
@@ -110,6 +118,9 @@ class DetaineesController extends Controller
         $data['first_name'] = $data['first_name'] ? ucwords(mb_strtolower($data['first_name'])) : null;
         $data['middle_name'] = $data['middle_name'] ? ucwords(mb_strtolower($data['middle_name'])) : null;
         $data['last_name'] = $data['last_name'] ? ucwords(mb_strtolower($data['last_name'])) : null;
+        $data['chief_police_id'] = (int) $data['chief_police_id'];
+        $data['chief_invest_id'] = (int) $data['chief_invest_id'];
+        $data['r7_invest_id'] = (int) $data['r7_invest_id'];
         $data['jailer_id'] = (int) $data['jailer_id'];
 
         if (!$data['jailer_id'] || !Jailer::find($data['jailer_id'])) {
@@ -239,6 +250,9 @@ class DetaineesController extends Controller
             'current_female' => 0,
         ];
 
+        $chief_police = ChiefPolice::all();
+        $chief_invest = ChiefInvest::all();
+        $r7_invest = R7Invest::all();
         $jailers = Jailer::all();
         // dd($jailers);
 
@@ -337,6 +351,10 @@ class DetaineesController extends Controller
             'detainees' => $detainees,
             'recap' => $recap,
             'discharge' => $discharge,
+
+            'chief_police' => $chief_police,
+            'chief_invest' => $chief_invest,
+            'r7_invest' => $r7_invest,
             'jailers' => $jailers,
         ];
     }
@@ -353,11 +371,22 @@ class DetaineesController extends Controller
             $$_data_key = $_data_value;
         }
 
+        // $chief_police = ChiefPolice::find($data['chief_police_id']);
+        // $chief_invest = ChiefInvest::find($data['chief_invest_id']);
+        // $r7_invest = R7Invest::find($data['r7_invest_id']);
+        // $jailer = Jailer::find($data['jailer_id']);
+
+        $chief_police = ChiefPolice::find($request->get('chief_police_id'));
+        $chief_invest = ChiefInvest::find($request->get('chief_invest_id'));
+        $r7_invest = R7Invest::find($request->get('r7_invest_id'));
         $jailer = Jailer::find($request->get('jailer_id'));
 
         if (isset($data)) {
             $data = array_merge($data, $request->all());
 
+            $data['chief_police'] = $chief_police->name;
+            $data['chief_invest'] = $chief_invest->name;
+            $data['r7_invest'] = $r7_invest->name;
             $data['jailer'] = $jailer->name;
             // dd($data);
         }
@@ -372,7 +401,7 @@ class DetaineesController extends Controller
     {
         $discharge = $detainees->where('released_date', '!=', null);
 
-        $discharge = $discharge->sortBy('released_date');
+        $discharge = $discharge->sortBy('released_blotter_number');
 
         return $discharge;
     }

@@ -88,25 +88,30 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Acting Chief of Police</label>
-                                            <select class="form-control" name="hepe">
-                                                <option>PMAJ JOSEPH C CARLIT</option>
-                                                <option>PMAJ DIANNE DEL ROSARIO</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>(R7 or C, Invest)</label>
-                                            <select class="form-control" name="r7_invest">
-                                                <option>PLTCOL NOEL D NUÑEZ</option>
+                                            <select class="form-control" name="chief_police_id">
+                                                @foreach ($chief_police as $chiefpolice)
+                                                    <option value="{{ $chiefpolice->id }}">{{ $chiefpolice->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Chief, Invest Section</label>
-                                            <select class="form-control" name="chief_invest">
-                                                <option>PSSg Joel L Mendoza</option>
+                                            <select class="form-control" name="chief_invest_id">
+                                                @foreach ($chief_invest as $chiefinvest)
+                                                    <option value="{{ $chiefinvest->id }}">{{ $chiefinvest->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>(R7 or C, Invest)</label>
+                                            <select class="form-control" name="r7_invest_id">
+                                                @foreach ($r7_invest as $r7invest)
+                                                    <option value="{{ $r7invest->id }}">{{ $r7invest->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

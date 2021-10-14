@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 use App\ChiefPolice;
 use App\ChiefInvest;
@@ -28,82 +29,138 @@ class SettingsController extends Controller
 
     public function createChiefPolice()
     {
-        return view('settings.create-chief-police');
+        return view('settings.create.chief_police');
     }
 
     public function storeChiefPolice(Request $request)
     {
-        // 
+        ChiefPolice::create($request->only(['name']));
+        Session::flash('alert_message', 'Chief of police has been created successfully.');
+        Session::flash('alert_class', 'alert-primary');
+
+        return redirect(route('settings.index'));
     }
 
-    public function editChiefPolice($id)
+    public function editChiefPolice(ChiefPolice $chief_police)
     {
-        return view('settings.edit-chief-police');
+        return view('settings.edit.chief_police', compact('chief_police'));
     }
 
     public function updateChiefPolice(Request $request, $id)
     {
-        //
+        Session::flash('alert_message', 'There is a problem processing your request.');
+        Session::flash('alert_class', 'alert-danger');
+
+        if ($chief_police = ChiefPolice::find($id)) {
+            $chief_police->update($request->all());
+
+            Session::flash('alert_message', 'Chief of police has been updated successfully.');
+            Session::flash('alert_class', 'alert-primary');
+        }
+
+        return redirect(route('settings.index'));
     }
 
     public function createChiefInvest()
     {
-        return view('settings.create-chief-invest');
+        return view('settings.create.chief_invest');
     }
 
     public function storeChiefInvest(Request $request)
     {
-        // 
+        ChiefInvest::create($request->only(['name']));
+        Session::flash('alert_message', 'Chief of invest has been created successfully.');
+        Session::flash('alert_class', 'alert-primary');
+
+        return redirect(route('settings.index'));
     }
 
-    public function editChiefInvest($id)
+    public function editChiefInvest(ChiefInvest $chief_invest)
     {
-        return view('settings.edit-chief-invest');
+        return view('settings.edit.chief_invest', compact('chief_invest'));
     }
 
     public function updateChiefInvest(Request $request, $id)
     {
-        //
+        Session::flash('alert_message', 'There is a problem processing your request.');
+        Session::flash('alert_class', 'alert-danger');
+
+        if ($chief_invest = ChiefInvest::find($id)) {
+            $chief_invest->update($request->all());
+
+            Session::flash('alert_message', 'Chief of invest has been updated successfully.');
+            Session::flash('alert_class', 'alert-primary');
+        }
+
+        return redirect(route('settings.index'));
     }
 
     public function createR7Invest()
     {
-        return view('settings.create-r7-invest');
+        return view('settings.create.r7_invest');
     }
 
     public function storeR7Invest(Request $request)
     {
-        // 
+        R7Invest::create($request->only(['name']));
+        Session::flash('alert_message', 'R7 of invest has been created successfully.');
+        Session::flash('alert_class', 'alert-primary');
+
+        return redirect(route('settings.index'));
     }
 
-    public function editR7Invest($id)
+    public function editR7Invest(R7Invest $r7_invest)
     {
-        return view('settings.edit-r7-invest');
+        return view('settings.edit.r7_invest', compact('r7_invest'));
     }
 
     public function updateR7Invest(Request $request, $id)
     {
-        //
+        Session::flash('alert_message', 'There is a problem processing your request.');
+        Session::flash('alert_class', 'alert-danger');
+
+        if ($r7_invest = R7Invest::find($id)) {
+            $r7_invest->update($request->all());
+
+            Session::flash('alert_message', 'R7 of invest has been updated successfully.');
+            Session::flash('alert_class', 'alert-primary');
+        }
+
+        return redirect(route('settings.index'));
     }
 
     public function createJailer()
     {
-        return view('settings.create-jailer');
+        return view('settings.create.jailer');
     }
 
     public function storeJailer(Request $request)
     {
-        // 
+        Jailer::create($request->only(['name']));
+        Session::flash('alert_message', 'Jailer has been created successfully.');
+        Session::flash('alert_class', 'alert-primary');
+
+        return redirect(route('settings.index'));
     }
 
-    public function editJailer($id)
+    public function editJailer(Jailer $jailer)
     {
-        return view('settings.edit-jailer');
+        return view('settings.edit.jailer', compact('jailer'));
     }
 
     public function updateJailer(Request $request, $id)
     {
-        //
+        Session::flash('alert_message', 'There is a problem processing your request.');
+        Session::flash('alert_class', 'alert-danger');
+
+        if ($jailer = Jailer::find($id)) {
+            $jailer->update($request->all());
+
+            Session::flash('alert_message', 'Jailer has been updated successfully.');
+            Session::flash('alert_class', 'alert-primary');
+        }
+
+        return redirect(route('settings.index'));
     }
 
     /**

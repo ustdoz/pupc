@@ -333,7 +333,7 @@ class RecapExport implements FromArray, WithTitle
         $row++;
         $sheet->mergeCells("F$row:G$row");
         $sheet->getStyle('F' . $row)->applyFromArray(['font' => ['bold' => true]]);
-        $sheet->setCellValue('F' . $row, (isset($this->data['hepe']) ? $this->data['hepe'] : config('detainees.hepe.0')));
+        $sheet->setCellValue('F' . $row, (isset($this->data['chief_police']) ? $this->data['chief_police'] : config('detainees.chief_police.0')));
         $row++;
         $sheet->mergeCells("F$row:G$row");
         $sheet->setCellValue('F' . $row, 'Acting Chief of Police');

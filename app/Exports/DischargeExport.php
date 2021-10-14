@@ -253,7 +253,7 @@ class DischargeExport implements FromArray, WithTitle
             $sheet->mergeCells("A$cell_id:B$cell_id");
             $sheet->setCellValue("A$cell_id", (isset($this->data['jailer']) ? $this->data['jailer'] : config('detainees.jailers.2')));
             $sheet->mergeCells("G$cell_id:H$cell_id");
-            $sheet->setCellValue("G$cell_id", (isset($this->data['hepe']) ? $this->data['hepe'] : config('detainees.hepe.0')));
+            $sheet->setCellValue("G$cell_id", (isset($this->data['chief_police']) ? $this->data['chief_police'] : config('detainees.chief_police.0')));
 
             $cell_id++;
             $sheet->mergeCells("G$cell_id:H$cell_id");
