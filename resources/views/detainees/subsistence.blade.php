@@ -60,6 +60,20 @@
                                             <div class="col-md-4 mb-4">
                                                 <input type="submit" class="btn btn-info" value="Filter List">
                                             </div>
+                                            <div class="col-md-12 text-center">
+                                                @php
+                                                    $month_arr = array_where(config('detainees.months'), function ($month_value, $month) {
+                                                        $current_filter_month = (request('filter_month') ? : \Carbon\Carbon::now()->month);
+                                                        return ((int) $current_filter_month == (int) $month_value);
+                                                    });
+
+                                                    $filtered_month_year = array_first(array_keys($month_arr)) . ' ' . (request('filter_year') ? : \Carbon\Carbon::now()->year);
+
+                                                @endphp
+                                                <h4>
+                                                    Filtered by <strong class="text-danger"><u>{{ $filtered_month_year }}</u></strong>
+                                                </h4>
+                                            </div>
                                         </div>
                                     </form>
                                     {{-- <div class="row">
@@ -150,16 +164,19 @@
                         </div>
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="subsistence-tab" data-toggle="tab" href="#subsistence" role="tab" aria-controls="subsistence" aria-selected="true">Subsistence</a>
+                                <a class="nav-link active" id="subsistence-tab" data-toggle="tab" href="#subsistence" role="tab" aria-controls="subsistence" aria-selected="true">Subsistence ({{ $detainees->count() }})</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="recap-tab" data-toggle="tab" href="#recap" role="tab" aria-controls="recap" aria-selected="false">Subsistence Recap</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="discharge-tab" data-toggle="tab" href="#discharge" role="tab" aria-controls="discharge" aria-selected="false">Discharge</a>
+                                <a class="nav-link" id="discharge-tab" data-toggle="tab" href="#discharge" role="tab" aria-controls="discharge" aria-selected="false">Discharged / Released ({{ $discharge->count() }})</a>
                             </li>
                             <li class="nav-item d-none">
                                 <a class="nav-link" id="discharge-recap-tab" data-toggle="tab" href="#discharge-recap" role="tab" aria-controls="discharge-recap" aria-selected="false">Discharge Recap</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="current-detainees-tab" data-toggle="tab" href="#current-detainees" role="tab" aria-controls="current-detainees" aria-selected="false">Current Detainees ({{ $current_detainees->count() }})</a>
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
@@ -189,7 +206,7 @@
                                                     <td>{{ $detainee->days_detained }}</td>
                                                     <td class="text-center">{{ number_format($detainee->total_budget) }}</td>
                                                     <td>
-                                                        <a href="{{ route('detainees.edit', ['id' => $detainee->id]) }}">Edit</a> | <a href="#">Delete</a>
+                                                        <a href="{{ route('detainees.edit', ['id' => $detainee->id]) }}">Edit</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -306,6 +323,35 @@
                                         <tr>
                                             <td colspan="9"><center>No Discharged Detainee(s)</center></td>
                                         </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="tab-pane fade" id="current-detainees" role="tabpanel" aria-labelledby="current-detainees-tab">
+                                <table class="card-table table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Violation</th>
+                                            <th scope="col" class="text-center">Age</th>
+                                            <th scope="col" class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if ($current_detainees->count())
+                                            @foreach ($current_detainees as $current_detainee)
+                                                <tr>
+                                                    <td>{{ $current_detainee->full_name }}</td>
+                                                    <td>{{{ $current_detainee->violation }}}</td>
+                                                    <td class="text-center">{{ $current_detainee->age }}</td>
+                                                    <td class="text-center"><a href="{{ route('detainees.edit', ['id' => $current_detainee->id]) }}">Edit</a></td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="9"><center>No Current Detainee(s)</center></td>
+                                            </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>

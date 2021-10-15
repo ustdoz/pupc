@@ -91,7 +91,15 @@
         <main class="py-4">
             @if (Session::has('alert_message'))
                 <div class="alert {{ Session::get('alert_class', 'alert-info') }}" role="alert">
-                    {{ Session::get('alert_message') }}
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <strong>
+                                    {{ Session::get('alert_message') }}
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             @endif
 
