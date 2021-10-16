@@ -407,6 +407,9 @@ class RecapExport implements FromArray, WithTitle
         // $drawing2->setHeight(120);
         $drawing2->setCoordinates('G1');
 
+        // Not working
+        // $drawing2->setOffsetX(5);
+
         return [$drawing, $drawing2];
     }
 }

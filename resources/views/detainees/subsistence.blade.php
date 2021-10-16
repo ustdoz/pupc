@@ -197,7 +197,7 @@
                                     <tbody>
                                         @if ($detainees->count())
                                             @foreach ($detainees as $detainee)
-                                                <tr>
+                                                <tr {{ ($detainee->gender == 'female') ? 'class="text-warning"' : '' }}>
                                                     <td>{{ $detainee->last_name }}</td>
                                                     <td>{{ $detainee->first_name }}</td>
                                                     <td>{{ $detainee->middle_name }}</td>
@@ -263,11 +263,12 @@
                                             <th scope="col" class="text-center">Date Released</th>
                                             <th scope="col" class="text-center">Date of Updating of Release in e-Rogue</th>
                                             <th scope="col" class="text-center">Remarks</th>
+                                            <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($discharge as $discharge_detainee)
-                                            <tr>
+                                            <tr {{ ($discharge_detainee->gender == 'female') ? 'class="text-warning"' : '' }}>
                                                 <td class="text-center">{{ $discharge_detainee->released_blotter_number }}</td>
                                                 <td class="text-center">{{ $discharge_detainee->jailer->name }}</td>
                                                 <td class="text-center">
@@ -281,6 +282,7 @@
                                                 <td class="text-center">{{ $discharge_detainee->released_date ? $discharge_detainee->released_date->format('d/m/Y') : null }}</td>
                                                 <td class="text-center">{{ $discharge_detainee->released_date_erogue ? $discharge_detainee->released_date->format('d/m/Y') : null }}</td>
                                                 <td class="text-center">{{{ $discharge_detainee->remarks }}}</td>
+                                                <td class="text-center"><a href="{{ route('detainees.edit', ['id' => $discharge_detainee->id]) }}">Edit</a></td>
                                             </tr>
                                         @endforeach
 

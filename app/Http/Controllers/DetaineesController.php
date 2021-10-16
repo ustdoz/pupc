@@ -9,7 +9,6 @@ use App\ChiefInvest;
 use App\R7Invest;
 use App\Jailer;
 use App\Exports\DetaineesExport;
-use App\Exports\SubsistenceRecapExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Validator;
 use Session;
@@ -395,7 +394,7 @@ class DetaineesController extends Controller
 
         
 
-        $detainees_export = new SubsistenceRecapExport($detainees, $recap, $discharge, $data);
+        $detainees_export = new DetaineesExport($detainees, $recap, $discharge, $data);
         return Excel::download($detainees_export, $data['month_year'] . ' ' . time() . '.xls');
     }
 
