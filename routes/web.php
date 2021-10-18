@@ -41,3 +41,9 @@ Route::post('detainess/download', 'DetaineesController@download')->name('detaine
 Route::get('export', 'MyController@export')->name('export');
 Route::get('importExportView', 'MyController@importExportView');
 Route::post('import', 'MyController@import')->name('import');
+
+// AdminLTE 3
+// https://adminlte.io/blog/integrate-adminlte-with-laravel
+Route::get('admin', function () {
+    return view('admin_template');
+});
