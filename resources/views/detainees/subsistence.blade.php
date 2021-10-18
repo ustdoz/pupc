@@ -187,17 +187,17 @@
                                             <th scope="col">Last Name</th>
                                             <th scope="col">First Name</th>
                                             <th scope="col">Middle Name</th>
-                                            <th scope="col">Detained Date<br>dd/mm/yyyy</th>
-                                            <th scope="col">Released Date<br>dd/mm/yyyy</th>
-                                            <th scope="col"># of days<br>detained</th>
-                                            <th scope="col">Amount</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col" class="text-center">Detained Date<br>dd/mm/yyyy</th>
+                                            <th scope="col" class="text-center">Released Date<br>dd/mm/yyyy</th>
+                                            <th scope="col" class="text-center"># of days<br>detained</th>
+                                            <th scope="col" class="text-center">Amount</th>
+                                            <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @if ($detainees->count())
                                             @foreach ($detainees as $detainee)
-                                                <tr {{ ($detainee->gender == 'female') ? 'class="text-warning"' : '' }}>
+                                                <tr class="{!! $detainee->is_female ? 'text-girl' : 'text-boy' !!}">
                                                     <td>{{ $detainee->last_name }}</td>
                                                     <td>{{ $detainee->first_name }}</td>
                                                     <td>{{ $detainee->middle_name }}</td>
@@ -205,7 +205,7 @@
                                                     <td>{{ $detainee->released_date ? $detainee->released_date->format('d/m/Y') : 'DETAINED' }}</td>
                                                     <td>{{ $detainee->days_detained }}</td>
                                                     <td class="text-center">{{ number_format($detainee->total_budget) }}</td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <a href="{{ route('detainees.edit', ['id' => $detainee->id]) }}">Edit</a>
                                                     </td>
                                                 </tr>
@@ -268,7 +268,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($discharge as $discharge_detainee)
-                                            <tr {{ ($discharge_detainee->gender == 'female') ? 'class="text-warning"' : '' }}>
+                                            <tr class="{!! $discharge_detainee->is_female ? 'text-girl' : 'text-boy' !!}">
                                                 <td class="text-center">{{ $discharge_detainee->released_blotter_number }}</td>
                                                 <td class="text-center">{{ $discharge_detainee->jailer->name }}</td>
                                                 <td class="text-center">
@@ -342,7 +342,7 @@
                                     <tbody>
                                         @if ($current_detainees->count())
                                             @foreach ($current_detainees as $current_detainee)
-                                                <tr>
+                                                <tr class="{!! $current_detainee->is_female ? 'text-girl' : 'text-boy' !!}">
                                                     <td>{{ $current_detainee->full_name }}</td>
                                                     <td>{{{ $current_detainee->violation }}}</td>
                                                     <td class="text-center">{{ $current_detainee->age }}</td>

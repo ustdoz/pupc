@@ -18,13 +18,18 @@ class Detainee extends Model
     ];
 
     protected $appends = [
-    	'full_name', 'age',
+    	'full_name', 'age', 'is_male', 'is_female',
     ];
 
     protected function fixDate($value)
     {
     	return $value ? Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d') : null;
     }
+
+	public function jailer()
+	{
+		return $this->beLongsTo(Jailer::class)->withDefault();
+	}
 
 	public function setBirthDateAttribute($value)
 	{
@@ -65,8 +70,13 @@ class Detainee extends Model
 		return implode(' ', [$this->attributes['first_name'], $this->attributes['middle_name'], $this->attributes['last_name']]);
 	}
 
-	public function jailer()
+	public function getIsMaleAttribute()
 	{
-		return $this->beLongsTo(Jailer::class)->withDefault();
+		return ($this->attributes['gender'] == 'male');
+	}
+
+	public function getIsFemaleAttribute()
+	{
+		return ($this->attributes['gender'] == 'female');
 	}
 }

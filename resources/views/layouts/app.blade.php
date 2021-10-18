@@ -25,6 +25,12 @@
         div#discharge.tab-pane table thead tr th, div#discharge.tab-pane table thead tr td {
             vertical-align: middle;
         }
+        .text-girl {
+            color:  #CC6594;
+        }
+        .text-boy {
+            color: #2768A4;
+        }
     </style>
 
 </head>
