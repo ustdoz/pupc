@@ -45,5 +45,6 @@ Route::post('import', 'MyController@import')->name('import');
 // AdminLTE 3
 // https://adminlte.io/blog/integrate-adminlte-with-laravel
 Route::get('admin', function () {
+    // return view('layouts.adminlte3.app');
     return view('admin_template');
 });
