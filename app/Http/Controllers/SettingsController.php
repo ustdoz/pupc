@@ -25,6 +25,7 @@ class SettingsController extends Controller
         $jailers = Jailer::all();
 
         return view('settings.index', compact('chief_police', 'chief_invest', 'r7_invest', 'jailers'));
+        // return view('admin_template', compact('chief_police', 'chief_invest', 'r7_invest', 'jailers'));
     }
 
     public function createChiefPolice()
