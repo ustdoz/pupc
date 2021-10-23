@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2021 at 06:47 PM
+-- Generation Time: Oct 23, 2021 at 02:34 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.3.29
 
@@ -20,6 +20,46 @@ SET time_zone = "+00:00";
 --
 -- Database: `pupc`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chief_invest`
+--
+
+CREATE TABLE `chief_invest` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `chief_invest`
+--
+
+INSERT INTO `chief_invest` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'PSSg Joel L Mendoza', '2021-10-14 14:30:28', '2021-10-14 14:30:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chief_police`
+--
+
+CREATE TABLE `chief_police` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `chief_police`
+--
+
+INSERT INTO `chief_police` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'PMAJ JOSEPH C CARLIT', '2021-10-14 14:22:26', '2021-10-14 14:29:26');
 
 -- --------------------------------------------------------
 
@@ -52,12 +92,12 @@ CREATE TABLE `detainees` (
 
 INSERT INTO `detainees` (`id`, `first_name`, `middle_name`, `last_name`, `gender`, `violation`, `birth_date`, `detained_date`, `released_date`, `released_blotter_number`, `jailer_id`, `released_date_court`, `released_date_erogue`, `remarks`, `created_at`, `updated_at`) VALUES
 (1, 'Chuck', 'Osmeña', 'Lagumbay', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1990-07-07', '2020-09-26', NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-24 20:07:45', '2021-10-08 16:19:06'),
-(2, 'Jun', 'Lanceta', 'Marcilla', 'male', NULL, '1980-06-20', '2020-03-09', NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-25 06:16:45', '2021-05-25 18:22:05'),
-(3, 'Jaymar', 'Castro', 'Gerona', 'male', NULL, '2001-11-30', '2020-07-07', NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-25 06:18:00', '2021-05-26 02:59:17'),
-(4, 'Marvin', 'Besin', 'Dalut', 'male', NULL, NULL, '2020-08-15', NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-25 15:13:13', '2021-10-05 16:50:03'),
-(5, 'Francisco', 'Martinez', 'Almendras', 'male', NULL, '1969-10-10', '2020-09-10', NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-26 05:48:32', '2021-05-26 05:48:32'),
+(2, 'Jun', 'Lanceta', 'Marcilla', 'male', 'Section 11 and 12 Art II of RA 9165', '1980-06-20', '2020-03-09', NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-25 06:16:45', '2021-10-15 13:49:49'),
+(3, 'Jaymar', 'Castro', 'Gerona', 'male', 'Anti-Carnapping Act of. 1972', '2001-11-30', '2020-07-07', NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-25 06:18:00', '2021-10-15 13:51:18'),
+(4, 'Marvin', 'Besin', 'Dalut', 'male', 'Rape', NULL, '2020-08-15', NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-25 15:13:13', '2021-10-15 13:51:31'),
+(5, 'Francisco', 'Martinez', 'Almendras', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1969-10-10', '2020-09-10', NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-26 05:48:32', '2021-10-08 16:50:05'),
 (6, 'Paolo', 'Kasilag', 'Diago', 'male', NULL, NULL, '2020-12-09', '2021-05-19', NULL, NULL, NULL, NULL, NULL, '2021-05-26 05:51:00', '2021-05-26 06:26:38'),
-(7, 'Ariel', 'Levardo', 'Maala', 'male', NULL, NULL, '2020-12-18', NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-26 05:51:42', '2021-10-05 16:51:42'),
+(7, 'Ariel', 'Levardo', 'Maala', 'male', 'Sec. 5 and 11 ART II of RA 9165', NULL, '2020-12-18', NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-26 05:51:42', '2021-10-15 13:51:55'),
 (8, 'Isagani', 'Altarez', 'Cambronero Jr.', 'male', NULL, '1984-09-06', '2020-12-20', '2021-06-10', NULL, NULL, NULL, NULL, NULL, '2021-05-26 05:53:31', '2021-06-12 02:07:21'),
 (9, 'Jerry', 'Datwin', 'Manubay', 'male', NULL, '1975-04-17', '2021-02-24', '2021-06-04', NULL, NULL, NULL, NULL, NULL, '2021-05-26 05:54:47', '2021-06-09 17:47:13'),
 (10, 'Laurence', 'Perez', 'Garcia', 'male', NULL, NULL, '2021-03-07', NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-26 05:57:29', '2021-10-05 16:51:04'),
@@ -90,11 +130,11 @@ INSERT INTO `detainees` (`id`, `first_name`, `middle_name`, `last_name`, `gender
 (37, 'Jefferson', 'Vicencio', 'Natanauan', 'male', NULL, '1982-07-04', '2021-05-20', '2021-06-10', NULL, NULL, NULL, NULL, NULL, '2021-05-26 06:33:46', '2021-06-12 02:10:01'),
 (38, 'Vizmark', NULL, 'Del Monte', 'male', NULL, '1998-12-22', '2021-05-26', '2021-07-07', NULL, NULL, NULL, NULL, NULL, '2021-05-27 02:46:32', '2021-07-09 14:38:03'),
 (39, 'Ramiro', NULL, 'Paglinawan', 'male', NULL, '1968-05-18', '2021-05-26', '2021-07-07', NULL, NULL, NULL, NULL, NULL, '2021-05-27 02:47:34', '2021-07-09 14:38:17'),
-(40, 'Michelle', 'Dela Masa', 'Tiballa', 'female', NULL, NULL, '2021-01-22', NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-31 03:14:55', '2021-10-08 16:31:14'),
+(40, 'Michelle', 'Dela Masa', 'Tiballa', 'female', 'Sec. 11 ART II of RA 9165', NULL, '2021-01-22', NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-31 03:14:55', '2021-10-15 13:52:09'),
 (41, 'Apple Mae', NULL, 'Masicampo', 'male', NULL, NULL, '2021-02-22', '2021-07-01', NULL, NULL, NULL, NULL, NULL, '2021-05-31 03:15:42', '2021-07-02 05:24:47'),
 (42, 'Kier Angel Man', NULL, 'Pagne', 'male', NULL, NULL, '2021-05-26', '2021-05-27', NULL, NULL, NULL, NULL, NULL, '2021-05-31 03:16:42', '2021-05-31 03:17:32'),
 (43, 'Renato', NULL, 'Popes', 'male', NULL, NULL, '2021-05-27', '2021-07-07', NULL, NULL, NULL, NULL, NULL, '2021-05-31 03:18:15', '2021-07-09 14:39:18'),
-(44, 'Abigael', 'Lee', 'Lagrata', 'female', NULL, NULL, '2021-02-24', NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-31 03:19:11', '2021-10-08 16:31:03'),
+(44, 'Abigael', 'Lee', 'Lagrata', 'female', 'Sec. 5 and 11 ART II of RA 9165', NULL, '2021-02-24', NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-31 03:19:11', '2021-10-15 13:52:20'),
 (45, 'Jessie', NULL, 'Delos Reyes', 'male', NULL, '1995-11-28', '2021-05-31', '2021-06-10', NULL, NULL, NULL, NULL, NULL, '2021-05-31 06:55:41', '2021-06-12 02:24:02'),
 (46, 'Jeffrey', NULL, 'Trapalgar', 'male', NULL, '2001-01-05', '2021-05-31', '2021-06-10', NULL, NULL, NULL, NULL, NULL, '2021-05-31 06:57:01', '2021-06-12 02:22:51'),
 (47, 'John Paolo', NULL, 'Alcantara', 'male', NULL, '1998-09-30', '2021-05-31', '2021-06-10', NULL, NULL, NULL, NULL, NULL, '2021-05-31 06:57:45', '2021-06-12 02:23:21'),
@@ -132,27 +172,27 @@ INSERT INTO `detainees` (`id`, `first_name`, `middle_name`, `last_name`, `gender
 (79, 'Alexander', NULL, 'Amaro', 'male', NULL, NULL, '2021-07-08', '2021-08-09', NULL, NULL, NULL, NULL, NULL, '2021-07-09 14:36:18', '2021-10-05 15:47:41'),
 (80, 'Michael', NULL, 'Delos Santos', 'male', NULL, '1984-07-06', '2021-07-03', '2021-07-14', NULL, NULL, NULL, NULL, NULL, '2021-07-11 14:37:38', '2021-07-14 08:18:35'),
 (81, 'Artemio', 'Biliran', 'Sauquillo', 'male', NULL, '1987-09-24', '2021-07-13', '2021-08-09', NULL, NULL, NULL, NULL, NULL, '2021-07-13 13:51:24', '2021-10-05 15:54:54'),
-(82, 'Rhea Camille', 'Niez', 'Catunhay', 'female', NULL, '1992-09-11', '2021-07-13', NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-13 13:51:59', '2021-10-08 16:30:27'),
+(82, 'Rhea Camille', 'Niez', 'Catunhay', 'female', 'Sec 11 ART II of RA 9165', '1992-09-11', '2021-07-13', NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-13 13:51:59', '2021-10-15 14:18:12'),
 (83, 'Alexander', NULL, 'Ferrer', 'male', NULL, NULL, '2021-07-13', '2021-08-09', NULL, NULL, NULL, NULL, NULL, '2021-07-13 16:56:46', '2021-10-05 16:16:43'),
 (84, 'Cris', NULL, 'Villareal', 'male', NULL, NULL, '2021-07-13', '2021-08-09', NULL, NULL, NULL, NULL, NULL, '2021-07-13 16:57:30', '2021-10-05 15:56:56'),
-(85, 'Joan Pauline', 'Castanares', 'Florez', 'female', NULL, NULL, '2021-07-13', NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-13 16:59:22', '2021-10-08 16:30:39'),
+(85, 'Joan Pauline', 'Castanares', 'Florez', 'female', 'Sec 11 ART II of RA 9165', NULL, '2021-07-13', NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-13 16:59:22', '2021-10-15 14:18:31'),
 (86, 'Janet', NULL, 'Aluciman', 'male', NULL, '1974-03-21', '2021-07-17', '2021-07-22', NULL, NULL, NULL, NULL, NULL, '2021-07-19 19:00:34', '2021-07-22 23:42:12'),
-(87, 'Reynan', 'Barca', 'Alvarado', 'male', NULL, '1989-05-06', '2021-07-14', NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-19 19:01:45', '2021-10-05 16:48:53'),
+(87, 'Reynan', 'Barca', 'Alvarado', 'male', 'Murder', '1989-05-06', '2021-07-14', NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-19 19:01:45', '2021-10-15 14:21:09'),
 (88, 'John Robert', 'Rosales', 'Aying', 'male', NULL, NULL, '2021-07-16', '2021-07-16', NULL, NULL, NULL, NULL, NULL, '2021-07-19 19:02:39', '2021-07-19 19:06:53'),
-(89, 'Jayson', 'Roncal', 'Jamer', 'male', NULL, NULL, '2021-07-22', NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-22 23:40:15', '2021-07-22 23:40:15'),
-(90, 'Maria Theresa', 'Ocampo', 'Miranda', 'female', NULL, NULL, '2021-07-22', NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-22 23:41:14', '2021-10-08 16:30:50'),
+(89, 'Jayson', 'Roncal', 'Jamer', 'male', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-07-22', NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-22 23:40:15', '2021-10-15 14:18:46'),
+(90, 'Maria Theresa', 'Ocampo', 'Miranda', 'female', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-07-22', NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-22 23:41:14', '2021-10-15 14:18:40'),
 (91, 'Malo', 'Sayuman', 'Malabanan', 'male', NULL, NULL, '2021-07-20', '2021-09-20', NULL, NULL, NULL, NULL, NULL, '2021-07-22 23:41:40', '2021-10-05 16:48:39'),
-(92, 'Richard', 'Dias', 'Oracion', 'male', NULL, '1982-06-29', '2021-07-24', NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-24 21:22:57', '2021-07-24 21:22:57'),
+(92, 'Richard', 'Dias', 'Oracion', 'male', 'Sec 5 and 11 ART II of RA 9165', '1982-06-29', '2021-07-24', NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-24 21:22:57', '2021-10-15 14:18:50'),
 (93, 'Jose', 'Bacig', 'Carpina', 'male', NULL, '1958-06-19', '2021-07-25', '2021-07-26', NULL, NULL, NULL, NULL, NULL, '2021-07-25 14:46:04', '2021-07-26 08:08:05'),
-(94, 'Dennis', 'Amorin', 'Sarmiento', 'male', NULL, '1995-02-12', '2021-07-27', NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-30 17:01:10', '2021-07-30 17:01:10'),
+(94, 'Dennis', 'Amorin', 'Sarmiento', 'male', 'Sec 5 and 11 ART II of RA 9165', '1995-02-12', '2021-07-27', NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-30 17:01:10', '2021-10-15 14:18:54'),
 (95, 'Richard', 'Torres', 'Panciles', 'male', NULL, '1979-01-26', '2021-08-31', '2021-09-27', NULL, NULL, NULL, NULL, NULL, '2021-07-30 17:02:16', '2021-10-05 16:54:04'),
 (96, 'Aira', NULL, 'Sales', 'male', NULL, NULL, '2021-07-29', '2021-08-25', NULL, NULL, NULL, NULL, NULL, '2021-07-30 17:03:06', '2021-10-05 15:53:53'),
 (97, 'Annaliza', 'Torres', 'Panciles', 'male', NULL, NULL, '2021-08-31', '2021-09-27', NULL, NULL, NULL, NULL, NULL, '2021-07-30 17:04:13', '2021-10-05 16:54:10'),
 (98, 'Carlo', NULL, 'Almendras', 'male', NULL, NULL, '2021-08-08', '2021-08-10', NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:04:17', '2021-10-05 15:04:17'),
-(99, 'Ezekiel', 'Onella', 'Bautista', 'male', NULL, NULL, '2021-08-28', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:05:34', '2021-10-05 15:05:43'),
+(99, 'Ezekiel', 'Onella', 'Bautista', 'male', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-08-28', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:05:34', '2021-10-15 14:20:04'),
 (100, 'Marlon', NULL, 'Burgos', 'male', NULL, NULL, '2021-08-08', '2021-08-10', NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:06:29', '2021-10-05 15:06:29'),
 (101, 'Elmer', NULL, 'Cacatihan', 'male', NULL, NULL, '2021-08-08', '2021-08-10', NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:07:13', '2021-10-05 15:07:13'),
-(102, 'Eduardo', 'Catapang', 'Catibog', 'male', NULL, NULL, '2021-08-10', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:09:00', '2021-10-05 16:49:10'),
+(102, 'Eduardo', 'Catapang', 'Catibog', 'male', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-08-10', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:09:00', '2021-10-15 14:19:28'),
 (103, 'Jonnel', 'Peneda', 'Cerdeña', 'male', NULL, NULL, '2021-08-07', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:09:40', '2021-10-05 15:09:40'),
 (104, 'Mark', 'Llanto', 'Cortez', 'male', NULL, NULL, '2021-08-08', '2021-08-10', NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:11:12', '2021-10-05 15:30:45'),
 (105, 'Samuel', NULL, 'Dagonon', 'male', NULL, NULL, '2021-08-12', '2021-08-13', NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:11:53', '2021-10-05 15:11:53'),
@@ -160,49 +200,49 @@ INSERT INTO `detainees` (`id`, `first_name`, `middle_name`, `last_name`, `gender
 (107, 'Melvin', NULL, 'Emia', 'male', NULL, NULL, '2021-08-08', '2021-08-10', NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:14:00', '2021-10-05 15:14:00'),
 (108, 'Rey', 'Manrique', 'Fernandez', 'male', NULL, NULL, '2021-08-09', '2021-08-12', NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:14:39', '2021-10-05 15:14:39'),
 (109, 'Larry', NULL, 'Javier', 'male', NULL, NULL, '2021-08-08', '2021-08-10', NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:15:16', '2021-10-05 15:15:16'),
-(110, 'Christopher', 'Vasquez', 'Ladica', 'male', NULL, NULL, '2021-08-21', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:16:11', '2021-10-05 16:42:19'),
+(110, 'Christopher', 'Vasquez', 'Ladica', 'male', 'Section 10 (a) of RA 7610', NULL, '2021-08-21', '2021-10-16', '2021-10-440', 1, '2021-10-15', NULL, 'Bail Bond', '2021-10-05 15:16:11', '2021-10-17 08:19:58'),
 (111, 'Leonardo', NULL, 'Loyola', 'male', NULL, NULL, '2021-08-08', '2021-08-10', NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:16:41', '2021-10-05 15:16:41'),
-(112, 'Rossano', 'Villeza', 'Macha', 'male', NULL, NULL, '2021-08-29', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:17:25', '2021-10-05 15:19:17'),
-(113, 'Gilbert', 'Padre', 'Manzano', 'male', NULL, NULL, '2021-08-05', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:17:56', '2021-10-05 15:17:56'),
-(114, 'Roldan', 'Abellana', 'Maypa', 'male', NULL, NULL, '2021-08-02', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:18:41', '2021-10-05 15:18:41'),
-(115, 'Nelvin', 'Mendoza', 'Cipriano', 'male', NULL, NULL, '2021-08-27', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:20:05', '2021-10-05 15:20:05'),
-(116, 'Guillermo', 'Panopio', 'Miranda', 'male', NULL, NULL, '2021-08-10', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:21:03', '2021-10-05 16:52:01'),
-(117, 'Sanny', 'Maala', 'Naz', 'male', NULL, NULL, '2021-08-10', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:21:27', '2021-10-05 16:52:13'),
-(118, 'Joel', 'Mendoza', 'Paulin', 'male', NULL, NULL, '2021-08-27', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:33:02', '2021-10-05 15:33:02'),
+(112, 'Rossano', 'Villeza', 'Macha', 'male', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-08-29', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:17:25', '2021-10-15 14:20:08'),
+(113, 'Gilbert', 'Padre', 'Manzano', 'male', 'Rape', NULL, '2021-08-05', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:17:56', '2021-10-15 14:19:07'),
+(114, 'Roldan', 'Abellana', 'Maypa', 'male', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-08-02', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:18:41', '2021-10-15 14:18:59'),
+(115, 'Nelvin', 'Mendoza', 'Cipriano', 'male', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-08-27', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:20:05', '2021-10-15 14:20:00'),
+(116, 'Guillermo', 'Panopio', 'Miranda', 'male', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-08-10', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:21:03', '2021-10-15 14:19:32'),
+(117, 'Sanny', 'Maala', 'Naz', 'male', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-08-10', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:21:27', '2021-10-15 14:19:12'),
+(118, 'Joel', 'Mendoza', 'Paulin', 'male', 'Frustrated Homicide', NULL, '2021-08-27', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:33:02', '2021-10-15 14:19:54'),
 (119, 'Mark Anthony', 'Serenio', 'Rodriguez', 'male', NULL, NULL, '2021-08-27', '2021-08-25', NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:35:39', '2021-10-05 15:35:39'),
 (120, 'Warren', 'Villanueva', 'Solmoro', 'male', NULL, NULL, '2021-08-22', '2021-08-22', NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:37:40', '2021-10-05 15:37:40'),
 (121, 'Rex Slander', NULL, 'Tolentino', 'male', NULL, NULL, '2021-08-08', '2021-08-10', NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:40:03', '2021-10-05 15:40:03'),
 (122, 'Aljhen', 'Umali', 'Torres', 'male', NULL, NULL, '2021-08-31', '2021-09-03', NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:40:46', '2021-10-05 16:56:08'),
 (123, 'Jhen Adrei', 'Umali', 'Torres', 'male', NULL, NULL, '2021-08-31', '2021-09-03', NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:41:21', '2021-10-05 16:56:13'),
-(124, 'Robert', 'Dalupe', 'Tupas', 'male', NULL, NULL, '2021-08-18', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:41:53', '2021-10-05 15:41:53'),
+(124, 'Robert', 'Dalupe', 'Tupas', 'male', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-08-18', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:41:53', '2021-10-15 14:19:38'),
 (125, 'Romar', NULL, 'Umandap', 'male', NULL, NULL, '2021-08-08', '2021-08-10', NULL, NULL, NULL, NULL, NULL, '2021-10-05 15:42:24', '2021-10-05 15:42:48'),
 (126, 'Feliciano', 'Joson', 'Aranda', 'male', NULL, NULL, '2021-09-07', '2021-09-10', NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:27:12', '2021-10-05 16:45:55'),
 (127, 'Jeffrey', 'Joson', 'Aranda', 'male', NULL, NULL, '2021-09-07', '2021-09-10', NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:27:33', '2021-10-05 16:46:00'),
-(128, 'Jonathan', 'Rodorocio', 'Arches', 'male', NULL, NULL, '2021-09-09', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:28:04', '2021-10-05 16:28:04'),
+(128, 'Jonathan', 'Rodorocio', 'Arches', 'male', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-09-09', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:28:04', '2021-10-15 14:20:12'),
 (129, 'Julius', 'Padilla', 'Bibay', 'male', NULL, NULL, '2021-09-05', '2021-09-05', NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:28:37', '2021-10-05 16:46:22'),
 (130, 'Elmer', 'Alfaro', 'Cabrera', 'male', NULL, NULL, '2021-09-02', '2021-09-06', NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:29:05', '2021-10-05 16:46:45'),
 (131, 'Jose Ariel', 'Madoro', 'Camacho Jr.', 'male', NULL, NULL, '2021-09-07', '2021-09-10', NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:29:47', '2021-10-05 16:47:24'),
-(132, 'Robert', 'Catulong', 'Cerdeña', 'male', NULL, NULL, '2021-09-27', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:30:34', '2021-10-05 16:30:34'),
-(133, 'Ricky', 'Levardo', 'Corpin', 'male', NULL, NULL, '2021-09-28', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:31:08', '2021-10-05 16:31:08'),
-(134, 'Kerveen', 'Cabral', 'Dorado', 'male', NULL, NULL, '2021-09-30', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:31:49', '2021-10-05 16:31:49'),
-(135, 'Jovan', 'Sarmiento', 'Gabelo', 'male', NULL, NULL, '2021-09-17', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:32:12', '2021-10-05 16:32:12'),
-(136, 'Christian', 'Cruz', 'Guttierez', 'male', NULL, NULL, '2021-09-14', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:32:41', '2021-10-05 16:32:41'),
+(132, 'Robert', 'Catulong', 'Cerdeña', 'male', 'Rape', NULL, '2021-09-27', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:30:34', '2021-10-15 14:20:28'),
+(133, 'Ricky', 'Levardo', 'Corpin', 'male', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-09-28', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:31:08', '2021-10-15 14:20:34'),
+(134, 'Kerveen', 'Cabral', 'Dorado', 'male', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-09-30', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:31:49', '2021-10-15 14:20:46'),
+(135, 'Jovan', 'Sarmiento', 'Gabelo', 'male', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-09-17', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:32:12', '2021-10-15 14:20:19'),
+(136, 'Christian', 'Cruz', 'Guttierez', 'male', 'RIR', NULL, '2021-09-14', '2021-10-12', '2021-10-433', 1, '2021-10-12', NULL, 'Bail Bond', '2021-10-05 16:32:41', '2021-10-17 08:19:22'),
 (137, 'Edmar', 'Amparo', 'Hernandez', 'male', NULL, NULL, '2021-09-24', '2021-09-30', NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:33:29', '2021-10-05 16:47:48'),
 (138, 'Norman', 'Ronero', 'Magat', 'male', NULL, NULL, '2021-09-07', '2021-09-10', NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:33:50', '2021-10-05 16:48:08'),
-(139, 'Ronald', 'Inicencio', 'Maglaya', 'male', NULL, NULL, '2021-09-10', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:34:24', '2021-10-05 16:34:24'),
+(139, 'Ronald', 'Inicencio', 'Maglaya', 'male', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-09-10', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:34:24', '2021-10-15 14:20:15'),
 (140, 'Carfil', 'Aranda', 'Memije', 'male', NULL, NULL, '2021-09-07', '2021-09-10', NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:35:29', '2021-10-05 16:53:40'),
-(141, 'Roelito', 'Durumpili', 'Montre', 'male', NULL, NULL, '2021-09-29', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:35:55', '2021-10-05 16:35:55'),
+(141, 'Roelito', 'Durumpili', 'Montre', 'male', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-09-29', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:35:55', '2021-10-15 14:20:42'),
 (142, 'Wilnor', 'Aves', 'Peñales', 'male', NULL, NULL, '2021-09-07', '2021-09-10', NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:36:27', '2021-10-05 16:54:34'),
 (143, 'Letty', 'Tan', 'Polillo', 'female', 'Slight Physical Injuries', NULL, '2021-09-30', '2021-10-04', '2021-10-411', 1, '2021-10-04', '2021-10-04', 'Cash Bond', '2021-10-05 16:36:53', '2021-10-08 16:31:48'),
 (144, 'Conrado', 'Malaiba', 'Realon', 'male', NULL, NULL, '2021-09-09', '2021-09-09', NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:37:26', '2021-10-05 16:55:08'),
-(145, 'Victorio', 'Lirios', 'Vargas', 'male', NULL, NULL, '2021-09-28', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:37:54', '2021-10-05 16:37:54'),
+(145, 'Victorio', 'Lirios', 'Vargas', 'male', 'Sec 5 and 11 ART II of RA 9165', NULL, '2021-09-28', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:37:54', '2021-10-15 14:20:38'),
 (146, 'Froilan', 'Frondo', 'Zulueta', 'male', NULL, NULL, '2021-09-14', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:38:31', '2021-10-05 16:38:31'),
 (147, 'Mian', 'Toledo', 'Sevilla', 'male', NULL, NULL, '2021-09-07', '2021-09-10', NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:43:55', '2021-10-05 16:55:28'),
 (148, 'Marcos', 'Macaraeg', 'Toledo', 'male', NULL, NULL, '2021-09-09', '2021-09-09', NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:44:40', '2021-10-05 16:55:44'),
-(149, 'Severino', NULL, 'Ang', 'male', NULL, NULL, '2021-10-03', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-05 16:58:28', '2021-10-05 16:58:28'),
+(149, 'Severino', 'Alpeche', 'Ang', 'male', 'Qualified Theft', NULL, '2021-10-03', '2021-10-11', '2021-10-430', 1, '2021-10-11', NULL, 'Surety Bond', '2021-10-05 16:58:28', '2021-10-13 13:00:30'),
 (150, 'Joselito', 'Lopez', 'Purificacion', 'male', 'Attempted Homicide', NULL, '2021-10-04', '2021-10-07', '2021-10-416', 1, '2021-10-07', '2021-10-07', 'Cash Bond', '2021-10-05 16:58:59', '2021-10-08 16:16:39'),
 (151, 'Mark Anthony', 'Dequina', 'Arandia', 'male', 'RIR', NULL, '2021-10-06', '2021-10-07', '2021-10-415', 1, '2021-10-07', '2021-10-07', 'Affidavit (Kasunduan)', '2021-10-07 03:45:57', '2021-10-08 16:14:56'),
-(152, 'Marnie', 'Blasorca', 'Macabuhay', 'male', NULL, NULL, '2021-10-06', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-07 03:48:03', '2021-10-07 03:48:03'),
+(152, 'Marnie', 'Blasorca', 'Macabuhay', 'male', 'Theft', NULL, '2021-10-06', '2021-10-14', '2021-10-435', 2, NULL, NULL, 'Cash Bond', '2021-10-07 03:48:03', '2021-10-14 12:38:46'),
 (153, 'John Edriane', 'Abantao', 'Apura', 'male', NULL, NULL, '2021-01-03', '2021-04-24', NULL, NULL, NULL, NULL, NULL, '2021-10-07 05:37:10', '2021-10-07 05:37:10'),
 (154, 'Steven', 'Reyes', 'Samson', 'male', NULL, NULL, '2021-01-07', '2021-04-10', NULL, NULL, NULL, NULL, NULL, '2021-10-07 05:40:03', '2021-10-07 05:40:03'),
 (155, 'Lester', 'Perez', 'Micosa', 'male', NULL, NULL, '2021-02-03', '2021-04-13', NULL, NULL, NULL, NULL, NULL, '2021-10-07 05:42:59', '2021-10-07 05:42:59'),
@@ -232,7 +272,17 @@ INSERT INTO `detainees` (`id`, `first_name`, `middle_name`, `last_name`, `gender
 (179, 'Renier', NULL, 'Zueta', 'male', NULL, NULL, '2021-04-25', '2021-04-29', NULL, NULL, NULL, NULL, NULL, '2021-10-07 06:03:03', '2021-10-07 06:03:03'),
 (180, 'Raymond', NULL, 'Zueta', 'male', NULL, NULL, '2021-04-25', '2021-04-29', NULL, NULL, NULL, NULL, NULL, '2021-10-07 06:03:31', '2021-10-07 06:03:31'),
 (181, 'Cyprian', 'Vanguardia', 'Flores', 'male', 'BP22', NULL, '2021-10-07', '2021-10-07', '2021-10-419', 1, '2021-10-07', '2021-10-07', 'Cash Bond', '2021-10-07 12:15:55', '2021-10-08 16:15:49'),
-(184, 'Arnold', 'Bañares', 'Señido', 'male', 'Sec. 5 and 11 Art. II of RA 9165', '1981-09-25', '2021-10-08', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-08 15:19:01', '2021-10-08 15:49:28');
+(184, 'Arnold', 'Bañares', 'Señido', 'male', 'Sec. 5 and 11 Art. II of RA 9165', '1981-09-25', '2021-10-08', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-08 15:19:01', '2021-10-08 15:49:28'),
+(185, 'Jerox', 'Camacho', 'Lodor', 'male', 'Frustrated Murder', NULL, '2021-10-09', '2021-10-11', '2021-10-429', 1, '2021-10-11', NULL, 'Affidavit (Kasunduan)', '2021-10-08 17:31:35', '2021-10-13 13:01:20'),
+(186, 'Florence May', 'Francisco', 'Racimo', 'female', 'RIR', NULL, '2021-10-10', '2021-10-11', '2021-10-427', 1, '2021-10-11', NULL, 'Affidavit (Kasunduan)', '2021-10-11 01:30:46', '2021-10-13 13:04:52'),
+(188, 'Rodrigo', 'Pagdunsulan', 'Gamez', 'male', 'BP22', NULL, '2021-10-11', '2021-10-12', '2021-10-432', 1, '2021-10-12', NULL, 'Bail Bond', '2021-10-11 13:14:54', '2021-10-17 08:19:19'),
+(189, 'Diosdado', 'Nanip', 'Yango Jr.', 'male', 'BP22', NULL, '2021-10-11', '2021-10-12', '2021-10-434', 1, '2021-10-12', NULL, 'Cash Bond', '2021-10-11 13:16:14', '2021-10-14 13:00:00'),
+(190, 'Noe', 'Paloma', 'Mallorca', 'male', 'RIR Resulting to Homicide\r\nPhysical Injury', '1961-03-06', '2021-10-14', '2021-10-15', '2021-10-438', 1, '2021-10-15', NULL, 'Affidavit (Kasunduan)', '2021-10-14 14:46:24', '2021-10-16 13:45:12'),
+(191, 'Hamlet', 'Rivas', 'Cuasay', 'male', 'SEC 5 and 11 ART. 2 RA 9165', NULL, '2021-10-15', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-16 01:47:19', '2021-10-16 01:47:19'),
+(192, 'Noel', 'Purrificacion', 'Barriga', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1972-10-23', '2021-10-16', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-16 15:22:10', '2021-10-16 15:23:21'),
+(193, 'Allan Xavier', 'Laudiza', 'Reyes', 'male', 'Stabbing Incident', NULL, '2021-10-20', '2021-10-20', '2021-10-447', 1, '2021-10-20', NULL, 'Affidavit (Kasunduan)', '2021-10-20 13:07:41', '2021-10-21 13:48:17'),
+(194, 'Mark Allan', 'Dela Cerna', 'Espiritu', 'male', 'Sec. 5 and 11 ART II of RA 9165', NULL, '2021-10-20', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-21 14:00:53', '2021-10-21 14:01:10'),
+(195, 'Exevino', 'Reyes', 'Medina', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1971-08-23', '2021-10-22', NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-22 13:51:20', '2021-10-22 13:51:20');
 
 -- --------------------------------------------------------
 
@@ -253,7 +303,7 @@ CREATE TABLE `jailers` (
 
 INSERT INTO `jailers` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'PSMs Jober Manaig', '2021-10-08 13:59:34', '2021-10-08 13:59:34'),
-(2, 'PSSg Hernane V Quintana', '2021-10-08 13:59:34', '2021-10-08 13:59:34'),
+(2, 'PSSg Hernane V Quintana', '2021-10-08 13:59:34', '2021-10-14 13:39:27'),
 (3, 'PSSg Percival Restrivera', '2021-10-08 14:59:34', '2021-10-08 14:59:34');
 
 -- --------------------------------------------------------
@@ -276,7 +326,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (5, '2021_05_20_231022_create_detainees_table', 2),
-(11, '2021_10_04_151204_add_new_columns_on_detainees_table', 3);
+(11, '2021_10_04_151204_add_new_columns_on_detainees_table', 3),
+(13, '2021_10_12_133306_create_tables_for_setting_of_detainees', 4);
 
 -- --------------------------------------------------------
 
@@ -289,6 +340,26 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `r7_invest`
+--
+
+CREATE TABLE `r7_invest` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `r7_invest`
+--
+
+INSERT INTO `r7_invest` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'PTCOL NOEL D NUÑEZ', '2021-10-14 14:31:01', '2021-10-14 14:31:01');
 
 -- --------------------------------------------------------
 
@@ -312,11 +383,23 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@pupc.com', NULL, '$2y$10$Ky2fV08DWj9a8pa8BWsrxet6mS8KoZNvgx8Xn1CShuZbmjrunAN4.', 'iPw5hsnZm4KsRUFWa4IBAvh6KMKsAuqoWi9j5UWjqpESDSb7s9jhpDByDT08', '2021-05-20 04:43:02', '2021-08-20 14:06:38');
+(1, 'Admin', 'admin@pupc.com', NULL, '$2y$10$Ky2fV08DWj9a8pa8BWsrxet6mS8KoZNvgx8Xn1CShuZbmjrunAN4.', 'JTNfmeHhi6iXWluxWhSfcy1QOvxK5sgzlxYsUwFHDm7ckcMJMLOcJWmCdkg3', '2021-05-20 04:43:02', '2021-08-20 14:06:38');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `chief_invest`
+--
+ALTER TABLE `chief_invest`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `chief_police`
+--
+ALTER TABLE `chief_police`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `detainees`
@@ -344,6 +427,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `r7_invest`
+--
+ALTER TABLE `r7_invest`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -355,10 +444,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `chief_invest`
+--
+ALTER TABLE `chief_invest`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `chief_police`
+--
+ALTER TABLE `chief_police`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `detainees`
 --
 ALTER TABLE `detainees`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
 
 --
 -- AUTO_INCREMENT for table `jailers`
@@ -370,7 +471,13 @@ ALTER TABLE `jailers`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `r7_invest`
+--
+ALTER TABLE `r7_invest`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
