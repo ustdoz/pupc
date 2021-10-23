@@ -180,7 +180,7 @@
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="subsistence" role="tabpanel" aria-labelledby="subsistence-tab">
-                            <table class="card-table table table-striped table-bordered">
+                            <table id="subsistence-table" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col">Last Name</th>
@@ -200,8 +200,8 @@
                                                 <td>{{ $detainee->last_name }}</td>
                                                 <td>{{ $detainee->first_name }}</td>
                                                 <td>{{ $detainee->middle_name }}</td>
-                                                <td>{{ $detainee->detained_date ? $detainee->detained_date->format('d/m/Y') : null }}</td>
-                                                <td>{{ $detainee->released_date ? $detainee->released_date->format('d/m/Y') : 'DETAINED' }}</td>
+                                                <td>{{ $detainee->detained_date ? $detainee->detained_date->format('Y-m-d') : null }}</td>
+                                                <td>{{ $detainee->released_date ? $detainee->released_date->format('Y-m-d') : 'DETAINED' }}</td>
                                                 <td>{{ $detainee->days_detained }}</td>
                                                 <td class="text-center">{{ number_format($detainee->total_budget) }}</td>
                                                 <td class="text-center">
@@ -209,17 +209,20 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        <tr>
-                                            <td colspan="5"></td>
-                                            <td class="h4"><strong>Total :</strong></td>
-                                            <td colspan="2" class="h4"><strong>{{ number_format($data['total_budget']) }}</strong></td>
-                                        </tr>
                                     @else
                                         <tr>
                                             <td colspan="8"><center>No Detainees</center></td>
                                         </tr>
                                     @endif
                                 </tbody>
+                                <tfoot>
+                                    
+                                        <tr>
+                                            <td colspan="5"></td>
+                                            <td class="h4"><strong>Total :</strong></td>
+                                            <td colspan="2" class="h4"><strong>{{ number_format($data['total_budget']) }}</strong></td>
+                                        </tr>
+                                </tfoot>
                             </table>
                         </div>
                         <div class="tab-pane fade" id="recap" role="tabpanel" aria-labelledby="recap-tab">
@@ -363,4 +366,26 @@
     </div>
 </section>
 
+@endsection
+
+@section('scripts')
+    <script>
+    $(function () {
+        // $("#example1").DataTable({
+        //     "responsive": true, "lengthChange": false, "autoWidth": false,
+        //     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        // }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        $('#subsistence-table').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "pageLength": 20,
+        });
+    });
+    </script>
 @endsection
