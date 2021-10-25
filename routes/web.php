@@ -2,7 +2,8 @@
 
 // Welcome Route
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('home'));
+    // return view('welcome');
 });
 
 // Authentication Route

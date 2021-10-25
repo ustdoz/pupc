@@ -186,8 +186,8 @@
                                         <th scope="col">Last Name</th>
                                         <th scope="col">First Name</th>
                                         <th scope="col">Middle Name</th>
-                                        <th scope="col" class="text-center">Detained Date<br>dd/mm/yyyy</th>
-                                        <th scope="col" class="text-center">Released Date<br>dd/mm/yyyy</th>
+                                        <th scope="col" class="text-center">Detained Date<br>YYYY-MM-DD</th>
+                                        <th scope="col" class="text-center">Released Date<br>YYYY-MM-DD</th>
                                         <th scope="col" class="text-center"># of days<br>detained</th>
                                         <th scope="col" class="text-center">Amount</th>
                                         <th scope="col" class="text-center">Action</th>
@@ -226,7 +226,7 @@
                             </table>
                         </div>
                         <div class="tab-pane fade" id="recap" role="tabpanel" aria-labelledby="recap-tab">
-                            <table class="card-table table table-striped table-bordered">
+                            <table id="subsistence-recap-table" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="text-center">Date (DD/MM/YYYY)</th>
@@ -244,16 +244,18 @@
                                             <td class="text-center">{{ number_format($recap_count * config('detainees.allowance_amount')) }}</td>
                                         </tr>
                                     @endforeach
+                                </tbody>
+                                <tfoot>
                                     <tr>
                                         <td colspan="2"></td>
                                         <td class="h4 text-right"><strong>Total :</strong></td>
                                         <td class="h4 text-center"><strong>{{ number_format($data['total_budget']) }}</strong></td>
                                     </tr>
-                                </tbody>
+                                </tfoot>
                             </table>
                         </div>
                         <div class="tab-pane fade" id="discharge" role="tabpanel" aria-labelledby="discharge-tab">
-                            <table class="card-table table table-striped table-bordered">
+                            <table id="discharged-table" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="text-center">Blotter Entry Number</th>
@@ -332,7 +334,7 @@
                         </div>
 
                         <div class="tab-pane fade" id="current-detainees" role="tabpanel" aria-labelledby="current-detainees-tab">
-                            <table class="card-table table table-striped table-bordered">
+                            <table id="current-detainees-table" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col">Name</th>
@@ -376,7 +378,7 @@
         //     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         // }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
-        $('#subsistence-table').DataTable({
+        var my_datatable_options = {
             "paging": true,
             "lengthChange": false,
             "searching": false,
@@ -385,7 +387,15 @@
             "autoWidth": false,
             "responsive": true,
             "pageLength": 20,
-        });
+        };
+
+        $('#subsistence-table').DataTable(my_datatable_options);
+
+        $('#subsistence-recap-table').DataTable(my_datatable_options);
+
+        $('#discharged-table').DataTable(my_datatable_options);
+
+        $('#current-detainees-table').DataTable(my_datatable_options);
     });
     </script>
 @endsection
