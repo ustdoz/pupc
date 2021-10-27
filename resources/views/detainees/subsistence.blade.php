@@ -177,6 +177,9 @@
                         <li class="nav-item">
                             <a class="nav-link" id="current-detainees-tab" data-toggle="tab" href="#current-detainees" role="tab" aria-controls="current-detainees" aria-selected="false">Current Detainees ({{ $current_detainees->count() }})</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="last-detainees-tab" data-toggle="tab" href="#last-detainees" role="tab" aria-controls="last-detainees" aria-selected="false">Last 5 Detainees</a>
+                        </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="subsistence" role="tabpanel" aria-labelledby="subsistence-tab">
@@ -356,6 +359,67 @@
                                     @else
                                         <tr>
                                             <td colspan="9"><center>No Current Detainee(s)</center></td>
+                                        </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane fade" id="last-detainees" role="tabpanel" aria-labelledby="last-detainees-tab">
+                            <div class="h2 text-center mt-4 mb-4">Last 5 Inserted Detainees</div>
+                            <table id="last-inserted-detainees-table" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Violation</th>
+                                        <th scope="col" class="text-center">Age</th>
+                                        <th scope="col" class="text-center">Created Date<br>YYYY-MM-DD</th>
+                                        <th scope="col" class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if ($last_inserted_detainees->count())
+                                        @foreach ($last_inserted_detainees as $last_inserted_detainee)
+                                            <tr class="{!! $last_inserted_detainee->is_female ? 'text-girl' : 'text-boy' !!}">
+                                                <td>{{ $last_inserted_detainee->full_name }}</td>
+                                                <td>{{{ $last_inserted_detainee->violation }}}</td>
+                                                <td class="text-center">{{ $last_inserted_detainee->age }}</td>
+                                                <td class="text-center">{{ $last_inserted_detainee->created_at ? $last_inserted_detainee->created_at->format('Y-m-d') : null }}</td>
+                                                <td class="text-center"><a href="{{ route('detainees.edit', ['id' => $last_inserted_detainee->id]) }}">Edit</a></td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="9"><center>No records found</center></td>
+                                        </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                            <div class="h2 text-center mb-4">Last 5 Updated Detainees</div>
+                            <table id="last-updated-detainees-table" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Violation</th>
+                                        <th scope="col" class="text-center">Age</th>
+                                        <th scope="col" class="text-center">Updated Date<br>YYYY-MM-DD</th>
+                                        <th scope="col" class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if ($last_updated_detainees->count())
+                                        @foreach ($last_updated_detainees as $last_updated_detainees)
+                                            <tr class="{!! $last_updated_detainees->is_female ? 'text-girl' : 'text-boy' !!}">
+                                                <td>{{ $last_updated_detainees->full_name }}</td>
+                                                <td>{{{ $last_updated_detainees->violation }}}</td>
+                                                <td class="text-center">{{ $last_updated_detainees->age }}</td>
+                                                <td class="text-center">{{ $last_updated_detainees->created_at ? $last_updated_detainees->created_at->format('Y-m-d') : null }}</td>
+                                                <td class="text-center"><a href="{{ route('detainees.edit', ['id' => $last_updated_detainees->id]) }}">Edit</a></td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="9"><center>No records found</center></td>
                                         </tr>
                                     @endif
                                 </tbody>

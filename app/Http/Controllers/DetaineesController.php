@@ -70,10 +70,11 @@ class DetaineesController extends Controller
         }
 
         $current_detainees = $detainees->where('released_date', '=', null)->sortBy('detained_date');
-
+        $last_inserted_detainees = $detainees->sortByDesc('created_at')->take(5);
+        $last_updated_detainees = $detainees->sortByDesc('updated_at')->take(5);
         // dd(get_defined_vars());
 
-        return view('detainees.subsistence', compact('data', 'detainees', 'recap', 'discharge', 'chief_police', 'chief_invest', 'r7_invest', 'jailers', 'current_detainees'));
+        return view('detainees.subsistence', compact('data', 'detainees', 'recap', 'discharge', 'chief_police', 'chief_invest', 'r7_invest', 'jailers', 'current_detainees', 'last_inserted_detainees', 'last_updated_detainees'));
 
         // $detainees = Detainee::orderBy('last_name');
         // $detainees = $detainees->get();
