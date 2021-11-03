@@ -27,6 +27,10 @@
         .text-boy {
             color: #2768A4;
         }
+        .dataTables_filter {
+            margin-top: 10px;
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body class="hold-transition sidebar-mini layout-navbar-fixed">

@@ -13,7 +13,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="float-right">
-                    <a class="btn btn-secondary" href="{{ route('detainees.index') }}">Back</a>
+                    <a class="btn btn-secondary" href="{{ route('detainees.index', request()->query()) }}">Back</a>
                 </div>
                 {{-- <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -32,7 +32,7 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('detainees.update', ['id' => $detainee->id]) }}">
+                        <form method="POST" action="{{ route('detainees.update', array_merge(['id' => $detainee->id], request()->query())) }}">
                             @csrf
                             @method('PUT')
                                 <div class="form-group">

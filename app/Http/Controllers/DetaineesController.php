@@ -70,8 +70,8 @@ class DetaineesController extends Controller
         }
 
         $current_detainees = $detainees->where('released_date', '=', null)->sortBy('detained_date');
-        $last_inserted_detainees = $detainees->sortByDesc('created_at')->take(5);
-        $last_updated_detainees = $detainees->sortByDesc('updated_at')->take(5);
+        $last_inserted_detainees = Detainee::orderBy('created_at', 'desc')->limit(5)->get();
+        $last_updated_detainees = Detainee::orderBy('updated_at', 'desc')->limit(5)->get();
         // dd(get_defined_vars());
 
         return view('detainees.subsistence', compact('data', 'detainees', 'recap', 'discharge', 'chief_police', 'chief_invest', 'r7_invest', 'jailers', 'current_detainees', 'last_inserted_detainees', 'last_updated_detainees'));
@@ -152,7 +152,7 @@ class DetaineesController extends Controller
             Session::flash('alert_message', 'Detainee already exists.');
             Session::flash('alert_class', 'alert-danger');
 
-            return redirect(route('detainees.index'));
+            return redirect(route('detainees.index', request()->query()));
         }
 
         Detainee::create($data);
@@ -160,7 +160,7 @@ class DetaineesController extends Controller
         Session::flash('alert_message', 'New detainee has been added successfully.');
         Session::flash('alert_class', 'alert-primary');
 
-        return redirect(route('detainees.index'));
+        return redirect(route('detainees.index', request()->query()));
     }
 
     /**
@@ -189,7 +189,7 @@ class DetaineesController extends Controller
             Session::flash('alert_message', 'Detainee does not exists.');
             Session::flash('alert_class', 'alert-danger');
 
-            return redirect(route('detainees.index'));
+            return redirect(route('detainees.index', request()->query()));
         }
 
         return view('detainees.edit', compact('detainee', 'jailers'));
@@ -212,7 +212,7 @@ class DetaineesController extends Controller
             Session::flash('alert_message', 'Detainee does not exists.');
             Session::flash('alert_class', 'alert-danger');
 
-            return redirect(route('detainees.index'));
+            return redirect(route('detainees.index', request()->query()));
         }
 
         if ($detainee->update($data)) {
@@ -223,7 +223,7 @@ class DetaineesController extends Controller
             Session::flash('alert_class', 'alert-danger');
         }
 
-        return redirect(route('detainees.index'));
+        return redirect(route('detainees.index', request()->query()));
     }
 
     /**
@@ -396,7 +396,7 @@ class DetaineesController extends Controller
         
 
         $detainees_export = new DetaineesExport($detainees, $recap, $discharge, $data);
-        return Excel::download($detainees_export, $data['month_year'] . ' ' . time() . '.xls');
+        return Excel::download($detainees_export, 'PUPC Carmona ' . $data['month_year'] . ' Reports.xls');
     }
 
     public function discharge($detainees)

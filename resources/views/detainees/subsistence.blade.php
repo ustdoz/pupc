@@ -157,8 +157,10 @@
                     <div class="card-header">
                         <span class="h2">Detainees</span>
                         <div class="float-right">
+                            {{-- asasas --}}
+                            {{-- {{ dd(http_build_query(request()->query())) }} --}}
                             {{-- <a class="btn btn-danger" href="{{ request()->fullUrlWithQuery(['download' => true]) }}">Download Excel</a> --}}
-                            <a class="btn btn-primary" href="{{ route('detainees.create') }}">Add New</a>
+                            <a class="btn btn-primary" href="{{ route('detainees.create', request()->query()) }}">Add New</a>
                         </div>
                     </div>
                     <ul class="nav nav-tabs" role="tablist">
@@ -181,7 +183,7 @@
                             <a class="nav-link" id="last-detainees-tab" data-toggle="tab" href="#last-detainees" role="tab" aria-controls="last-detainees" aria-selected="false">Last 5 Detainees</a>
                         </li>
                     </ul>
-                    <div class="tab-content" id="myTabContent">
+                    <div class="tab-content mb" id="myTabContent">
                         <div class="tab-pane fade show active" id="subsistence" role="tabpanel" aria-labelledby="subsistence-tab">
                             <table id="subsistence-table" class="table table-bordered table-hover">
                                 <thead>
@@ -208,7 +210,7 @@
                                                 <td>{{ $detainee->days_detained }}</td>
                                                 <td class="text-center">{{ number_format($detainee->total_budget) }}</td>
                                                 <td class="text-center">
-                                                    <a href="{{ route('detainees.edit', ['id' => $detainee->id]) }}">Edit</a>
+                                                    <a href="{{ route('detainees.edit', array_merge(['id' => $detainee->id], request()->query())) }}">Edit</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -285,11 +287,11 @@
                                             </td>
                                             <td class="text-center">{{{ $discharge_detainee->violation }}}</td>
                                             <td class="text-center">{{ $discharge_detainee->detained_date ? $discharge_detainee->detained_date->format('d/m/Y') : null }}</td>
-                                            <td class="text-center">{{ $discharge_detainee->released_date_court ? $discharge_detainee->released_date->format('d/m/Y') : null }}</td>
+                                            <td class="text-center">{{ $discharge_detainee->released_date_court ? $discharge_detainee->released_date_court->format('d/m/Y') : null }}</td>
                                             <td class="text-center">{{ $discharge_detainee->released_date ? $discharge_detainee->released_date->format('d/m/Y') : null }}</td>
-                                            <td class="text-center">{{ $discharge_detainee->released_date_erogue ? $discharge_detainee->released_date->format('d/m/Y') : null }}</td>
+                                            <td class="text-center">{{ $discharge_detainee->released_date_erogue ? $discharge_detainee->released_date_erogue->format('d/m/Y') : null }}</td>
                                             <td class="text-center">{{{ $discharge_detainee->remarks }}}</td>
-                                            <td class="text-center"><a href="{{ route('detainees.edit', ['id' => $discharge_detainee->id]) }}">Edit</a></td>
+                                            <td class="text-center"><a href="{{ route('detainees.edit', array_merge(['id' => $discharge_detainee->id], request()->query())) }}">Edit</a></td>
                                         </tr>
                                     @endforeach
 
@@ -353,7 +355,7 @@
                                                 <td>{{ $current_detainee->full_name }}</td>
                                                 <td>{{{ $current_detainee->violation }}}</td>
                                                 <td class="text-center">{{ $current_detainee->age }}</td>
-                                                <td class="text-center"><a href="{{ route('detainees.edit', ['id' => $current_detainee->id]) }}">Edit</a></td>
+                                                <td class="text-center"><a href="{{ route('detainees.edit', array_merge(['id' => $current_detainee->id], request()->query())) }}">Edit</a></td>
                                             </tr>
                                         @endforeach
                                     @else
@@ -385,7 +387,7 @@
                                                 <td>{{{ $last_inserted_detainee->violation }}}</td>
                                                 <td class="text-center">{{ $last_inserted_detainee->age }}</td>
                                                 <td class="text-center">{{ $last_inserted_detainee->created_at ? $last_inserted_detainee->created_at->format('Y-m-d') : null }}</td>
-                                                <td class="text-center"><a href="{{ route('detainees.edit', ['id' => $last_inserted_detainee->id]) }}">Edit</a></td>
+                                                <td class="text-center"><a href="{{ route('detainees.edit', array_merge(['id' => $last_inserted_detainee->id], request()->query())) }}">Edit</a></td>
                                             </tr>
                                         @endforeach
                                     @else
@@ -414,7 +416,7 @@
                                                 <td>{{{ $last_updated_detainees->violation }}}</td>
                                                 <td class="text-center">{{ $last_updated_detainees->age }}</td>
                                                 <td class="text-center">{{ $last_updated_detainees->created_at ? $last_updated_detainees->created_at->format('Y-m-d') : null }}</td>
-                                                <td class="text-center"><a href="{{ route('detainees.edit', ['id' => $last_updated_detainees->id]) }}">Edit</a></td>
+                                                <td class="text-center"><a href="{{ route('detainees.edit', array_merge(['id' => $last_updated_detainees->id], request()->query())) }}">Edit</a></td>
                                             </tr>
                                         @endforeach
                                     @else
@@ -445,12 +447,12 @@
         var my_datatable_options = {
             "paging": true,
             "lengthChange": false,
-            "searching": false,
+            "searching": true,
             "ordering": true,
             "info": true,
             "autoWidth": false,
             "responsive": true,
-            "pageLength": 20,
+            "pageLength": 10,
         };
 
         $('#subsistence-table').DataTable(my_datatable_options);
