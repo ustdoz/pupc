@@ -206,7 +206,7 @@
                                                 <td>{{ $detainee->first_name }}</td>
                                                 <td>{{ $detainee->middle_name }}</td>
                                                 <td>{{ $detainee->detained_date ? $detainee->detained_date->format('Y-m-d') : null }}</td>
-                                                <td>{{ $detainee->released_date ? $detainee->released_date->format('Y-m-d') : 'DETAINED' }}</td>
+                                                <td>{{ ($detainee->released_date && $detainee->released_date->between($_filter['start_month'], $_filter['end_month'])) ? $detainee->released_date->format('Y-m-d') : 'DETAINED' }}</td>
                                                 <td>{{ $detainee->days_detained }}</td>
                                                 <td class="text-center">{{ number_format($detainee->total_budget) }}</td>
                                                 <td class="text-center">
@@ -452,7 +452,7 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
-            "pageLength": 10,
+            "pageLength": 50,
         };
 
         $('#subsistence-table').DataTable(my_datatable_options);
