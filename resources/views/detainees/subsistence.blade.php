@@ -134,6 +134,20 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="col-md-12 text-center mt-3">
+                                    <div class="custom-checkbox form-check form-check-inline pl-3 pr-3">
+                                      <input class="custom-control-input custom-control-input-danger" type="checkbox" id="check_subsistence" name="export_sheet[subsistence]" checked="checked">
+                                      <label for="check_subsistence" class="custom-control-label">Subsistence</label>
+                                    </div>
+                                    <div class="custom-checkbox form-check form-check-inline pl-3 pr-3">
+                                      <input class="custom-control-input custom-control-input-danger" type="checkbox" id="check_subsistence_recap" name="export_sheet[subsistence_recap]" checked="checked">
+                                      <label for="check_subsistence_recap" class="custom-control-label">Subsistence Recap</label>
+                                    </div>
+                                    <div class="custom-checkbox form-check form-check-inline pl-3 pr-3">
+                                      <input class="custom-control-input custom-control-input-danger" type="checkbox" id="check_discharge" name="export_sheet[discharge]" checked="checked">
+                                      <label for="check_discharge" class="custom-control-label">Discharged PUPCs</label>
+                                    </div>
+                                </div>
                                 <div class="col-md-12">
                                     <div class="text-center">
                                         <br>
@@ -452,7 +466,7 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
-            "pageLength": 50,
+            "pageLength": 10,
         };
 
         $('#subsistence-table').DataTable(my_datatable_options);

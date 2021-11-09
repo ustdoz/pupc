@@ -55,83 +55,16 @@ class CurrentDetaineesExport implements FromArray, WithTitle
         $this->data = $data;
     }
 
-    public function array(): array
-    {
-        $current_detainees = [];
-
-        if ($this->current_detainees) {
-            // dd($this->current_detainees);
-
-            // $start = 10;
-
-            // foreach ($this->current_detainees as $pupc) {
-            //     $current_detainees[$start] = [$pupc->first_name];
-            //     $start++;
-            // }
-
-            // $total_budget = 0;
-            // $daily_allowance = config('detainees.allowance_amount');
-
-            // for ($i=0; $i < 8; $i++) { 
-            //     $subsistence[] = [null, null, null, null, null, null, null];
-            // }
-
-            // // $subsistence[] = ['CPS/MPS', null, null, 'Date (MM/DD/YYY)*', 'Number of PUPC**', 'Allowance Per Day', 'Total Per day'];
-            // $first = 1;
-
-            // foreach ($this->current_detainees as $date => $detainees_count) {
-            //     $total = $detainees_count * $daily_allowance;
-                
-            //     $subsistence[] = [
-            //         ($first ? 'CARMONA MPS' : null),
-            //         null,
-            //         null,
-            //         $date,
-            //         $detainees_count,
-            //         $daily_allowance,
-            //         number_format($total),
-            //     ];
-
-            //     $total_budget = $total_budget + $total;
-
-            //     $first = 0;
-            // }
-
-            // $subsistence[] = [
-            //     null,
-            //     null,
-            //     null,
-            //     null,
-            //     null,
-            //     'Total Amount Requested',
-            //     "₱ " . number_format($total_budget),
-            // ];
-        }
-
-        return $current_detainees;
-    }
-
     public function title(): string
     {
-        return mb_strtoupper('Current PUPC ' . $this->data['month_year']);
+        return 'Current PUPC';
+        // return mb_strtoupper('Current PUPC ' . $this->data['month_year']);
     }
 
-    // public function map($invoice): array
-    // {
-    //     return [
-    //         $invoice->invoice_number,
-    //         Date::dateTimeToExcel($invoice->created_at),
-    //         $invoice->total
-    //     ];
-    // }
-    
-    // public function columnFormats(): array
-    // {
-    //     return [
-    //         'B' => NumberFormat::FORMAT_DATE_DDMMYYYY,
-    //         'C' => NumberFormat::FORMAT_CURRENCY_EUR_SIMPLE,
-    //     ];
-    // }
+    public function array(): array
+    {
+        return [];
+    }
 
     public function columnWidths(): array
     {
@@ -154,20 +87,6 @@ class CurrentDetaineesExport implements FromArray, WithTitle
             // myHeader
             'A4' => ['font' => ['bold' => true]],
             'A5' => ['font' => ['bold' => true]],
-
-            // ($end_number + 10) => ['font' => ['bold' => true]],
-            // ('A' . $row_names) => [
-            //     'value' => 'testsetsetsetset'
-            // ],
-            // 'B1:B5' => ['font' => ['bold' => true]],
-            // Style the first row as bold text.
-            // 1    => ['font' => ['bold' => true, 'size' => 14]],
-            // ($end_number + 1) => ['font' => ['bold' => true]],
-            // // Styling a specific cell by coordinate.
-            // 'B2' => ['font' => ['italic' => true]],
-
-            // // Styling an entire column.
-            // 'C'  => ['font' => ['size' => 16]],
         ];
     }
 
@@ -184,7 +103,7 @@ class CurrentDetaineesExport implements FromArray, WithTitle
             'A4' => 'CAVITE POLICE PROVINCIAL OFFICE',
             'A5' => 'CARMONA MUNICIPAL POLICE STATION',
             'A6' => 'Brgy. Maduya, Carmona, Cavite',
-            'A8' => 'Current Detained PUPCs',
+            'A8' => $this->data['month_year'] . ' Current Detained PUPCs',
         ];
 
         $table_header_values = [
@@ -218,10 +137,8 @@ class CurrentDetaineesExport implements FromArray, WithTitle
             $counter = 1;
             foreach ($this->current_detainees as $current_detainees) {
                 foreach ($cell_columns as $cell_column) {
-                    // if (!in_array($cell_column, ['A', 'F'])) {
-                        $sheet->getStyle($cell_column . $cell_id)->applyFromArray($this->styles['borders']);
-                        $sheet->getStyle($cell_column . $cell_id)->getAlignment()->applyFromArray($this->styles['alignment_center']);
-                    // }
+                    $sheet->getStyle($cell_column . $cell_id)->applyFromArray($this->styles['borders']);
+                    $sheet->getStyle($cell_column . $cell_id)->getAlignment()->applyFromArray($this->styles['alignment_center']);
                 }
 
                 $sheet->setCellValue('A' . $cell_id, $counter);
@@ -229,50 +146,20 @@ class CurrentDetaineesExport implements FromArray, WithTitle
                 $sheet->setCellValue('C' . $cell_id, $current_detainees->age ? : 'N/A');
                 $sheet->setCellValue('D' . $cell_id, $current_detainees->violation);
                 $sheet->setCellValue('E' . $cell_id, ($current_detainees->detained_date ? $current_detainees->detained_date->format('d/m/Y') : null));
-                // $sheet->setCellValue('F' . $cell_id, ($current_detainees->released_date_court ? $current_detainees->released_date_court->format('d/m/Y') : null));
-                // $sheet->setCellValue('G' . $cell_id, ($current_detainees->released_date ? $current_detainees->released_date->format('d/m/Y') : null));
-                // $sheet->setCellValue('H' . $cell_id, ($current_detainees->released_date_erogue ? $current_detainees->released_date_erogue->format('d/m/Y') : null));
-                // $sheet->setCellValue('I' . $cell_id, $current_detainees->remarks);
-
                 $cell_id++;
                 $counter++;
             }
-
-            // myFooter
-            // $sheet->getRowDimension($cell_id)->setRowHeight(45);
-            // $cell_id++;
-            // $sheet->mergeCells("A$cell_id:B$cell_id");
-            // $sheet->setCellValue("A$cell_id", 'Prepared by:');
-            // $sheet->mergeCells("G$cell_id:H$cell_id");
-            // $sheet->setCellValue("G$cell_id", 'Noted by:');
-
-            // $cell_id++;
-            // $sheet->getRowDimension($cell_id)->setRowHeight(30);
-            // $sheet->mergeCells("A$cell_id:B$cell_id");
-            // $sheet->setCellValue("A$cell_id", (isset($this->data['jailer']) ? $this->data['jailer'] : config('detainees.jailers.2')));
-            // $sheet->mergeCells("G$cell_id:H$cell_id");
-            // $sheet->setCellValue("G$cell_id", (isset($this->data['chief_police']) ? $this->data['chief_police'] : config('detainees.chief_police.0')));
-
-            // $cell_id++;
-            // $sheet->mergeCells("G$cell_id:H$cell_id");
-            // $sheet->setCellValue("G$cell_id", 'ACOP, Carmona MPS');
         }
     }
 
     public function drawings()
     {
         $drawing = new Drawing();
-        // $drawing->setName('Logo');
-        // $drawing->setDescription('This is my logo');
         $drawing->setPath(public_path('/pnp.png'));
-        // $drawing->setHeight(50);
         $drawing->setCoordinates('A1');
 
         $drawing2 = new Drawing();
-        // $drawing2->setName('Other image');
-        // $drawing2->setDescription('This is a second image');
         $drawing2->setPath(public_path('/cavite.png'));
-        // $drawing2->setHeight(120);
         $drawing2->setCoordinates('F1');
 
         return [$drawing, $drawing2];

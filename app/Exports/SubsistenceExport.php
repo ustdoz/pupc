@@ -2,22 +2,16 @@
 
 namespace App\Exports;
 
-// use Carbon\Carbon;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-// use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
-// use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-// use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStyles;
 
 
 
 class SubsistenceExport implements FromArray, WithTitle
 ,WithColumnWidths
-// ,WithColumnFormatting
-// ,WithMapping
 ,WithStyles
 {
     protected $detainees = null;
@@ -27,6 +21,12 @@ class SubsistenceExport implements FromArray, WithTitle
     {
         $this->detainees = $detainees;
         $this->data = $data;
+    }
+
+    public function title(): string
+    {
+        return 'Subsistence';
+        // return mb_strtoupper($this->data['month_year']);
     }
 
     public function array(): array
@@ -46,8 +46,8 @@ class SubsistenceExport implements FromArray, WithTitle
 
             foreach ($this->detainees as $detainee) {
                 $subsistence[] = [
-                    ($a4 ? 'CARMONA MPS' : null),
-                    null,
+                    (($a4 == 1) ? 'CARMONA MPS' : null),
+                    $a4,
                     mb_strtoupper($detainee->last_name),
                     mb_strtoupper($detainee->first_name),
                     mb_strtoupper($detainee->middle_name),
@@ -59,7 +59,7 @@ class SubsistenceExport implements FromArray, WithTitle
                     number_format($detainee->total_budget),
                 ];
 
-                $a4 = 0;
+                $a4++;
             }
 
             $subsistence[] = [
@@ -79,28 +79,6 @@ class SubsistenceExport implements FromArray, WithTitle
 
         return $subsistence;
     }
-
-    public function title(): string
-    {
-        return mb_strtoupper($this->data['month_year']);
-    }
-
-    // public function map($invoice): array
-    // {
-    //     return [
-    //         $invoice->invoice_number,
-    //         Date::dateTimeToExcel($invoice->created_at),
-    //         $invoice->total
-    //     ];
-    // }
-    
-    // public function columnFormats(): array
-    // {
-    //     return [
-    //         'B' => NumberFormat::FORMAT_DATE_DDMMYYYY,
-    //         'C' => NumberFormat::FORMAT_CURRENCY_EUR_SIMPLE,
-    //     ];
-    // }
 
     public function columnWidths(): array
     {
@@ -127,7 +105,6 @@ class SubsistenceExport implements FromArray, WithTitle
 
         $sheet->mergeCells('A1:K1');
         $sheet->mergeCells('A2:A3');
-        // $sheet->mergeCells('B2:F2');
         $sheet->mergeCells('G2:G3');
         $sheet->mergeCells('H2:H3');
         $sheet->mergeCells('I2:I3');
@@ -187,12 +164,6 @@ class SubsistenceExport implements FromArray, WithTitle
         $sheet->getRowDimension($end_number + 1)->setRowHeight(30);
         $sheet->getRowDimension($end_number + 2)->setRowHeight(75);
 
-        // $sheet->setHeight([
-        //     1 => 31.5,
-        //     3 => 30,
-        //     ($end_number + 1) => 30,
-        //     ($end_number + 2) => 75
-        // ]);
 
         $align_center_arr = [
             'A1', 'A2', 'A4', 'B2', 'B3', 'C3', 'D3', 'E3', 'F3', 'G2', 'H2', 'I2', 'J2', 'K2', 
@@ -219,18 +190,9 @@ class SubsistenceExport implements FromArray, WithTitle
         $sheet->setCellValue('H' . $row_titles, config('detainees.titles.2'));
 
         return [
-            // ('A' . $row_names) => [
-            //     'value' => 'testsetsetsetset'
-            // ],
-            // 'B1:B5' => ['font' => ['bold' => true]],
-            // Style the first row as bold text.
-            1    => ['font' => ['bold' => true, 'size' => 14]],
+            1 => ['font' => ['bold' => true, 'size' => 14]],
             ($end_number + 1) => ['font' => ['bold' => true]],
-            // // Styling a specific cell by coordinate.
-            // 'B2' => ['font' => ['italic' => true]],
 
-            // // Styling an entire column.
-            // 'C'  => ['font' => ['size' => 16]],
         ];
     }
 }

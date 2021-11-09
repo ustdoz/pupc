@@ -30,141 +30,6 @@ class DetaineesController extends Controller
 
     protected $download = false;
 
-    public function seed()
-    {
-        $data = [
-            ['LABE', 'RICARDO', 'SORENO', '16/04/2021', '29/04/2021'],
-            ['RANARA', 'ALBERT', 'ROARING', '25/04/2021', '29/04/2021'],
-            ['RANARA', 'JORDAN', 'RETUERMA', '25/04/2021', '29/04/2021'],
-            ['LOPEZ', 'RONALDO', 'PAULAR', '25/04/2021', '29/04/2021'],
-            ['GUTIERREZ', 'JOHN CARLO', 'ROZ', '25/04/2021', '29/04/2021'],
-            ['LOVA', 'BERT', 'SOLIS', '25/04/2021', '29/04/2021'],
-            ['ZETA', 'RAYMOND', 'PARAGO', '25/04/2021', '29/04/2021'],
-            ['ZETA', 'RENIER', 'PEREZ', '25/04/2021', '29/04/2021'],
-            ['MASAGA', 'RANDY', 'GAMBOA', '28/03/2021', '26/04/2021'],
-            ['LANAC', 'ARMAN', 'LAURITA', '11/04/2021', '26/04/2021'],
-            ['LALOG', 'ROLAND', 'SILVA', '11/04/2021', '26/04/2021'],
-            ['ANGCAYA', 'JOSHUA', 'RICO', '20/04/2021', '21/04/2021'],
-            ['APUNTAR', 'AVELINA', 'LAURORA', '20/04/2021', '21/04/2021'],
-            ['LARONG', 'DENNIS', 'CABATUAN', '11/04/2021', '16/04/2021'],
-            ['VIZCARRA', 'LEOPOLDO', 'SULITA', '05/04/2021', '15/04/2021'],
-            ['VIZCARRA', 'ANGELICA', 'PALACIO', '14/04/2021', '15/04/2021'],
-            ['MICOSA', 'LESTER', 'PEREZ', '03/03/2021', '13/04/2021'],
-            ['PEREÑA', 'ORLANDO', 'RAZON', '10/03/2021', '13/04/2021'],
-            ['SAMSON', 'STEVEN', 'REYES', '08/01/2021', '11/04/2021'],
-            ['MONTAÑEZ JR', 'JIMMY', 'ORNOPIA', '06/02/2021', '11/04/2021'],
-            ['MILAGROSO', 'EDUARDO', 'CALITIS', '14/02/2021', '11/04/2021'],
-            ['RAMOS', 'JAY-AR', 'MONARES', '16/02/2021', '11/04/2021'],
-            ['BIANZON', 'BENJAMIN', 'DE SALIT', '18/02/2021', '11/04/2021'],
-            ['VILLARIN', 'BEN-HUR', 'MAGTOLES', '24/02/2021', '11/04/2021'],
-            ['SIBOLINO', 'EDWIN', 'VERAÑA', '24/02/2021', '11/04/2021'],
-            ['TAMBANGAN', 'JOHN KENNETH', 'SORIO', '01/03/2021', '11/04/2021'],
-            ['APURA', 'JOHN ADRIAN', 'ABANTAO', '01/03/2021', '11/04/2021'],
-            ['BORROMEO', 'NIEL', 'DELEON', '05/04/2021', '08/04/2021'],
-            ['ALPACHE', 'SALVADOR', 'SULANO', '23/03/2021', '24/03/2021'],
-            ['LOYOLA', 'EDWARDO', 'VALENZUELA', '29/12/2020', '19/03/2021'],
-            ['BELEN', 'EDWIN', 'PAROLINA', '04/03/2021', '19/03/2021'],
-            ['BARLAO', 'ELPIDIO', 'SIBULINO', '16/03/2021', '19/03/2021'],
-            ['MENDOZA', 'ENGILBERT', 'GONZALES', '16/03/2021', '19/03/2021'],
-            ['LEVARDO', 'AVELITO', 'QUILAO', '10/03/2021', '17/03/2021'],
-            ['ELLO', 'JEFFREY', 'TRINIDAD', '07/03/2021', '12/03/2021'],
-            ['MEJIA', 'ROSEMARIE', 'SALVA', '07/03/2021', '10/03/2021'],
-            ['MAGNAYE', 'MICHAEL', 'DELOS SANTOS', '08/03/2021', '09/03/2021'],
-            ['GOMEZ', 'GENE PAULA', 'CORDENETE', '08/03/2021', '09/03/2021'],
-            ['APUNTAR', 'BIEJAY', 'LAURORA', '10/02/2021', '01/03/2021'],
-            ['REYES', 'JAYSON', 'SY', '15/02/2021', '01/03/2021'],
-            ['SERVANDO', 'DONATO', 'REFORMADO', '25/12/2020', '24/02/2021'],
-            ['TOLENTINO JR', 'MANUEL', 'DIWATA', '29/12/2020', '24/02/2021'],
-            ['LEDEROS', 'RESTY', 'BASA', '29/12/2020', '24/02/2021'],
-            ['FONTANILLA', 'ALEXANDER', 'ESPIRITU', '08/01/2021', '24/02/2021'],
-            ['LOPEZ', 'JESSIE', 'YGBUHAY', '10/01/2021', '24/02/2021'],
-            ['ERAGA', 'ARGIE', 'DELOS SANTOS', '13/01/2021', '24/02/2021'],
-            ['MAPANOO', 'RAVEN', 'UMALI', '13/01/2020', '24/02/2021'],
-            ['PACAY', 'RONALD', 'BAYBAY', '19/01/2020', '24/02/2021'],
-            ['ORIEL', 'CHRISTIAN ALVIN', 'BAUTISTA', '22/01/2021', '24/02/2021'],
-            ['MAGNAYE', 'JOEL', 'GOMEZ', '22/01/2021', '24/02/2021'],
-            ['CORTEZ', 'ROLAND', 'INES', '23/01/2021', '24/02/2021'],
-            ['LAGUAN', 'CARMELITO', 'DAGAME', '23/01/2021', '24/02/2021'],
-            ['JACINTO', 'ARVIN', 'PAROLINA', '24/01/2021', '24/02/2021'],
-            ['BARRUGA', 'ROSALITO', 'LOYOLA', '24/01/2021', '24/02/2021'],
-            ['RAFOL', 'GEOFFREY', 'PERELLO', '01/02/2021', '24/02/2021'],
-            ['ANDRADE', 'RYAN CHESTER', 'ANOR', '01/02/2021', '24/02/2021'],
-            ['ARNAIZ JR', 'EDWIN', 'LACSOL', '16/02/2021', '24/02/2021'],
-            ['MARTIZANO', 'CHARITO', 'BEDUYA', '19/02/2021', '23/02/2021'],
-            ['JAVELOSA', 'LOIDA', 'MARTIZANO', '19/02/2021', '22/02/2021'],
-            ['ELIPON', 'JEROME', 'CADALSO', '19/02/2021', '19/02/2021'],
-            ['ACUTIM', 'JOLIE', 'ABAIGAR', '19/02/2021', '19/02/2021'],
-            ['LLAVANES', 'MARIEL', 'MITRA', '16/02/2021', '16/02/2021'],
-            ['MANLANGIT', 'ALBERT', 'EBUAN', '06/02/2021', '15/02/2021'],
-            ['PAJARON', 'ALBERT', 'SOTIS', '06/02/2021', '15/02/2021'],
-            ['ROMANO', 'DARIUS', 'INIAN', '26/12/2020', '02/02/2021'],
-            ['PRIVADO', 'BIANZON', 'ATIENZA', '02/02/2021', '01/02/2021'],
-            ['VILLANUEVA', 'MARBEN', 'VICTORIANO', '08/01/2021', '27/01/2021'],
-            ['BAÑADOS', 'JOHN EDDIEZON', 'CASTILLO', '19/12/2020', '20/01/2021'],
-            ['OBNIALA', 'JONAS', 'PAMESA', '04/11/2020', '19/01/2021'],
-            ['DELEON', 'ERIKA', 'MANLUNAS', '04/11/2020', '19/01/2021'],
-            ['VARGAS', 'JOEL', 'PAKINGAN', '04/11/2020', '19/01/2021'],
-            ['PANTOJA', 'ARNOLD', 'SOMBRIO', '18/11/2020', '19/01/2021'],
-            ['PEREZ', 'ANTHONY', 'PAÑOSO', '18/11/2020', '19/01/2021'],
-            ['TORREJANO', 'CELSO', 'LARA', '19/11/2020', '19/01/2021'],
-            ['SABANGAN', 'RICSAN', 'LACORTE', '20/11/2020', '19/01/2021'],
-            ['NARCEDA', 'JOEL', 'SANDINO', '20/11/2020', '19/01/2021'],
-            ['TAN', 'JEWEL JEM', 'DEAROZ', '26/11/2020', '19/01/2021'],
-            ['LLADOC', 'CHRISTIAN', 'DANIEL', '26/11/2020', '19/01/2021'],
-            ['MANABA', 'JOHN LESTER', 'BALBUENA', '26/11/2020', '19/01/2021'],
-            ['TISON', 'GEROME JAN', 'MIDAY', '01/12/2020', '19/01/2021'],
-            ['FORTUNO', 'GARRY', 'BAYSON', '04/12/2020', '19/01/2021'],
-            ['BENITEZ', 'MICHAEL', 'VILLAGANAS', '29/12/2020', '15/01/2021'],
-            ['DE ROXAS', 'MANUEL', 'GAMIER', '15/01/2020', '15/01/2021'],
-            ['DE CAPIA', 'BIEMOR', 'MALAPITAN', '09/01/2021', '12/01/2021'],
-            ['BANARES', 'JOVEN', 'REMANO', '09/01/2021', '12/01/2021'],
-            ['TREMUCITA', 'JUDY', 'FIGUEROA', '09/01/2021', '12/01/2021'],
-            ['OLASO', 'JOHN PAUL', 'CORTEZ', '03/01/2021', '07/01/2021'],
-            ['BETANGCOR', 'JOEL', 'RUSIANA', '03/01/2021', '07/01/2021'],
-            ['VILLAFLOR', 'JERICK', 'MEMIJE', '03/01/2021', '07/01/2021'],
-            ['LACAO', 'ROMMEL', 'MEDINA', '03/01/2021', '07/01/2021'],
-            ['BADILLO', 'DANILO', 'LIBOT', '25/12/2020', '06/01/2021'],
-            ['VILLARIN', 'BERNIE', 'FAT', '03/01/2021', '06/01/2021'],
-            ['SAÑO', 'LANIE', 'DIAZ', '03/01/2021', '06/01/2021'],
-            ['MASCAREÑAS', 'RIZALYN', 'MANAO', '03/01/2021', '06/01/2021'],
-        ];
-
-        $d = [];
-        $e = [];
-
-        foreach ($data as $detainee) {
-            $c = [
-                'last_name' => ucwords(mb_strtolower($detainee[0])),
-                'first_name' => ucwords(mb_strtolower($detainee[1])),
-                'middle_name' => ucwords(mb_strtolower($detainee[2])),
-                'detained_date' => Carbon::createFromFormat('d/m/Y', $detainee[3])->format('m/d/Y'),
-                'released_date' => Carbon::createFromFormat('d/m/Y', $detainee[4])->format('m/d/Y'),
-            ];
-
-            // dd($c);
-
-            $d[] = $c;
-
-            $already_exists = Detainee::where([
-                ['first_name', '=', $c['first_name']],
-                // ['middle_name', '=', $data['middle_name']],
-                ['last_name', '=', $c['last_name']],
-            ])->count() ? true : false;
-
-            if ($already_exists) {
-                $e[] = $c;
-            } else {
-                Detainee::create($c);
-            }
-
-            
-        }
-
-
-
-        dd($e, $d);
-    }
-
     public function __construct()
     {
         // $jailer = Jailer::find(1);
@@ -522,6 +387,13 @@ class DetaineesController extends Controller
         // for printing page setup please check the link below:
         // https://github.com/PHPOffice/PHPExcel/blob/develop/Documentation/markdown/Overview/08-Recipes.md#page-setup-scaling-options
 
+        if (!$request->has('export_sheet')) {
+            Session::flash('alert_message', 'The system does not know what category to export.');
+            Session::flash('alert_class', 'alert-danger');
+
+            return redirect()->back();
+        }
+
         $_datas = $this->subsistence();
 
         foreach ($_datas as $_data_key => $_data_value) {
@@ -547,8 +419,6 @@ class DetaineesController extends Controller
             $data['jailer'] = $jailer->name;
             // dd($data);
         }
-
-        
 
         $detainees_export = new DetaineesExport($detainees, $recap, $discharge, $data);
         return Excel::download($detainees_export, 'PUPC Carmona ' . $data['month_year'] . ' Reports.xls');

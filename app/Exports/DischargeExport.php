@@ -2,14 +2,10 @@
 
 namespace App\Exports;
 
-// use Carbon\Carbon;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-// use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
-// use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-// use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStyles;
 
 use Maatwebsite\Excel\Concerns\WithDrawings;
@@ -17,8 +13,6 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
 class DischargeExport implements FromArray, WithTitle
 ,WithColumnWidths
-// ,WithColumnFormatting
-// ,WithMapping
 ,WithStyles
 ,WithDrawings
 {
@@ -55,83 +49,16 @@ class DischargeExport implements FromArray, WithTitle
         $this->data = $data;
     }
 
-    public function array(): array
-    {
-        $discharge = [];
-
-        if ($this->discharge) {
-            // dd($this->discharge);
-
-            // $start = 10;
-
-            // foreach ($this->discharge as $pupc) {
-            //     $discharge[$start] = [$pupc->first_name];
-            //     $start++;
-            // }
-
-            // $total_budget = 0;
-            // $daily_allowance = config('detainees.allowance_amount');
-
-            // for ($i=0; $i < 8; $i++) { 
-            //     $subsistence[] = [null, null, null, null, null, null, null];
-            // }
-
-            // // $subsistence[] = ['CPS/MPS', null, null, 'Date (MM/DD/YYY)*', 'Number of PUPC**', 'Allowance Per Day', 'Total Per day'];
-            // $first = 1;
-
-            // foreach ($this->discharge as $date => $detainees_count) {
-            //     $total = $detainees_count * $daily_allowance;
-                
-            //     $subsistence[] = [
-            //         ($first ? 'CARMONA MPS' : null),
-            //         null,
-            //         null,
-            //         $date,
-            //         $detainees_count,
-            //         $daily_allowance,
-            //         number_format($total),
-            //     ];
-
-            //     $total_budget = $total_budget + $total;
-
-            //     $first = 0;
-            // }
-
-            // $subsistence[] = [
-            //     null,
-            //     null,
-            //     null,
-            //     null,
-            //     null,
-            //     'Total Amount Requested',
-            //     "₱ " . number_format($total_budget),
-            // ];
-        }
-
-        return $discharge;
-    }
-
     public function title(): string
     {
-        return mb_strtoupper('DISCHARGED PUPC ' . $this->data['month_year']);
+        return 'Discharged PUPC';
+        // return mb_strtoupper('DISCHARGED PUPC ' . $this->data['month_year']);
     }
 
-    // public function map($invoice): array
-    // {
-    //     return [
-    //         $invoice->invoice_number,
-    //         Date::dateTimeToExcel($invoice->created_at),
-    //         $invoice->total
-    //     ];
-    // }
-    
-    // public function columnFormats(): array
-    // {
-    //     return [
-    //         'B' => NumberFormat::FORMAT_DATE_DDMMYYYY,
-    //         'C' => NumberFormat::FORMAT_CURRENCY_EUR_SIMPLE,
-    //     ];
-    // }
+    public function array(): array
+    {
+        return [];
+    }
 
     public function columnWidths(): array
     {
@@ -154,23 +81,8 @@ class DischargeExport implements FromArray, WithTitle
         $this->myData($sheet);
 
         return [
-            // myHeader
             'A4' => ['font' => ['bold' => true]],
             'A5' => ['font' => ['bold' => true]],
-
-            // ($end_number + 10) => ['font' => ['bold' => true]],
-            // ('A' . $row_names) => [
-            //     'value' => 'testsetsetsetset'
-            // ],
-            // 'B1:B5' => ['font' => ['bold' => true]],
-            // Style the first row as bold text.
-            // 1    => ['font' => ['bold' => true, 'size' => 14]],
-            // ($end_number + 1) => ['font' => ['bold' => true]],
-            // // Styling a specific cell by coordinate.
-            // 'B2' => ['font' => ['italic' => true]],
-
-            // // Styling an entire column.
-            // 'C'  => ['font' => ['size' => 16]],
         ];
     }
 
@@ -187,7 +99,7 @@ class DischargeExport implements FromArray, WithTitle
             'A4' => 'CAVITE POLICE PROVINCIAL OFFICE',
             'A5' => 'CARMONA MUNICIPAL POLICE STATION',
             'A6' => 'Brgy. Maduya, Carmona, Cavite',
-            'A8' => 'Monthly Report of Timely Release of PUPCs',
+            'A8' => 'Monthly Report of Timely Release of PUPCs ' . $this->data['month_year'],
         ];
 
         $table_header_values = [
@@ -204,7 +116,6 @@ class DischargeExport implements FromArray, WithTitle
 
         foreach ($header_values as $cell_id => $cell_value) {
             $sheet->setCellValue($cell_id, $cell_value);
-            // $sheet->getStyle($cell_id)->applyFromArray($this->styles['borders']);
             $sheet->getStyle($cell_id)->getAlignment()->applyFromArray($this->styles['alignment_center']);
         }
 
@@ -240,7 +151,6 @@ class DischargeExport implements FromArray, WithTitle
                 $cell_id++;
             }
 
-            // myFooter
             $sheet->getRowDimension($cell_id)->setRowHeight(45);
             $cell_id++;
             $sheet->mergeCells("A$cell_id:B$cell_id");
@@ -264,17 +174,11 @@ class DischargeExport implements FromArray, WithTitle
     public function drawings()
     {
         $drawing = new Drawing();
-        // $drawing->setName('Logo');
-        // $drawing->setDescription('This is my logo');
         $drawing->setPath(public_path('/pnp.png'));
-        // $drawing->setHeight(50);
         $drawing->setCoordinates('A1');
 
         $drawing2 = new Drawing();
-        // $drawing2->setName('Other image');
-        // $drawing2->setDescription('This is a second image');
         $drawing2->setPath(public_path('/cavite.png'));
-        // $drawing2->setHeight(120);
         $drawing2->setCoordinates('I1');
 
         return [$drawing, $drawing2];

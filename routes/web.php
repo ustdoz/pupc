@@ -50,5 +50,3 @@ Route::get('admin', function () {
     // return view('layouts.adminlte3.app');
     return view('admin_template');
 })->name('admin_template');
-
-// Route::get('test', 'DetaineesController@seed');
