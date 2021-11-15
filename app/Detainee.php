@@ -8,12 +8,12 @@ use Carbon\Carbon;
 class Detainee extends Model
 {
     protected $fillable = [
-    	'first_name', 'middle_name', 'last_name', 'birth_date', 'detained_date', 'released_date',
+    	'first_name', 'middle_name', 'last_name', 'birth_date', 'detained_date', 'commitment_date', 'released_date',
     	'gender', 'violation', 'released_blotter_number', 'jailer_id', 'released_date_court', 'released_date_erogue', 'remarks',
     ];
 
     protected $dates = [
-    	'birth_date', 'detained_date', 'released_date',
+    	'birth_date', 'detained_date', 'commitment_date', 'released_date',
     	'released_date_court', 'released_date_erogue',
     ];
 
@@ -39,6 +39,11 @@ class Detainee extends Model
 	public function setDetainedDateAttribute($value)
 	{
 		$this->attributes['detained_date'] = $this->fixDate($value);
+	}
+
+	public function setCommitmentDateAttribute($value)
+	{
+		$this->attributes['commitment_date'] = $this->fixDate($value);
 	}
 
 	public function setReleasedDateAttribute($value)

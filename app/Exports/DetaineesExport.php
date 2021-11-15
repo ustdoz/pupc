@@ -51,13 +51,13 @@ class DetaineesExport implements WithMultipleSheets
         // $recap = new RecapExport($this->recap, $this->data);
         // $discharge = new DischargeExport($this->discharge, $this->data);
 
-        // $_current_detainees = $this->detainees->where('released_date', '=', null)->sortBy('detained_date');
-        // $current_detainees = new CurrentDetaineesExport($_current_detainees, $this->data);
+        $_current_detainees = $this->detainees->where('released_date', '=', null)->sortBy('detained_date');
+        $current_detainees = new CurrentDetaineesExport($_current_detainees, $this->data);
 
         // $sheets[] = $subsistence;
         // $sheets[] = $recap;
         // $sheets[] = $discharge;
-        // $sheets[] = $current_detainees;
+        $sheets[] = $current_detainees;
 
         return $sheets;
     }

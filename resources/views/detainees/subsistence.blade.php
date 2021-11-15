@@ -17,6 +17,7 @@
                                             <div class="col-md-3">
                                                 <div class="h5">{{ $data['detained'] }} Detained</div>
                                                 <div class="h5">{{ $data['released'] }} Released</div>
+                                                <div class="h5">{{ $data['commitment_order'] }} Commited Detainees</div>
                                             </div>
                                             <div class="col-md-5">
                                                 <div class="h5">{{ $data['current_male'] }} Current Male</div>

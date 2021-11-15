@@ -50,3 +50,97 @@ Route::get('admin', function () {
     // return view('layouts.adminlte3.app');
     return view('admin_template');
 })->name('admin_template');
+
+
+Route::get('test', function () {
+    $detainees = \App\Detainee::all();
+
+    // January
+    dd(
+        $detainees->whereBetween('detained_date', ['2021-01-01', '2021-01-31'])
+        ->where('gender', 'male')
+        // ->where('gender', 'female')
+    );
+
+    // February
+    dd(
+        $detainees->whereBetween('detained_date', ['2021-02-01', '2021-02-28'])
+        ->where('gender', 'male')
+        // ->where('gender', 'female')
+    );
+
+    // March
+    dd(
+        $detainees->whereBetween('detained_date', ['2021-03-01', '2021-03-31'])
+        ->where('gender', 'male')
+        // ->where('gender', 'female')
+    );
+
+    // April
+    dd(
+        $detainees->whereBetween('detained_date', ['2021-04-01', '2021-04-30'])
+        ->where('gender', 'male')
+        // ->where('gender', 'female')
+    );
+
+    // May
+    dd(
+        $detainees->whereBetween('detained_date', ['2021-05-01', '2021-05-31'])
+        ->where('gender', 'male')
+        // ->where('gender', 'female')
+    );
+
+    // June
+    dd(
+        $detainees->whereBetween('detained_date', ['2021-06-01', '2021-06-30'])
+        ->where('gender', 'male')
+        // ->where('gender', 'female')
+    );
+
+    // July
+    dd(
+        $detainees->whereBetween('detained_date', ['2021-07-01', '2021-07-31'])
+        ->where('gender', 'male')
+        // ->where('gender', 'female')
+    );
+
+    // August
+    dd(
+        $detainees->whereBetween('detained_date', ['2021-08-01', '2021-09-31'])
+        ->where('gender', 'male')
+        // ->where('gender', 'female')
+    );
+
+    // September
+    dd(
+        $detainees->whereBetween('detained_date', ['2021-09-01', '2021-09-30'])
+        ->where('gender', 'male')
+        // ->where('gender', 'female')
+    );
+
+    // October
+    dd(
+        $detainees->whereBetween('detained_date', ['2021-10-01', '2021-10-31'])
+        ->where('gender', 'male')
+        // ->where('gender', 'female')
+    );
+
+    // November
+    dd(
+        $detainees->whereBetween('detained_date', ['2021-11-01', '2021-11-30'])
+        ->where('gender', 'male')
+        // ->where('gender', 'female')
+    );
+
+    // December
+    dd(
+        $detainees->whereBetween('detained_date', ['2021-12-01', '2021-12-31'])
+        ->where('gender', 'male')
+        // ->where('gender', 'female')
+    );
+
+
+    dd($detainees);
+    // return view('layouts.adminlte3.app');
+    // return view('admin_template');
+});

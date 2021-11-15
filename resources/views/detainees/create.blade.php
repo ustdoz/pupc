@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Gender</label>
                                                 <select class="form-control" name="gender">
@@ -70,17 +70,24 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Birth Date</label>
                                                 <input id="datepicker_birth_date" type="text" name="birth_date" autocomplete="off">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 
                                                 <label>Detained Date</label>
                                                 <input id="datepicker_detained_date" type="text" name="detained_date" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                
+                                                <label>Commitment Date</label>
+                                                <input id="datepicker_commitment_date" type="text" name="commitment_date" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -157,6 +164,7 @@
     <script>
         $('#datepicker_birth_date').datepicker({uiLibrary: 'bootstrap4'});
         $('#datepicker_detained_date').datepicker({uiLibrary: 'bootstrap4'});
+        $('#datepicker_commitment_date').datepicker({uiLibrary: 'bootstrap4'});
         $('#datepicker_released_date').datepicker({uiLibrary: 'bootstrap4'});
         $('#datepicker_released_date_court').datepicker({uiLibrary: 'bootstrap4'});
         $('#datepicker_released_date_erogue').datepicker({uiLibrary: 'bootstrap4'});

@@ -117,6 +117,7 @@ class DetaineesController extends Controller
             'gender' => null,
             'violation' => null,
             'detained_date' => null,
+            'commitment_date' => null,
             'released_date' => null,
             'released_blotter_number' => null,
             'chief_police_id' => 0,
@@ -159,6 +160,7 @@ class DetaineesController extends Controller
             ['first_name', '=', $data['first_name']],
             // ['middle_name', '=', $data['middle_name']],
             ['last_name', '=', $data['last_name']],
+            ['detained_date', '=', $data['detained_date']],
         ])->count() ? true : false;
 
         if ($already_exists) {
@@ -258,6 +260,7 @@ class DetaineesController extends Controller
             'total_detainees' => 0,
             'detained' => 0,
             'released' => 0,
+            'commitment_order' => 0,
             'male' => 0,
             'female' => 0,
             'current_detainees' => 0,
@@ -357,6 +360,8 @@ class DetaineesController extends Controller
 
             return $item;
         });
+
+        $data['commitment_order'] = $detainees->where('commitment_date', '!=', null)->count();
 
         // for debug check
         // $detainees_total_budget = array_sum($recap) * config('detainees.allowance_amount');
