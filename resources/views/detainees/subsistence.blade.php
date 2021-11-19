@@ -148,6 +148,14 @@
                                       <input class="custom-control-input custom-control-input-danger" type="checkbox" id="check_discharge" name="export_sheet[discharge]" checked="checked">
                                       <label for="check_discharge" class="custom-control-label">Discharged PUPCs</label>
                                     </div>
+                                    <div class="custom-checkbox form-check form-check-inline pl-3 pr-3">
+                                      <input class="custom-control-input custom-control-input-danger" type="checkbox" id="check_current_detainees" name="export_sheet[current_detainees]" checked="checked">
+                                      <label for="check_current_detainees" class="custom-control-label">Current PUPCs</label>
+                                    </div>
+                                    <div class="custom-checkbox form-check form-check-inline pl-3 pr-3">
+                                      <input class="custom-control-input custom-control-input-danger" type="checkbox" id="check_current_committed_detainees" name="export_sheet[current_committed_detainees]" checked="checked">
+                                      <label for="check_current_committed_detainees" class="custom-control-label">Current Committed PUPCs</label>
+                                    </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="text-center">
@@ -192,7 +200,10 @@
                             <a class="nav-link" id="discharge-recap-tab" data-toggle="tab" href="#discharge-recap" role="tab" aria-controls="discharge-recap" aria-selected="false">Discharge Recap</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="current-detainees-tab" data-toggle="tab" href="#current-detainees" role="tab" aria-controls="current-detainees" aria-selected="false">Current Detainees ({{ $current_detainees->count() }})</a>
+                            <a class="nav-link" id="current-detainees-tab" data-toggle="tab" href="#current-detainees" role="tab" aria-controls="current-detainees" aria-selected="false">Current PUPCs ({{ $current_detainees->count() }})</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="current-committed-detainees-tab" data-toggle="tab" href="#current-committed-detainees" role="tab" aria-controls="current-committed-detainees" aria-selected="false">Current Committed PUPCs ({{ $current_committed_detainees->count() }})</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="last-detainees-tab" data-toggle="tab" href="#last-detainees" role="tab" aria-controls="last-detainees" aria-selected="false">Last 5 Detainees</a>
@@ -209,6 +220,7 @@
                                         <th scope="col" class="text-center">Detained Date<br>YYYY-MM-DD</th>
                                         <th scope="col" class="text-center">Released Date<br>YYYY-MM-DD</th>
                                         <th scope="col" class="text-center"># of days<br>detained</th>
+                                        <th scope="col" class="text-center">Gender</th>
                                         <th scope="col" class="text-center">Amount</th>
                                         <th scope="col" class="text-center">Action</th>
                                     </tr>
@@ -223,6 +235,7 @@
                                                 <td>{{ $detainee->detained_date ? $detainee->detained_date->format('Y-m-d') : null }}</td>
                                                 <td>{{ ($detainee->released_date && $detainee->released_date->between($_filter['start_month'], $_filter['end_month'])) ? $detainee->released_date->format('Y-m-d') : 'DETAINED' }}</td>
                                                 <td>{{ $detainee->days_detained }}</td>
+                                                <td>{{ $detainee->gender }}</td>
                                                 <td class="text-center">{{ number_format($detainee->total_budget) }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ route('detainees.edit', array_merge(['id' => $detainee->id], request()->query())) }}">Edit</a>
@@ -240,7 +253,7 @@
                                         <tr>
                                             <td colspan="5"></td>
                                             <td class="h4"><strong>Total :</strong></td>
-                                            <td colspan="2" class="h4"><strong>{{ number_format($data['total_budget']) }}</strong></td>
+                                            <td colspan="3" class="h4"><strong>{{ number_format($data['total_budget']) }}</strong></td>
                                         </tr>
                                 </tfoot>
                             </table>
@@ -360,6 +373,7 @@
                                         <th scope="col">Name</th>
                                         <th scope="col">Violation</th>
                                         <th scope="col" class="text-center">Age</th>
+                                        <th scope="col" class="text-center">Gender</th>
                                         <th scope="col" class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -370,7 +384,39 @@
                                                 <td>{{ $current_detainee->full_name }}</td>
                                                 <td>{{{ $current_detainee->violation }}}</td>
                                                 <td class="text-center">{{ $current_detainee->age }}</td>
+                                                <td class="text-center">{{ $current_detainee->gender }}</td>
                                                 <td class="text-center"><a href="{{ route('detainees.edit', array_merge(['id' => $current_detainee->id], request()->query())) }}">Edit</a></td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="9"><center>No Current Detainee(s)</center></td>
+                                        </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane fade" id="current-committed-detainees" role="tabpanel" aria-labelledby="current-committed-detainees-tab">
+                            <table id="current-committed-detainees-table" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Violation</th>
+                                        <th scope="col" class="text-center">Age</th>
+                                        <th scope="col" class="text-center">Commitment Date</th>
+                                        <th scope="col" class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if ($current_committed_detainees->count())
+                                        @foreach ($current_committed_detainees as $current_committed_detainee)
+                                            <tr class="{!! $current_committed_detainee->is_female ? 'text-girl' : 'text-boy' !!}">
+                                                <td>{{ $current_committed_detainee->full_name }}</td>
+                                                <td>{{{ $current_committed_detainee->violation }}}</td>
+                                                <td class="text-center">{{ $current_committed_detainee->age }}</td>
+                                                <td class="text-center">{{ $current_committed_detainee->commitment_date ? $current_committed_detainee->commitment_date->format('d/m/Y') : null }}</td>
+                                                <td class="text-center"><a href="{{ route('detainees.edit', array_merge(['id' => $current_committed_detainee->id], request()->query())) }}">Edit</a></td>
                                             </tr>
                                         @endforeach
                                     @else
@@ -471,12 +517,24 @@
         };
 
         $('#subsistence-table').DataTable(my_datatable_options);
+        // $('#subsistence-table').DataTable($.merge({
+        //     "responsive": true, "lengthChange": false, "autoWidth": false,
+        //     "buttons": [
+        //         // "copy", "csv", "excel", "pdf", "print", 
+        //         "colvis"
+        //     ]
+        // }, my_datatable_options))
+        // // .buttons().container().appendTo('#subsistence-table_wrapper .col-md-6:eq(0)')
+        // ;
+
 
         $('#subsistence-recap-table').DataTable(my_datatable_options);
 
         $('#discharged-table').DataTable(my_datatable_options);
 
         $('#current-detainees-table').DataTable(my_datatable_options);
+
+        $('#current-committed-detainees-table').DataTable(my_datatable_options);
     });
     </script>
 @endsection

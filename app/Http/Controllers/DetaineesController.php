@@ -79,6 +79,7 @@ class DetaineesController extends Controller
         // }
         // // dd($detainees->whereNotIn('last_name', $last_names));
         $current_detainees = $detainees->whereNotBetween('released_date', [$this->filter['start_month'], $this->filter['end_month']])->sortBy('detained_date');
+        $current_committed_detainees = $current_detainees->where('commitment_date', '!=', null)->sortBy('commitment_date');
 
         $data['current_detainees'] = $current_detainees->count();
         $data['current_male'] = $current_detainees->where('gender', 'male')->count();
@@ -87,7 +88,7 @@ class DetaineesController extends Controller
         $last_inserted_detainees = Detainee::orderBy('created_at', 'desc')->limit(5)->get();
         $last_updated_detainees = Detainee::orderBy('updated_at', 'desc')->limit(5)->get();
 
-        return view('detainees.subsistence', compact('data', 'detainees', 'recap', 'discharge', 'chief_police', 'chief_invest', 'r7_invest', 'jailers', 'current_detainees', 'last_inserted_detainees', 'last_updated_detainees', '_filter'));
+        return view('detainees.subsistence', compact('data', 'detainees', 'recap', 'discharge', 'chief_police', 'chief_invest', 'r7_invest', 'jailers', 'current_detainees', 'current_committed_detainees', 'last_inserted_detainees', 'last_updated_detainees', '_filter'));
 
         // $detainees = Detainee::orderBy('last_name');
         // $detainees = $detainees->get();

@@ -45,19 +45,18 @@ class DetaineesExport implements WithMultipleSheets
             if (array_key_exists('discharge', $export_sheet)) {
                 $sheets[] = new DischargeExport($this->discharge, $this->data);
             }
+
+            $current_detainees = $this->detainees->where('released_date', '=', null)->sortBy('detained_date');
+            $current_committed_detainees = $current_detainees->where('commitment_date', '!=', null)->sortBy('commitment_date');
+
+            if (array_key_exists('current_detainees', $export_sheet)) {
+                $sheets[] = new CurrentDetaineesExport($current_detainees, $this->data);
+            }
+
+            if (array_key_exists('current_committed_detainees', $export_sheet)) {
+                $sheets[] = new CommittedDetaineesExport($current_committed_detainees, $this->data);
+            }
         }
-
-        // $subsistence = new SubsistenceExport($this->detainees, $this->data);
-        // $recap = new RecapExport($this->recap, $this->data);
-        // $discharge = new DischargeExport($this->discharge, $this->data);
-
-        $_current_detainees = $this->detainees->where('released_date', '=', null)->sortBy('detained_date');
-        $current_detainees = new CurrentDetaineesExport($_current_detainees, $this->data);
-
-        // $sheets[] = $subsistence;
-        // $sheets[] = $recap;
-        // $sheets[] = $discharge;
-        $sheets[] = $current_detainees;
 
         return $sheets;
     }
