@@ -40,6 +40,13 @@ class RecapExport implements FromArray, WithTitle
             'horizontal' => 'center',
             'vertical' => 'center',
         ],
+        'font_red' => [
+            'font' => [
+                'color' => [
+                    'rgb' => 'f54254',
+                ],
+            ],
+        ],
     ];
 
     public function __construct($recap = null, $data = null)
@@ -91,8 +98,8 @@ class RecapExport implements FromArray, WithTitle
                 null,
                 null,
                 null,
-                null,
                 'Total Amount Requested',
+                null,
                 "₱ " . number_format($total_budget),
             ];
         }
@@ -174,8 +181,10 @@ class RecapExport implements FromArray, WithTitle
             $sheet->getStyle("G$i")->getAlignment()->applyFromArray($text_center);
         }
 
-        $sheet->getStyle('F' . ($end_loop + 1))->applyFromArray($border_style);
+        $sheet->getStyle('A' . ($end_loop + 1) . ':F' . ($end_loop + 1))->applyFromArray($border_style);
+        $sheet->mergeCells('E' . ($end_loop + 1) . ':F' . ($end_loop + 1));
         $sheet->getStyle('G' . ($end_loop + 1))->applyFromArray($border_style);
+        $sheet->getStyle('G' . ($end_loop + 1))->applyFromArray($this->styles['font_red']);
 
         $wrap_cell = 'F' . ($end_loop + 1);
         $sheet->getStyle($wrap_cell)->getAlignment()->setWrapText(true);
@@ -221,9 +230,11 @@ class RecapExport implements FromArray, WithTitle
         $row++;
         $sheet->mergeCells("F$row:G$row");
         $sheet->setCellValue('F' . $row, (isset($this->data['jailer']) ? $this->data['jailer'] : config('detainees.jailers.2')));
+        $sheet->getStyle('F' . $row . ':G' . $row)->applyFromArray($this->styles['border_bottom']);
         $row++;
         $sheet->mergeCells("F$row:G$row");
         $sheet->setCellValue('F' . $row, 'Custodial PNCO');
+        $sheet->setCellValue('F' . $row, 'In Charge of PUPC');
         $row++;
         $row++;
         $value = "     I certify under oath that the contents of this document are true and correct and I understand that any ommission or commission by falsified declaration will constitute administrative and/or criminal offense.";
@@ -237,6 +248,7 @@ class RecapExport implements FromArray, WithTitle
         $sheet->mergeCells("F$row:G$row");
         $sheet->getStyle('F' . $row)->applyFromArray(['font' => ['bold' => true]]);
         $sheet->setCellValue('F' . $row, (isset($this->data['chief_police']) ? $this->data['chief_police'] : config('detainees.chief_police.0')));
+        $sheet->getStyle('F' . $row . ':G' . $row)->applyFromArray($this->styles['border_bottom']);
         $row++;
         $sheet->mergeCells("F$row:G$row");
         $sheet->setCellValue('F' . $row, 'Acting Chief of Police');
@@ -248,13 +260,12 @@ class RecapExport implements FromArray, WithTitle
         $row++;
         $row++;
         $row++;
+        $sheet->mergeCells("F$row:G$row");
+        // $sheet->setCellValue('F' . $row, '___________________________');
+        $sheet->getStyle('F' . $row . ':G' . $row)->applyFromArray($this->styles['border_bottom']);
         $row++;
         $sheet->mergeCells("F$row:G$row");
-        $sheet->setCellValue('F' . $row, 'C, PIDMU');
-        $row++;
-        $sheet->mergeCells("F$row:G$row");
-        $sheet->setCellValue('F' . $row, 'Administering officer');
-        $row++;
+        $sheet->setCellValue('F' . $row, '  Administering officer');
         $row++;
         $sheet->getStyle('A' . $row)->applyFromArray(['font' => ['size' => 14]]);
         $sheet->getStyle('B' . $row)->applyFromArray($this->styles['border_bottom']);
@@ -272,19 +283,17 @@ class RecapExport implements FromArray, WithTitle
         $sheet->getStyle('B' . $row)->applyFromArray($this->styles['border_bottom']);
         $sheet->setCellValue('A' . $row, 'Series of:');
         $row++;
-        $row++;
         $sheet->mergeCells("F$row:G$row");
         $sheet->setCellValue('F' . $row, 'Validated and Verified by:');
         $row++;
         $row++;
         $sheet->mergeCells("F$row:G$row");
-        $sheet->setCellValue('F' . $row, (isset($this->data['r7_invest']) ? $this->data['r7_invest'] : 'PLTCOL NOEL D NUÑEZ'));
+        $sheet->getStyle('F' . $row)->applyFromArray(['font' => ['bold' => true]]);
+        $sheet->setCellValue('F' . $row, (isset($this->data['r7_invest']) ? $this->data['r7_invest'] : 'PCOL NOEL D NUÑEZ'));
+        $sheet->getStyle('F' . $row . ':G' . $row)->applyFromArray($this->styles['border_bottom']);
         $row++;
         $sheet->mergeCells("F$row:G$row");
-        $sheet->setCellValue('F' . $row, '(R7 or C, Invest)');
-        $row++;
-        $sheet->mergeCells("F$row:G$row");
-        $sheet->setCellValue('F' . $row, 'C,RIDMD or C, Invest (for NOSUs)');
+        $sheet->setCellValue('F' . $row, 'C,RIDMD (PRO4A)');
     }
 
     public function drawings()

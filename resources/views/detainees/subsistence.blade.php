@@ -500,11 +500,6 @@
 @section('scripts')
     <script>
     $(function () {
-        // $("#example1").DataTable({
-        //     "responsive": true, "lengthChange": false, "autoWidth": false,
-        //     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        // }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
         var my_datatable_options = {
             "paging": true,
             "lengthChange": false,
@@ -516,16 +511,16 @@
             "pageLength": 10,
         };
 
-        $('#subsistence-table').DataTable(my_datatable_options);
-        // $('#subsistence-table').DataTable($.merge({
-        //     "responsive": true, "lengthChange": false, "autoWidth": false,
-        //     "buttons": [
-        //         // "copy", "csv", "excel", "pdf", "print", 
-        //         "colvis"
-        //     ]
-        // }, my_datatable_options))
-        // // .buttons().container().appendTo('#subsistence-table_wrapper .col-md-6:eq(0)')
-        // ;
+        // $('#subsistence-table').DataTable(my_datatable_options);
+        $('#subsistence-table').DataTable($.merge({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": [
+                // "copy", "csv", "excel", "pdf", "print", 
+                "colvis"
+            ]
+        }, my_datatable_options))
+        .buttons().container().appendTo('#subsistence-table_wrapper .col-md-6:eq(0)')
+        ;
 
 
         $('#subsistence-recap-table').DataTable(my_datatable_options);
