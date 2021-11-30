@@ -73,12 +73,20 @@ class DetaineesController extends Controller
             $$_data_key = $_data_value;
         }
 
-        // $last_names = ['lanceta', 'gerona', 'dalut', 'almendras', 'lagumbay', 'obniala', 'deleon', 'vargas', 'pantoja', 'perez', 'torrejano', 'sabangan', 'narceda', 'tan', 'lladoc', 'manaba', 'tison', 'fortuno', 'diago', 'levardo', 'bañados', 'cambronero', 'servando', 'badillo', 'romano', 'benitez', 'tolentino jr', 'lederos', 'loyola', 'villarin', 'saño', 'mascareñas', 'olaso', 'betangcor', 'villaflor', 'lacao', 'villanueva', 'fontanilla', 'samson', 'de capia', 'banares y remano', 'tremucita', 'lopez', 'eraga', 'mapanoo', 'de roxas', 'pacay', 'oriel', 'magnaye', 'dela basa', 'cortez', 'laguan', 'jacinto', 'barruga'];
-        // foreach ($last_names as $i => $last_name) {
-        //     $last_names[$i] = ucwords(mb_strtolower($last_name));
-        // }
-        // // dd($detainees->whereNotIn('last_name', $last_names));
-        $current_detainees = $detainees->whereNotBetween('released_date', [$this->filter['start_month'], $this->filter['end_month']])->sortBy('detained_date');
+        $current_detainees = $detainees->filter(function($product) {
+            if (!$product->released_date) {
+                return true;
+            }
+
+            $start_month = Carbon::createFromFormat('Y-m-d', $this->filter['start_month']);
+            $end_month = Carbon::createFromFormat('Y-m-d', $this->filter['end_month']);
+
+            $check = !$product->released_date->between($start_month, $end_month);
+
+            return $check;
+
+        })->sortBy('detained_date');
+
         $current_committed_detainees = $current_detainees->where('commitment_date', '!=', null)->sortBy('commitment_date');
 
         $data['current_detainees'] = $current_detainees->count();
@@ -88,7 +96,13 @@ class DetaineesController extends Controller
         $last_inserted_detainees = Detainee::orderBy('created_at', 'desc')->limit(5)->get();
         $last_updated_detainees = Detainee::orderBy('updated_at', 'desc')->limit(5)->get();
 
-        return view('detainees.subsistence', compact('data', 'detainees', 'recap', 'discharge', 'chief_police', 'chief_invest', 'r7_invest', 'jailers', 'current_detainees', 'current_committed_detainees', 'last_inserted_detainees', 'last_updated_detainees', '_filter'));
+        $compact = compact(
+            'data', 'detainees', 'recap', 'discharge', 'chief_police', 'chief_invest', 
+            'r7_invest', 'jailers', 'current_detainees', 'current_committed_detainees', 
+            'last_inserted_detainees', 'last_updated_detainees', '_filter'
+        );
+
+        return view('detainees.subsistence', $compact);
 
         // $detainees = Detainee::orderBy('last_name');
         // $detainees = $detainees->get();
@@ -432,9 +446,19 @@ class DetaineesController extends Controller
 
     public function discharge($detainees)
     {
-        $discharge = $detainees->where('released_date', '!=', null)->whereBetween('released_date', [$this->filter['start_month'], $this->filter['end_month']]);
+        $discharge = $detainees->filter(function($product) {
+            if (!$product->released_date) {
+                return false;
+            }
 
-        $discharge = $discharge->sortBy('released_blotter_number');
+            $start_month = Carbon::createFromFormat('Y-m-d', $this->filter['start_month']);
+            $end_month = Carbon::createFromFormat('Y-m-d', $this->filter['end_month']);
+
+            $check = $product->released_date->between($start_month, $end_month);
+
+            return $check;
+
+        })->sortBy('released_blotter_number');
 
         return $discharge;
     }
