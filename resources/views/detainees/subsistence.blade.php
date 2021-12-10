@@ -217,6 +217,7 @@
                                         <th scope="col">Last Name</th>
                                         <th scope="col">First Name</th>
                                         <th scope="col">Middle Name</th>
+                                        <th scope="col">Violation</th>
                                         <th scope="col" class="text-center">Detained Date<br>YYYY-MM-DD</th>
                                         <th scope="col" class="text-center">Released Date<br>YYYY-MM-DD</th>
                                         <th scope="col" class="text-center"># of days<br>detained</th>
@@ -232,6 +233,7 @@
                                                 <td>{{ $detainee->last_name }}</td>
                                                 <td>{{ $detainee->first_name }}</td>
                                                 <td>{{ $detainee->middle_name }}</td>
+                                                <td>{{ $detainee->violation }}</td>
                                                 <td>{{ $detainee->detained_date ? $detainee->detained_date->format('Y-m-d') : null }}</td>
                                                 <td>{{ ($detainee->released_date && $detainee->released_date->between($_filter['start_month'], $_filter['end_month'])) ? $detainee->released_date->format('Y-m-d') : 'DETAINED' }}</td>
                                                 <td>{{ $detainee->days_detained }}</td>
@@ -251,7 +253,7 @@
                                 <tfoot>
                                     
                                         <tr>
-                                            <td colspan="5"></td>
+                                            <td colspan="6"></td>
                                             <td class="h4"><strong>Total :</strong></td>
                                             <td colspan="3" class="h4"><strong>{{ number_format($data['total_budget']) }}</strong></td>
                                         </tr>
