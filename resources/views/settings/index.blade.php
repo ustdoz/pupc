@@ -125,6 +125,7 @@
                                     <tr>
                                         <th scope="col" style="width:150px;">ID</th>
                                         <th scope="col">Name</th>
+                                        <th scope="col">Active Status</th>
                                         <th scope="col" style="width:200px;" class="text-center"><a href="{{ route('settings.create.jailer') }}" class="btn btn-primary">Add New</a></th>
                                     </tr>
                                 </thead>
@@ -134,6 +135,7 @@
                                             <tr>
                                                 <td>{{ $jailer->id }}</td>
                                                 <td>{{ $jailer->name }}</td>
+                                                <td>{{ $jailer->is_active == 1 ? 'Active' : 'Inactive' }}</td>
                                                 <td class="text-center"><a href="{{ route('settings.edit.jailer', ['id' => $jailer->id]) }}">Edit</a></td>
                                             </tr>
                                         @endforeach

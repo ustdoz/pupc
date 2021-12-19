@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Jailer extends Model
 {
     protected $fillable = [
-        'name', 
+        'name', 'is_active',
     ];
 
     public function detainees()

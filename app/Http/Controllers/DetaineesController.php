@@ -117,7 +117,7 @@ class DetaineesController extends Controller
      */
     public function create()
     {
-        $jailers = Jailer::all();
+        $jailers = Jailer::where('is_active', 1)->get();
         return view('detainees.create', compact('jailers'));
         // return view('detainees.test');
     }
@@ -212,7 +212,7 @@ class DetaineesController extends Controller
      */
     public function edit($id)
     {
-        $jailers = Jailer::all();
+        $jailers = Jailer::where('is_active', 1)->get();
         $detainee = Detainee::find($id);
 
         if (!$detainee) {
@@ -286,7 +286,7 @@ class DetaineesController extends Controller
         $chief_police = ChiefPolice::all();
         $chief_invest = ChiefInvest::all();
         $r7_invest = R7Invest::all();
-        $jailers = Jailer::all();
+        $jailers = Jailer::where('is_active', 1)->get();
         // dd($jailers);
 
         $date_start = $this->date['start']->format('Y-m-d');
