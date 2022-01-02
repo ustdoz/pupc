@@ -1,7 +1,7 @@
 @extends('layouts.adminlte3.app')
 
 @section('content')
-
+{{-- {{ dd($data) }} --}}
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
@@ -28,6 +28,7 @@
                                                 <div class="h5">{{ $data['male'] }} Total Male</div>
                                                 <div class="h5">{{ $data['female'] }} Total Female</div>
                                                 <div class="h5">{{ $data['total_detainees'] }} Total Detainees</div>
+                                                <div class="h5">{{ $data['total_number_of_days'] }} Total Days Detained</div>
                                             </div>
                                         </div>
                                     </div>

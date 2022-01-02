@@ -37,10 +37,12 @@ class DetaineesController extends Controller
         // dd(config('detainees.names.0'));
 
         $filter_years = [];
+        $year_now = ((int) Carbon::now()->format('Y'));
 
-        for ($i=2019; $i <= Carbon::now()->format('Y'); $i++) { 
-            $filter_years[] = $i;
-            $i++;
+        $year_start = 2019;
+        while ($year_start <= $year_now) {
+            $filter_years[] = $year_start;
+            $year_start++;
         }
 
         $this->filter['years'] = $filter_years;
@@ -281,6 +283,7 @@ class DetaineesController extends Controller
             'current_detainees' => 0,
             'current_male' => 0,
             'current_female' => 0,
+            'total_number_of_days' => 0,
         ];
 
         $chief_police = ChiefPolice::all();
@@ -349,7 +352,7 @@ class DetaineesController extends Controller
             $item->days_detained = $_date_start->diffInDays($_date_end) + 1;
             $item->total_budget = $item->days_detained * config('detainees.allowance_amount');
 
-
+            $data['total_number_of_days'] = $data['total_number_of_days'] + $item->days_detained;
             // if (($item->released_date && !$item->released_date->between('released_date', [$this->filter['start_month'], $this->filter['end_month']])) || !$item->released_date) {
             //     if ($item->gender == 'male') {
             //         $data['male']++;

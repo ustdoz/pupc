@@ -187,7 +187,9 @@ class SubsistenceExport implements FromArray, WithTitle
         $sheet->setCellValue('D' . $row_names, (isset($this->data['chief_invest']) ? $this->data['chief_invest'] : config('detainees.names.1')));
         $sheet->setCellValue('D' . $row_titles, config('detainees.titles.1'));
         $sheet->setCellValue('H' . $row_names, (isset($this->data['chief_police']) ? $this->data['chief_police'] : config('detainees.names.2')));
+        $sheet->getStyle('H' . $row_names)->applyFromArray(['font' => ['bold' => true]]);
         $sheet->setCellValue('H' . $row_titles, config('detainees.titles.2'));
+
 
         return [
             1 => ['font' => ['bold' => true, 'size' => 14]],
