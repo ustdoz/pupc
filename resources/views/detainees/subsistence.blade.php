@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-8">
-                                <div class="card">
+                                <div class="card" id="subsistence-info">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-3">
@@ -94,7 +94,7 @@
     </div>
 </section>
 
-<section class="content">
+<section class="content" id="subsistence-download-section">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -184,6 +184,7 @@
                             {{-- asasas --}}
                             {{-- {{ dd(http_build_query(request()->query())) }} --}}
                             {{-- <a class="btn btn-danger" href="{{ request()->fullUrlWithQuery(['download' => true]) }}">Download Excel</a> --}}
+                            <a href="#" class="btn btn-warning" id="toggle-subsistence-download-section">Toggle Download Section</a>
                             <a class="btn btn-primary" href="{{ route('detainees.create', request()->query()) }}">Add New</a>
                         </div>
                     </div>
@@ -533,6 +534,21 @@
         $('#current-detainees-table').DataTable(my_datatable_options);
 
         $('#current-committed-detainees-table').DataTable(my_datatable_options);
+    });
+
+    $(function() {
+        $("#subsistence-download-section").hide();
+        $("#toggle-subsistence-download-section").on('click', function(e) {
+            event.preventDefault();
+
+            if ($("#subsistence-download-section").is(":hidden")) {
+                $("#subsistence-download-section").show();
+            } else {
+                $("#subsistence-download-section").hide();
+            }
+
+            return false;
+        });
     });
     </script>
 @endsection

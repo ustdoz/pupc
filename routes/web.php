@@ -1,5 +1,7 @@
 <?php
 
+Route::get('_test', 'HomeController@test');
+
 // Welcome Route
 Route::get('/', function () {
     return redirect(route('home'));
