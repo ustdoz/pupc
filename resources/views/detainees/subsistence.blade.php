@@ -512,7 +512,7 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
-            "pageLength": 10,
+            "pageLength": 50,
         };
 
         // $('#subsistence-table').DataTable(my_datatable_options);

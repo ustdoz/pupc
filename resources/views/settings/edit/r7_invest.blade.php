@@ -37,8 +37,16 @@
                             
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-11">
+                                    <div class="col-md-9">
                                         <input type="text" class="form-control" placeholder="R7 Invest Name" name="name" value="{{ $r7_invest->name }}" autocomplete="off">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <select class="form-control" name="is_active">
+                                                <option value="1"{{ ($r7_invest->is_active == 1) ? ' SELECTED' : '' }}>Active</option>
+                                                <option value="0"{{ ($r7_invest->is_active != 1) ? ' SELECTED' : '' }}>Inactive</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="col-md-1">
                                         <button type="submit" class="btn btn-primary">Submit</button>

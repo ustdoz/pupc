@@ -9,6 +9,6 @@ class R7Invest extends Model
     protected $table = 'r7_invest';
 
     protected $fillable = [
-        'name', 
+        'name', 'is_active', 
     ];
 }

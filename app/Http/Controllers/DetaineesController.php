@@ -288,7 +288,7 @@ class DetaineesController extends Controller
 
         $chief_police = ChiefPolice::all();
         $chief_invest = ChiefInvest::all();
-        $r7_invest = R7Invest::all();
+        $r7_invest = R7Invest::where('is_active', 1)->get();;
         $jailers = Jailer::where('is_active', 1)->get();
         // dd($jailers);
 
