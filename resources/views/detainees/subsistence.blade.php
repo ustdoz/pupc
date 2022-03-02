@@ -518,6 +518,7 @@
         // $('#subsistence-table').DataTable(my_datatable_options);
         $('#subsistence-table').DataTable($.merge({
             "responsive": true, "lengthChange": false, "autoWidth": false,
+            "pageLength": 50,
             "buttons": [
                 // "copy", "csv", "excel", "pdf", "print", 
                 "colvis"

@@ -455,7 +455,13 @@ class DetaineesController extends Controller
             }
 
             $start_month = Carbon::createFromFormat('Y-m-d', $this->filter['start_month']);
+            $start_month->hour(0);
+            $start_month->minute(0);
+            $start_month->second(0);
             $end_month = Carbon::createFromFormat('Y-m-d', $this->filter['end_month']);
+            $end_month->hour(23);
+            $end_month->minute(59);
+            $end_month->second(59);
 
             $check = $product->released_date->between($start_month, $end_month);
 

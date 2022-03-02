@@ -54,6 +54,14 @@ Route::get('admin', function () {
 })->name('admin_template');
 
 
+Route::get('phpword', 'MyController@phpword');
+
+
+
+
+
+
+
 Route::get('test', function () {
     $detainees = \App\Detainee::all();
 

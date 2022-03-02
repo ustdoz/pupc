@@ -8,6 +8,9 @@ use App\Exports\UsersExport;
 use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
 
+use PhpOffice\PhpWord\TemplateProcessor;
+
+
 class MyController extends Controller
 {
     /**
@@ -35,5 +38,15 @@ class MyController extends Controller
         Excel::import(new UsersImport,request()->file('file'));
            
         return back();
+    }
+
+    public function phpword()
+    {
+        $file = public_path('PUPC SA Endorsement.docx');
+        $phpword = new TemplateProcessor($file);
+
+        $phpword->setValue('submit_date', 'DATE HERE');
+
+        $phpword->saveAs(public_path('PUPC SA Endorsement Updated.docx'));
     }
 }
