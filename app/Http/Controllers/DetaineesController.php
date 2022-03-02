@@ -55,11 +55,14 @@ class DetaineesController extends Controller
         $start = [$this->filter['year'], $this->filter['month'], '01'];
         
         $this->date['start'] = Carbon::createFromFormat('Y-m-d H:i:s', implode('-', $start) . ' 00:00:00');
-        $this->date['end'] = Carbon::createFromFormat('Y-m-d H:i:s', implode('-', $start) . ' 00:00:00')->endOfMonth();
+        $this->date['end'] = Carbon::createFromFormat('Y-m-d H:i:s', implode('-', $start) . ' 23:59:59')->endOfMonth();
 
         $year_month = Carbon::createFromFormat('Y-m', $this->filter['year'] . '-' . $this->filter['month'])->endOfMonth();
-        $this->filter['start_month'] = $year_month->startOfMonth()->format('Y-m-d');
-        $this->filter['end_month'] = $year_month->endOfMonth()->format('Y-m-d');
+
+        $this->filter['_start_month'] = $this->date['start'];
+        $this->filter['_end_month'] = $this->date['end'];
+        $this->filter['start_month'] = $this->date['start']->format('Y-m-d');
+        $this->filter['end_month'] = $this->date['end']->format('Y-m-d');
     }
 
     /**
@@ -80,10 +83,7 @@ class DetaineesController extends Controller
                 return true;
             }
 
-            $start_month = Carbon::createFromFormat('Y-m-d', $this->filter['start_month']);
-            $end_month = Carbon::createFromFormat('Y-m-d', $this->filter['end_month']);
-
-            $check = !$product->released_date->between($start_month, $end_month);
+            $check = !$product->released_date->between($this->filter['_start_month'], $this->filter['_end_month']);
 
             return $check;
 
@@ -105,11 +105,6 @@ class DetaineesController extends Controller
         );
 
         return view('detainees.subsistence', $compact);
-
-        // $detainees = Detainee::orderBy('last_name');
-        // $detainees = $detainees->get();
-
-        // return view('detainees.index', compact('detainees', 'jailer'));
     }
 
     /**
@@ -340,40 +335,20 @@ class DetaineesController extends Controller
                     $data['released']++;
                 }
 
-                // dump($_date_start->format('Y-m-d') . ', ' . $recap_carbon->format('Y-m-d') . ', ' . $_date_end->format('Y-m-d') . ' = ' . ($recap_carbon->between($_date_start, $_date_end) ? 'YES' : 'NO'));
-
                 if ($recap_carbon->between($_date_start, $_date_end) || $recap_carbon->format('Y-m-d') == $_date_start->format('Y-m-d') || $recap_carbon->format('Y-m-d') == $_date_end->format('Y-m-d')) {
                     $recap[$recap_date]++;
                 }
             }
 
-            // dump('------------------------------------------------------------------');
-
             $item->days_detained = $_date_start->diffInDays($_date_end) + 1;
             $item->total_budget = $item->days_detained * config('detainees.allowance_amount');
 
             $data['total_number_of_days'] = $data['total_number_of_days'] + $item->days_detained;
-            // if (($item->released_date && !$item->released_date->between('released_date', [$this->filter['start_month'], $this->filter['end_month']])) || !$item->released_date) {
-            //     if ($item->gender == 'male') {
-            //         $data['male']++;
-            //         $data['current_male']++;
-            //     } else if ($item->gender == 'female') {
-            //         $data['female']++;
-            //         $data['current_female']++;
-            //     }
-
-            //     $data['current_detainees']++;
-            // }
             if ($item->gender == 'male') {
                 $data['male']++;
             } else if ($item->gender == 'female') {
                 $data['female']++;
             }
-
-            // if (!$item->released_date) {
-            //     $data['current_detainees']++;
-            // }
-
             
 
             return $item;
@@ -423,11 +398,6 @@ class DetaineesController extends Controller
             $$_data_key = $_data_value;
         }
 
-        // $chief_police = ChiefPolice::find($data['chief_police_id']);
-        // $chief_invest = ChiefInvest::find($data['chief_invest_id']);
-        // $r7_invest = R7Invest::find($data['r7_invest_id']);
-        // $jailer = Jailer::find($data['jailer_id']);
-
         $chief_police = ChiefPolice::find($request->get('chief_police_id'));
         $chief_invest = ChiefInvest::find($request->get('chief_invest_id'));
         $r7_invest = R7Invest::find($request->get('r7_invest_id'));
@@ -440,7 +410,6 @@ class DetaineesController extends Controller
             $data['chief_invest'] = $chief_invest->name;
             $data['r7_invest'] = $r7_invest->name;
             $data['jailer'] = $jailer->name;
-            // dd($data);
         }
 
         $detainees_export = new DetaineesExport($detainees, $recap, $discharge, $data);
@@ -454,16 +423,7 @@ class DetaineesController extends Controller
                 return false;
             }
 
-            $start_month = Carbon::createFromFormat('Y-m-d', $this->filter['start_month']);
-            $start_month->hour(0);
-            $start_month->minute(0);
-            $start_month->second(0);
-            $end_month = Carbon::createFromFormat('Y-m-d', $this->filter['end_month']);
-            $end_month->hour(23);
-            $end_month->minute(59);
-            $end_month->second(59);
-
-            $check = $product->released_date->between($start_month, $end_month);
+            $check = $product->released_date->between($this->filter['_start_month'], $this->filter['_end_month']);
 
             return $check;
 
