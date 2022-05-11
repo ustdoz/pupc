@@ -56,7 +56,7 @@ Route::get('admin', function () {
 
 Route::get('phpword', 'MyController@phpword');
 
-
+Route::get('cod', 'DetaineesController@cod');
 
 
 

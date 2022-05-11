@@ -224,6 +224,7 @@
                                         <th scope="col" class="text-center">Released Date<br>YYYY-MM-DD</th>
                                         <th scope="col" class="text-center"># of days<br>detained</th>
                                         <th scope="col" class="text-center">Gender</th>
+                                        <th scope="col" class="text-center">age</th>
                                         <th scope="col" class="text-center">Amount</th>
                                         <th scope="col" class="text-center">Action</th>
                                     </tr>
@@ -240,6 +241,7 @@
                                                 <td>{{ ($detainee->released_date && $detainee->released_date->between($_filter['start_month'], $_filter['end_month'])) ? $detainee->released_date->format('Y-m-d') : 'DETAINED' }}</td>
                                                 <td>{{ $detainee->days_detained }}</td>
                                                 <td>{{ $detainee->gender }}</td>
+                                                <td>{{ $detainee->age }}</td>
                                                 <td class="text-center">{{ number_format($detainee->total_budget) }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ route('detainees.edit', array_merge(['id' => $detainee->id], request()->query())) }}">Edit</a>

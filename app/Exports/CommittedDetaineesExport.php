@@ -103,7 +103,7 @@ class CommittedDetaineesExport implements FromArray, WithTitle
             'A4' => 'CAVITE POLICE PROVINCIAL OFFICE',
             'A5' => 'CARMONA MUNICIPAL POLICE STATION',
             'A6' => 'Brgy. Maduya, Carmona, Cavite',
-            'A8' => $this->data['month_year'] . ' Current Detained PUPCs',
+            'A8' => $this->data['month_year'] . ' Current Commited PUPCs',
         ];
 
         $table_header_values = [

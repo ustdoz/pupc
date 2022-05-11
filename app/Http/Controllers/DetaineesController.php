@@ -14,6 +14,8 @@ use Validator;
 use Session;
 use Carbon\Carbon;
 
+use PhpOffice\PhpWord\TemplateProcessor;
+
 class DetaineesController extends Controller
 {
     protected $filter = [
@@ -430,5 +432,62 @@ class DetaineesController extends Controller
         })->sortBy('released_blotter_number');
 
         return $discharge;
+    }
+
+    public function cod()
+    {
+        /**
+         * Certificate Of Detention
+         */
+        
+        $_datas = $this->subsistence();
+
+        foreach ($_datas as $_data_key => $_data_value) {
+            $$_data_key = $_data_value;
+        }
+
+        $current_detainees = $detainees->filter(function($product) {
+            if (!$product->released_date) {
+                return true;
+            }
+
+            $check = !$product->released_date->between($this->filter['_start_month'], $this->filter['_end_month']);
+
+            return $check;
+
+        })->sortBy('detained_date');
+
+        $date_now = Carbon::now()->format('F j, Y');
+
+        foreach ($current_detainees as $detainee) {
+
+            $full_name = mb_strtoupper($detainee->full_name);
+            $first_last_name = $detainee->first_name . ' ' . $detainee->last_name;
+
+            // dd($full_name);
+
+            $file = public_path('files/cod/_TEMPLATE.docx');
+            $phpword = new TemplateProcessor($file);
+
+            $phpword->setValue('date_now', $date_now);
+            $phpword->setValue('full_name', $full_name);
+            $phpword->setValue('gender', $detainee->gender);
+            $phpword->setValue('age', $detainee->age);
+            $phpword->setValue('born_date', $detainee->birth_date ? $detainee->birth_date->format('F j, Y') : '[birth_date]');
+            $phpword->setValue('civil_status', 'single');
+            $phpword->setValue('address', '[address]');
+            $phpword->setValue('detained_date', $detainee->detained_date->format('F j, Y'));
+            $phpword->setValue('violation', $detainee->violation);
+            $phpword->setValue('case_number', '[CASENUMBER]');
+            // $phpword->setValue('jailer', 'PSSg Percival Restrivera');
+            $phpword->setValue('jailer', 'PSSg Anderson A Videña');
+            $phpword->setValue('first_last_name', $first_last_name);
+
+            $phpword->saveAs(public_path("files/cod/$full_name.docx"));
+
+            // dd($detainee);
+        }
+
+        dd($current_detainees);
     }
 }
