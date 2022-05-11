@@ -257,7 +257,7 @@
                                 <tfoot>
                                     
                                         <tr>
-                                            <td colspan="6"></td>
+                                            <td colspan="7"></td>
                                             <td class="h4"><strong>Total :</strong></td>
                                             <td colspan="3" class="h4"><strong>{{ number_format($data['total_budget']) }}</strong></td>
                                         </tr>
