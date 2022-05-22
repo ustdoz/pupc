@@ -59,7 +59,7 @@ Route::get('phpword', 'MyController@phpword');
 Route::get('cod', 'DetaineesController@cod');
 
 
-
+Route::get('bjmp', 'DetaineesController@transferToBjmp');
 
 
 Route::get('test', function () {

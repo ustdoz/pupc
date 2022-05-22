@@ -106,6 +106,10 @@ class DetaineesController extends Controller
             'last_inserted_detainees', 'last_updated_detainees', '_filter'
         );
 
+        if (func_get_args()) {
+            return $compact;
+        }
+
         return view('detainees.subsistence', $compact);
     }
 
@@ -489,5 +493,29 @@ class DetaineesController extends Controller
         }
 
         dd($current_detainees);
+    }
+    
+    public function transferToBjmp()
+    {
+        $_datas = $this->index(1);
+
+        foreach ($_datas as $_data_key => $_data_value) {
+            $$_data_key = $_data_value;
+        }
+
+        $full_names = ['Allan Ferry Diaz', 'John Daniel Perante Francisco', 'Marlon Aquino Lontoc', 'Mervin Vergara Manalo', 'Reynold Basbas Requieron', 'Ronald Reobilo Laudiza', 'Mike Angelo Espadilla Rodriguez', 'Richard Castillo Tanega', 'Jose Franco Faustino Tabanera', 'Benedicto Papuran Quizol', 'Edwin Versola Dagmante', 'Garry Panopio Miranda', 'Grazel Belda Mendoza'];
+        $for_transfers = $detainees->whereIn('full_name', $full_names)->pluck('id')->toArray();
+        
+
+        $update_detainees = Detainee::whereIn('id', $for_transfers)->update([
+            'jailer_id' => 3,
+            'released_blotter_number' => '2022-05-235',
+            'released_date_court' => '2022-05-20',
+            'released_date_erogue' => '2022-05-20',
+            'released_date' => '2022-05-20',
+            'remarks' => '(Transferred to BJMP)',
+        ]);
+
+        dd($update_detainees);
     }
 }
