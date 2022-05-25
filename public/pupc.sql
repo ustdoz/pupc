@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2022 at 06:48 PM
+-- Generation Time: May 25, 2022 at 01:33 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.3.29
 
@@ -95,13 +95,13 @@ INSERT INTO `detainees` (`id`, `first_name`, `middle_name`, `last_name`, `gender
 (1, 'Chuck', 'Osmeña', 'Lagumbay', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1990-07-07', '2020-09-26', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-24 20:07:45', '2021-10-08 16:19:06'),
 (2, 'Jun', 'Lanceta', 'Marcilla', 'male', 'Section 11 and 12 Art II of RA 9165', '1980-06-20', '2020-03-09', NULL, '2022-04-11', '2022-04-166', 3, '2022-04-11', '2022-04-11', 'Sentence Served', '2021-05-25 06:16:45', '2022-04-11 09:33:59'),
 (3, 'Jaymar', 'Castro', 'Gerona', 'male', 'Anti-Carnapping Act of. 1972', '2001-11-30', '2020-07-07', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-25 06:18:00', '2021-10-15 13:51:18'),
-(4, 'Marvin', 'Besin', 'Dalut', 'male', 'Rape', NULL, '2020-08-15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-25 15:13:13', '2021-10-15 13:51:31'),
+(4, 'Marvin', 'Besin', 'Dalut', 'male', 'Rape', '1998-01-26', '2020-08-15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-25 15:13:13', '2022-05-24 09:22:02'),
 (5, 'Francisco', 'Martinez', 'Almendras', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1969-10-10', '2020-09-10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-26 05:48:32', '2021-11-03 11:06:19'),
 (6, 'Paolo', 'Kasilag', 'Diago', 'male', NULL, NULL, '2020-12-09', NULL, '2021-05-19', '2021-05-197', 5, '2021-05-19', '2021-05-19', '(Transferred to BJMP)', '2021-05-26 05:51:00', '2022-03-04 03:57:10'),
 (7, 'Ariel', 'Levardo', 'Maala', 'male', 'Sec. 5 and 11 ART II of RA 9165', NULL, '2020-12-18', '2021-01-05', '2021-12-10', '2021-12-534', 4, NULL, '2021-12-10', '(Transferred to BJMP)', '2021-05-26 05:51:42', '2021-12-10 05:44:17'),
 (8, 'Isagani', 'Altarez', 'Cambronero Jr.', 'male', NULL, '1984-09-06', '2020-12-20', NULL, '2021-06-10', '2021-06-219', 3, '2021-06-10', '2021-06-10', '(Transferred to BJMP)', '2021-05-26 05:53:31', '2022-03-04 05:08:33'),
 (9, 'Jerry', 'Datwin', 'Manubay', 'male', NULL, '1975-04-17', '2021-02-24', NULL, '2021-06-04', '2022-06-214', 5, '2021-06-04', '2021-06-04', 'Surety Bond', '2021-05-26 05:54:47', '2022-03-04 05:04:09'),
-(10, 'Laurence', 'Perez', 'Garcia', 'male', 'Theft (2 Pending Case)', NULL, '2021-03-07', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-26 05:57:29', '2021-12-10 13:00:53'),
+(10, 'Laurence', 'Perez', 'Garcia', 'male', 'Theft (2 Pending Case)', '1983-12-20', '2021-03-07', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-26 05:57:29', '2022-05-24 09:22:31'),
 (11, 'John Von', NULL, 'Cortes', 'male', NULL, NULL, '2021-03-15', NULL, '2021-05-19', '2021-05-197', 5, '2021-05-19', '2021-05-19', '(Transferred to BJMP)', '2021-05-26 05:57:48', '2022-03-04 03:57:13'),
 (12, 'Mark Hill', NULL, 'Galonga', 'male', NULL, NULL, '2021-03-03', NULL, '2021-05-19', '2021-05-197', 5, '2021-05-19', '2021-05-19', '(Transferred to BJMP)', '2021-05-26 05:58:45', '2022-03-04 03:57:15'),
 (13, 'Icasiano', NULL, 'Ancero', 'male', NULL, NULL, '2021-03-24', NULL, '2021-05-19', '2021-05-197', 5, '2021-05-19', '2021-05-19', '(Transferred to BJMP)', '2021-05-26 05:59:13', '2022-03-04 03:57:12'),
@@ -374,7 +374,7 @@ INSERT INTO `detainees` (`id`, `first_name`, `middle_name`, `last_name`, `gender
 (295, 'Jason', 'Bataller', 'Roxas', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1999-08-10', '2021-11-18', '2021-12-28', '2022-04-29', '2022-04-200', 6, '2022-04-29', '2022-04-29', '(Transferred to BJMP)', '2021-11-19 02:11:19', '2022-04-29 09:41:21'),
 (296, 'Ryan', 'Dela Rosa', 'Ravelo', 'male', 'Section 5 (e) of RA 9262', '1986-11-21', '2021-11-24', NULL, '2021-11-25', '2021-11-510', 3, '2021-11-25', '2021-11-25', 'Bail Bond', '2021-11-24 03:22:43', '2021-12-01 02:24:45'),
 (297, 'Narcel', 'Levardo', 'Durumpili', 'male', 'Sec. 5 and 11 ART II of RA 9165', NULL, '2021-11-24', '2021-12-07', '2022-01-18', '2022-01-026', 3, '2022-01-18', '2022-01-18', '(Transferred to BJMP)', '2021-11-24 11:37:55', '2022-01-18 11:51:34'),
-(298, 'Erlina', 'Aguila', 'Macha', 'female', 'Sec. 5 and 11  ART II of RA 9165', NULL, '2021-11-24', '2021-12-07', NULL, NULL, NULL, NULL, NULL, NULL, '2021-11-24 11:39:09', '2022-04-05 02:18:37'),
+(298, 'Erlina', 'Aguila', 'Macha', 'female', 'Sec. 5 and 11  ART II of RA 9165', '1975-03-03', '2021-11-24', '2021-12-07', NULL, NULL, NULL, NULL, NULL, NULL, '2021-11-24 11:39:09', '2022-05-24 09:23:45'),
 (299, 'Sheela', 'Escara', 'Villasanta', 'female', 'Sec. 5 and 11  ART II of RA 9165', '1981-05-28', '2021-11-24', '2021-12-07', '2022-02-17', '2022-02-068', 4, '2022-02-17', '2022-02-17', '(Transferred to BJMP)', '2021-11-24 11:40:30', '2022-02-18 03:55:37'),
 (300, 'Renato', 'Omega', 'Regal', 'male', 'RIR in Homicide', '1965-05-19', '2021-11-27', NULL, '2021-12-10', '2021-12-536', 4, '2021-12-10', '2021-12-10', 'Bail Bond', '2021-11-27 06:38:48', '2021-12-10 05:49:34'),
 (301, 'Jaypee', 'Olfato', 'Mendoza', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1983-06-29', '2021-11-26', '2021-12-16', '2022-01-18', '2022-01-026', 3, '2022-01-18', '2022-01-18', '(Transferred to BJMP)', '2021-11-27 06:41:59', '2022-01-18 11:52:42'),
@@ -398,7 +398,7 @@ INSERT INTO `detainees` (`id`, `first_name`, `middle_name`, `last_name`, `gender
 (319, 'Ricoyan', 'Payba', 'Abayon', 'male', 'Rape under Art. 266-A, par. (1) of the RPC (Warrant)', '1998-11-17', '2021-12-14', '2021-12-27', NULL, NULL, NULL, NULL, NULL, NULL, '2021-12-15 11:54:44', '2022-01-25 10:35:18'),
 (320, 'Rex', 'Alcantara', 'Roxas', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1985-08-05', '2021-12-13', '2021-12-28', '2022-02-17', '2022-02-068', 4, '2022-02-17', '2022-02-17', '(Transferred to BJMP)', '2021-12-15 11:56:01', '2022-02-18 03:55:31'),
 (321, 'Gerald', 'Ronquillo', 'Fetalvero', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1991-12-15', '2021-12-15', '2021-12-28', '2022-02-17', '2022-02-068', 4, '2022-02-17', '2022-02-17', '(Transferred to BJMP)', '2021-12-16 09:03:43', '2022-02-18 03:55:18'),
-(322, 'Garry', 'Panopio', 'Miranda', 'male', 'Murder (Warrant)', '1976-06-10', '2021-12-16', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-12-16 10:12:36', '2022-03-08 00:44:22'),
+(322, 'Garry', 'Panopio', 'Miranda', 'male', 'Murder (Warrant)', '1976-06-10', '2021-12-16', '2022-05-11', '2022-05-20', '2022-05-235', 3, '2022-05-20', '2022-05-20', '(Transferred to BJMP)', '2021-12-16 10:12:36', '2022-05-21 10:28:21'),
 (323, 'Anthony', 'Valenzuela', 'Leyesa', 'male', 'Qualified Theft (Warrant)', '1995-11-10', '2021-12-21', NULL, '2022-01-05', '2022-01-05', 3, '2022-01-05', '2022-01-05', 'Surety Bond', '2021-12-22 04:39:07', '2022-01-05 07:36:15'),
 (324, 'Reyboy', 'Calda', 'Umandap', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1989-02-23', '2021-12-22', '2022-01-11', '2022-02-17', '2022-02-068', 4, '2022-02-17', '2022-02-17', '(Transferred to BJMP)', '2021-12-23 02:05:52', '2022-02-18 03:55:34'),
 (325, 'Ely', 'Salazar', 'Tinasas', 'male', 'Direct Assault', '1969-08-12', '2021-12-24', NULL, '2022-01-17', '2022-01-025', 3, '2022-01-17', '2022-01-17', 'Cash Bond', '2021-12-24 02:49:16', '2022-01-18 02:43:23'),
@@ -429,7 +429,7 @@ INSERT INTO `detainees` (`id`, `first_name`, `middle_name`, `last_name`, `gender
 (350, 'Jayvee', 'Babila', 'Balaye', 'male', 'Sec. 5(b) of RA 7610 (Warrant)', NULL, '2022-01-21', NULL, '2022-01-25', '2022-01-036', 3, '2022-01-25', '2022-01-25', 'Surety Bond', '2022-01-21 23:34:22', '2022-01-25 09:40:15'),
 (351, 'Norman Jason', 'Alamag', 'Abenes', 'male', 'RIR Homicide', NULL, '2022-01-23', NULL, '2022-01-24', '2022-01-035', 4, '2022-01-24', '2022-01-24', 'Affidavit (Kasunduan)', '2022-01-25 09:38:57', '2022-01-25 09:38:57'),
 (352, 'Gregorio', 'Mendoza', 'Leyban', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1970-05-25', '2022-01-28', '2022-02-18', '2022-04-29', '2022-04-200', 6, '2022-04-29', '2022-04-29', '(Transferred to BJMP)', '2022-01-29 08:03:44', '2022-04-29 09:43:07'),
-(353, 'Ivan', 'Boncato', 'Sentillas', 'male', 'Rape under Art. 266-A, 1 of the RPC (Warrant)', NULL, '2022-02-03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-02-03 11:44:00', '2022-02-03 11:44:00'),
+(353, 'Ivan', 'Boncato', 'Sentillas', 'male', 'Rape under Art. 266-A, 1 of the RPC (Warrant)', '1987-07-05', '2022-02-03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-02-03 11:44:00', '2022-05-24 09:24:43'),
 (354, 'Virgilio', 'Diaros', 'Bayadna', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1964-04-17', '2022-02-04', '2022-02-18', '2022-04-29', '2022-04-200', 6, '2022-04-29', '2022-04-29', '(Transferred to BJMP)', '2022-02-04 14:29:35', '2022-04-29 09:44:07'),
 (355, 'Nilson', 'Toñacao', 'Campos', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1965-08-14', '2022-02-04', '2022-02-18', '2022-04-29', '2022-04-200', 6, '2022-04-29', '2022-04-29', '(Transferred to BJMP)', '2022-02-04 14:30:27', '2022-04-29 09:43:43'),
 (356, 'Joanne', 'Nicolas', 'Mercado', 'female', 'ESTAFA under Art. 315par.1(B) of the RPC', NULL, '2022-02-08', NULL, '2022-02-08', '2022-02-055', 4, '2022-02-08', '2022-02-08', 'Bail Bond', '2022-02-08 11:29:43', '2022-02-08 11:29:43'),
@@ -464,40 +464,53 @@ INSERT INTO `detainees` (`id`, `first_name`, `middle_name`, `last_name`, `gender
 (386, 'Ramil', 'Casim', 'Cortez', 'male', 'RIR to damage to property & Sec. 5 in rel. to Sec. 56 (D) of RA 4136 & Sec. 19 in rel. to Sec. 56 (E) of RA 4136', NULL, '2022-03-20', NULL, '2022-04-04', '2022-04-154', 3, '2022-04-04', '2022-04-04', 'Cash Bond', '2022-03-24 00:34:49', '2022-04-04 07:46:53'),
 (387, 'Randy', 'Andrade', 'Cristobal', 'male', 'Murder (Warrant)', NULL, '2022-03-22', '2022-03-28', '2022-04-29', '2022-04-200', 6, '2022-04-29', '2022-04-29', '(Transferred to BJMP)', '2022-03-24 00:35:37', '2022-04-29 09:40:20'),
 (388, 'Rolly', 'Andrade', 'Cristobal', 'male', 'Murder (Warrant)', NULL, '2022-03-22', '2022-03-28', '2022-04-29', '2022-04-200', 6, '2022-04-29', '2022-04-29', '(Transferred to BJMP)', '2022-03-24 00:36:02', '2022-04-29 09:40:32'),
-(389, 'Mervin', 'Vergara', 'Manalo', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1982-12-17', '2022-03-23', '2022-04-12', NULL, NULL, NULL, NULL, NULL, NULL, '2022-03-24 10:34:07', '2022-04-29 09:46:59'),
-(390, 'Ronald', 'Reobilo', 'Laudiza', 'male', 'Sec. 5 and 11 ART II of RA 9165', '2022-03-24', '2022-03-25', '2022-04-27', NULL, NULL, NULL, NULL, NULL, NULL, '2022-03-29 01:22:48', '2022-04-29 09:48:10'),
+(389, 'Mervin', 'Vergara', 'Manalo', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1982-12-17', '2022-03-23', '2022-04-12', '2022-05-20', '2022-05-235', 3, '2022-05-20', '2022-05-20', '(Transferred to BJMP)', '2022-03-24 10:34:07', '2022-05-21 10:28:21'),
+(390, 'Ronald', 'Reobilo', 'Laudiza', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1979-12-24', '2022-03-25', '2022-04-27', '2022-05-20', '2022-05-235', 3, '2022-05-20', '2022-05-20', '(Transferred to BJMP)', '2022-03-29 01:22:48', '2022-05-21 10:28:21'),
 (391, 'Chirstian', 'Gregorio', 'Rongalerios', 'male', 'Qualified Theft', '1988-05-02', '2022-03-28', NULL, '2022-04-01', '2022-04-151', 4, '2022-04-01', '2022-04-01', 'Cash Bond', '2022-03-29 01:24:27', '2022-04-01 09:03:55'),
 (392, 'Ryan', 'Dela Rosa', 'Ravelo', 'male', 'Sec 5 (e-2), RA 9262 (Warrant)', NULL, '2022-03-28', NULL, '2022-04-06', '2022-04-157', 6, '2022-04-06', '2022-04-06', 'Motion for Reconsideration', '2022-03-29 01:26:24', '2022-04-06 11:36:20'),
 (393, 'Edgar', 'Ramirez', 'Sadsad', 'male', 'Sec. 5 (b) Art 3 RA 7610', NULL, '2022-03-21', NULL, '2022-03-21', '2022-03-133', 4, '2022-03-21', '2022-03-21', '(Turnover)', '2022-03-29 05:37:08', '2022-03-31 06:54:30'),
 (394, 'Jose Billy', 'Aquilo', 'Laniog', 'male', 'Penalizing Obstruction of Apprehension and Prosecution of Criminal offenders PD 1829 (Warrant)', NULL, '2022-03-30', NULL, '2022-03-31', '2022-03-148', 3, '2022-03-31', '2022-03-31', 'Cash Bond', '2022-03-30 15:36:53', '2022-03-31 07:56:21'),
 (395, 'Anthony', 'Valenzuela', 'Leyesa', 'male', 'Qualified Theft (Warrant)', NULL, '2022-03-31', NULL, '2022-03-31', '2022-03-147', 3, '2022-03-31', '2022-03-31', 'Bench Warrant Lifted', '2022-03-31 07:10:44', '2022-03-31 07:10:44'),
-(396, 'Allan', 'Ferry', 'Diaz', 'male', 'Sec. 5 and 11 ART II of RA 9165', NULL, '2022-03-31', '2022-04-22', NULL, NULL, NULL, NULL, NULL, NULL, '2022-03-31 16:46:07', '2022-04-29 09:46:21'),
+(396, 'Allan', 'Ferry', 'Diaz', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1979-03-22', '2022-03-31', '2022-04-22', '2022-05-20', '2022-05-235', 3, '2022-05-20', '2022-05-20', '(Transferred to BJMP)', '2022-03-31 16:46:07', '2022-05-21 10:28:21'),
 (397, 'Ray Ryan Jan', 'Tan', 'Hernandez', 'male', 'Estafa', '1985-09-07', '2022-04-02', NULL, '2022-04-11', '2022-04-164', 3, '2022-04-11', '2022-04-11', 'Dismissed', '2022-04-03 04:44:18', '2022-04-11 05:06:52'),
-(398, 'Marlon', 'Aquino', 'Lontoc', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1981-08-10', '2022-04-06', '2022-04-27', NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-07 03:54:38', '2022-04-29 09:47:55'),
-(399, 'Reynold', 'Basbas', 'Requieron', 'male', 'Sec. 5 and 11 ART II of RA 9165', '2022-02-24', '2022-04-06', '2022-04-27', NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-07 03:55:17', '2022-04-29 09:48:37'),
+(398, 'Marlon', 'Aquino', 'Lontoc', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1981-08-10', '2022-04-06', '2022-04-27', '2022-05-20', '2022-05-235', 3, '2022-05-20', '2022-05-20', '(Transferred to BJMP)', '2022-04-07 03:54:38', '2022-05-21 10:28:21'),
+(399, 'Reynold', 'Basbas', 'Requieron', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1989-02-24', '2022-04-06', '2022-04-27', '2022-05-20', '2022-05-235', 3, '2022-05-20', '2022-05-20', '(Transferred to BJMP)', '2022-04-07 03:55:17', '2022-05-21 10:28:21'),
 (400, 'Joey', 'Cantina', 'Fortuna', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1987-09-15', '2022-04-07', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-07 03:55:42', '2022-04-07 03:59:17'),
-(401, 'Joharra', 'Guarta', 'Bedico', 'female', 'Sec. 5 and 11 ART II of RA 9165', '1989-10-29', '2022-04-07', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-07 03:56:08', '2022-04-07 03:57:21'),
+(401, 'Joharra', 'Guarda', 'Bedico', 'female', 'Sec. 5 and 11 ART II of RA 9165', '1989-10-29', '2022-04-07', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-07 03:56:08', '2022-05-16 01:49:33'),
 (402, 'Harold', 'Comintan', 'Roa', 'male', 'Qualified Theft', '1982-05-19', '2022-04-09', NULL, '2022-04-19', '2022-04-180', 3, '2022-04-19', '2022-04-19', 'Surety Bond', '2022-04-10 11:12:26', '2022-04-19 10:17:27'),
 (403, 'Aira Jane', 'Abezar', 'Cabus', 'female', 'Theft', '1975-04-04', '2022-04-10', NULL, '2022-04-19', '2022-04-179', 3, '2022-04-19', '2022-04-19', 'Cash Bond', '2022-04-11 10:28:06', '2022-04-19 07:40:28'),
 (404, 'Nilda', 'Costimiano', 'Tolosa', 'female', 'RIR IN DAMAGE TO PROPERTY (RPC Art. 365)', NULL, '2022-04-12', NULL, '2022-04-12', '2022-04-169', 3, '2022-04-12', '2022-04-12', 'Cash Bond', '2022-04-12 12:24:16', '2022-04-12 12:24:40'),
-(405, 'John Daniel', 'Perante', 'Francisco', 'male', 'Sec. 5 and 11 ART II of RA 9165', '2022-04-19', '2022-04-12', '2022-04-27', NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-13 02:02:53', '2022-04-29 09:47:32'),
-(406, 'Grazel', 'Belda', 'Mendoza', 'female', 'Sec. 5 and 11 ART II of RA 9165', '1998-02-04', '2022-04-13', '2022-04-27', NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-13 02:04:28', '2022-04-29 09:49:19'),
+(405, 'John Daniel', 'Perante', 'Francisco', 'male', 'Sec. 5 and 11 ART II of RA 9165', '2004-01-19', '2022-04-12', '2022-04-27', '2022-05-20', '2022-05-235', 3, '2022-05-20', '2022-05-20', '(Transferred to BJMP)', '2022-04-13 02:02:53', '2022-05-21 10:28:21'),
+(406, 'Grazel', 'Belda', 'Mendoza', 'female', 'Sec. 5 and 11 ART II of RA 9165', '1998-02-04', '2022-04-13', '2022-04-27', '2022-05-20', '2022-05-235', 3, '2022-05-20', '2022-05-20', '(Transferred to BJMP)', '2022-04-13 02:04:28', '2022-05-21 10:28:21'),
 (407, 'Joel', NULL, 'Sasota', 'male', 'Violation of Batas Pambansa Blg. 22', NULL, '2022-04-18', NULL, '2022-04-18', '2022-04-178', 6, '2022-04-18', '2022-04-18', 'Cash Bond', '2022-04-18 07:44:47', '2022-04-18 07:44:47'),
-(408, 'Ruel', 'Reyes', 'Bañados', 'male', 'Sec. 5, 11 and 26 ART II of RA 9165', NULL, '2022-04-22', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-25 05:39:58', '2022-04-25 05:39:58'),
-(409, 'Arnel', 'Llanes', 'Rafael', 'male', 'Sec. 5, 11 and 26 ART II of RA 9165', NULL, '2022-04-22', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-25 05:41:16', '2022-04-25 05:41:16'),
-(410, 'Mike Angelo', 'Espadilla', 'Rodriguez', 'male', 'Sec. 5 and 11 ART II of RA 9165', NULL, '2022-04-23', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-25 05:53:21', '2022-04-25 05:53:21'),
-(411, 'Benedicto', 'Papuran', 'Quizol', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1965-05-07', '2022-04-23', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-25 05:54:33', '2022-04-25 05:54:33'),
-(412, 'Richard', 'Castillo', 'Tanega', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1968-04-28', '2022-04-23', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-25 05:56:18', '2022-04-25 05:56:18'),
+(408, 'Ruel', 'Reyes', 'Bañados', 'male', 'Sec. 5, 11 and 26 ART II of RA 9165', '1993-12-21', '2022-04-22', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-25 05:39:58', '2022-05-24 09:26:06'),
+(409, 'Arnel', 'Llanes', 'Rafael', 'male', 'Sec. 5, 11 and 26 ART II of RA 9165', '1988-12-01', '2022-04-22', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-25 05:41:16', '2022-05-24 09:25:18'),
+(410, 'Mike Angelo', 'Espadilla', 'Rodriguez', 'male', 'Sec. 5 and 11 ART II of RA 9165', '2001-06-20', '2022-04-23', '2022-05-04', '2022-05-20', '2022-05-235', 3, '2022-05-20', '2022-05-20', '(Transferred to BJMP)', '2022-04-25 05:53:21', '2022-05-21 10:28:21'),
+(411, 'Benedicto', 'Papuran', 'Quizol', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1965-05-07', '2022-04-23', '2022-05-04', '2022-05-20', '2022-05-235', 3, '2022-05-20', '2022-05-20', '(Transferred to BJMP)', '2022-04-25 05:54:33', '2022-05-21 10:28:21'),
+(412, 'Richard', 'Castillo', 'Tanega', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1968-04-28', '2022-04-23', '2022-05-04', '2022-05-20', '2022-05-235', 3, '2022-05-20', '2022-05-20', '(Transferred to BJMP)', '2022-04-25 05:56:18', '2022-05-21 10:28:21'),
 (413, 'Ryan', 'Dualin', 'Roquid', 'male', 'RIR Physical Injury and Damage to Property Incident', NULL, '2022-04-23', NULL, '2022-04-26', '2022-04-192', 6, '2022-04-26', '2022-04-26', 'Cash Bond', '2022-04-25 08:24:13', '2022-04-27 12:39:56'),
 (414, 'Leonardo', 'Belando', 'Sanggalan Jr', 'male', 'RIR in Homicide, Multiple Physical Injuries and Damage to Properties', '1998-12-30', '2022-04-26', NULL, '2022-04-27', '2022-04-197', 3, '2022-04-27', '2022-04-27', 'Affidavit (Kasunduan)', '2022-04-27 10:15:03', '2022-04-27 12:31:26'),
 (415, 'Alberto', 'Pasco', 'Cortez', 'male', 'RIR in Homicide', NULL, '2022-04-26', NULL, '2022-04-27', '2022-04-195', 3, '2022-04-27', '2022-04-27', 'Affidavit (Kasunduan)', '2022-04-27 10:40:09', '2022-04-27 10:40:09'),
-(416, 'Darrell', 'Canaria', 'Bunag', 'male', 'Acts of LasCiviousness & Rape under Art. 266-A, par. (1) of the RPC', '1984-03-15', '2022-04-29', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-29 11:27:04', '2022-04-29 11:27:04'),
+(416, 'Darrell', 'Canaria', 'Bunag', 'male', 'Acts of LasCiviousness & Rape under Art. 266-A, par. (1) of the RPC (Warrant)', '1984-03-15', '2022-04-29', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-29 11:27:04', '2022-05-12 00:16:38'),
 (417, 'Gregorio', 'Guia', 'Guinto', 'male', 'RIR Homicide', NULL, '2022-04-29', NULL, '2022-05-02', '2022-05-208', 3, '2022-05-02', '2022-05-02', 'Affidavit (Kasunduan)', '2022-04-30 00:50:01', '2022-05-02 12:30:03'),
-(418, 'Jose Franco', 'Faustino', 'Tabanera', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1999-06-03', '2022-04-30', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-01 02:02:55', '2022-05-01 02:02:55'),
-(419, 'Edwin', 'Versola', 'Dagmante', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1974-10-08', '2022-04-30', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-01 02:04:07', '2022-05-01 02:04:07'),
+(418, 'Jose Franco', 'Faustino', 'Tabanera', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1999-06-03', '2022-04-30', '2022-05-10', '2022-05-20', '2022-05-235', 3, '2022-05-20', '2022-05-20', '(Transferred to BJMP)', '2022-05-01 02:02:55', '2022-05-21 10:28:21'),
+(419, 'Edwin', 'Versola', 'Dagmante', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1974-10-08', '2022-04-30', '2022-05-10', '2022-05-20', '2022-05-235', 3, '2022-05-20', '2022-05-20', '(Transferred to BJMP)', '2022-05-01 02:04:07', '2022-05-21 10:28:21'),
 (420, 'Jason', 'Bathan', 'Justo', 'male', 'Theft', '1987-07-16', '2022-04-30', NULL, '2022-05-06', '2022-05-212', 3, '2022-05-06', '2022-05-06', 'Cash Bond', '2022-05-01 02:05:37', '2022-05-06 07:31:39'),
 (421, 'Bonifacio', 'Albarrasin', 'Chua Jr', 'male', 'Serious Physical Injury', NULL, '2022-05-01', NULL, '2022-05-05', '2022-05-211', 3, '2022-05-05', '2022-05-05', 'Dismissed', '2022-05-02 12:17:31', '2022-05-05 10:26:12'),
-(422, 'Herbert', 'Gaffud', 'Amaro', 'male', 'RIR in Homicide and Multiple Damage to Properties', '2002-02-25', '2022-05-08', NULL, '2022-05-08', '2022-05-215', 3, '2022-05-08', '2022-05-08', 'Affidavit (Kasunduan)', '2022-05-08 11:07:02', '2022-05-08 11:08:35');
+(422, 'Herbert', 'Gaffud', 'Amaro', 'male', 'RIR in Homicide and Multiple Damage to Properties', '2002-02-25', '2022-05-08', NULL, '2022-05-08', '2022-05-215', 3, '2022-05-08', '2022-05-08', 'Affidavit (Kasunduan)', '2022-05-08 11:07:02', '2022-05-08 11:08:35'),
+(423, 'Donald Jayson', 'Credo', 'Alvaran', 'male', 'Qualified Theft through Falsification of Commercial Document (Warrant)', NULL, '2022-05-11', NULL, '2022-05-18', '2022-05-229', 6, '2022-05-18', '2022-05-18', 'Surety Bond', '2022-05-11 23:52:03', '2022-05-18 10:42:06'),
+(424, 'Genimar', 'Silvano', 'Brion', 'male', 'Sec. 5 (b) of RA 7610 (Warrant)', '1981-01-12', '2022-05-12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-12 08:06:24', '2022-05-24 09:26:39'),
+(425, 'John Erian', 'Pupa', 'Santos', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1998-02-24', '2022-05-12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-12 23:49:22', '2022-05-24 09:27:35'),
+(426, 'Jerico', 'Pinol', 'Umandap', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1998-03-28', '2022-05-12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-12 23:50:56', '2022-05-12 23:50:56'),
+(427, 'Francis', 'Martinez', 'Delos Santos', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1994-07-25', '2022-05-12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-12 23:52:01', '2022-05-12 23:52:01'),
+(428, 'Tristan Roniel', 'Eroles', 'Pelayo', 'male', 'Rape under Art. 266-A, Par. 2 of the RPC as amended by RA 8353', '1998-08-30', '2022-05-13', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-13 10:18:37', '2022-05-24 09:30:09'),
+(429, 'Nelson', 'Umali', 'Dimailig', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1971-03-04', '2022-05-19', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-20 02:05:56', '2022-05-24 09:28:35'),
+(430, 'John Patrick', 'Abala', 'Bustamante', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1999-06-14', '2022-05-19', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-20 02:06:54', '2022-05-20 02:06:54'),
+(431, 'Michael', 'Villaganas', 'Benitez', 'male', 'Homicide (RPC Art. 249)', '1998-09-15', '2022-05-19', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-20 02:08:36', '2022-05-24 09:28:01'),
+(432, 'Boniclyde', 'Rosell', 'Maglinte', 'male', 'Sec. 5E (2) in Relation to 5 (i) of RA 9262', NULL, '2022-05-25', NULL, '2022-05-25', '2022-05-244', 6, '2022-05-25', '2022-05-25', 'Cash Bond', '2022-05-25 03:33:15', '2022-05-25 10:00:52'),
+(433, 'Ricardo', 'Dela Vera', 'Sanje', 'male', 'Sec. 5 and 11 ART II of RA 9165', NULL, '2022-05-24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-25 03:42:32', '2022-05-25 03:42:32'),
+(434, 'Hazel', 'Trinidad', 'Navarro', 'male', 'Sec. 5 and 11 ART II of RA 9165', NULL, '2022-05-24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-25 03:43:56', '2022-05-25 03:43:56'),
+(435, 'Henry', 'Estobio', 'Del Rosario', 'male', 'Qualified Theft', NULL, '2022-05-25', NULL, '2022-05-25', '2022-05-243', 6, '2022-05-25', '2022-05-25', 'Surety Bond', '2022-05-25 09:59:08', '2022-05-25 09:59:08');
 
 -- --------------------------------------------------------
 
@@ -683,7 +696,7 @@ ALTER TABLE `chief_police`
 -- AUTO_INCREMENT for table `detainees`
 --
 ALTER TABLE `detainees`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=423;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=436;
 
 --
 -- AUTO_INCREMENT for table `jailers`
