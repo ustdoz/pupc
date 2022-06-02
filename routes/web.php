@@ -39,7 +39,7 @@ Route::post('settings/update/jailer/{jailer}', 'SettingsController@updateJailer'
 
 // Detainees Route
 Route::resource('detainees', 'DetaineesController')->middleware('auth');
-Route::post('detainess/download', 'DetaineesController@download')->name('detainees.download');
+Route::post('detainees/download', 'DetaineesController@download')->name('detainees.download');
 
 Route::get('export', 'MyController@export')->name('export');
 Route::get('importExportView', 'MyController@importExportView');

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2022 at 01:33 PM
+-- Generation Time: Jun 02, 2022 at 04:16 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.3.29
 
@@ -96,7 +96,7 @@ INSERT INTO `detainees` (`id`, `first_name`, `middle_name`, `last_name`, `gender
 (2, 'Jun', 'Lanceta', 'Marcilla', 'male', 'Section 11 and 12 Art II of RA 9165', '1980-06-20', '2020-03-09', NULL, '2022-04-11', '2022-04-166', 3, '2022-04-11', '2022-04-11', 'Sentence Served', '2021-05-25 06:16:45', '2022-04-11 09:33:59'),
 (3, 'Jaymar', 'Castro', 'Gerona', 'male', 'Anti-Carnapping Act of. 1972', '2001-11-30', '2020-07-07', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-25 06:18:00', '2021-10-15 13:51:18'),
 (4, 'Marvin', 'Besin', 'Dalut', 'male', 'Rape', '1998-01-26', '2020-08-15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-25 15:13:13', '2022-05-24 09:22:02'),
-(5, 'Francisco', 'Martinez', 'Almendras', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1969-10-10', '2020-09-10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-26 05:48:32', '2021-11-03 11:06:19'),
+(5, 'Francisco', 'Martinez', 'Almendras', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1969-10-10', '2020-09-10', NULL, '2022-05-26', '2022-05-246', 6, '2022-05-26', '2022-05-26', 'Dismissed', '2021-05-26 05:48:32', '2022-05-26 07:51:22'),
 (6, 'Paolo', 'Kasilag', 'Diago', 'male', NULL, NULL, '2020-12-09', NULL, '2021-05-19', '2021-05-197', 5, '2021-05-19', '2021-05-19', '(Transferred to BJMP)', '2021-05-26 05:51:00', '2022-03-04 03:57:10'),
 (7, 'Ariel', 'Levardo', 'Maala', 'male', 'Sec. 5 and 11 ART II of RA 9165', NULL, '2020-12-18', '2021-01-05', '2021-12-10', '2021-12-534', 4, NULL, '2021-12-10', '(Transferred to BJMP)', '2021-05-26 05:51:42', '2021-12-10 05:44:17'),
 (8, 'Isagani', 'Altarez', 'Cambronero Jr.', 'male', NULL, '1984-09-06', '2020-12-20', NULL, '2021-06-10', '2021-06-219', 3, '2021-06-10', '2021-06-10', '(Transferred to BJMP)', '2021-05-26 05:53:31', '2022-03-04 05:08:33'),
@@ -125,7 +125,7 @@ INSERT INTO `detainees` (`id`, `first_name`, `middle_name`, `last_name`, `gender
 (31, 'John Freddierick', NULL, 'Balboa', 'male', NULL, NULL, '2021-05-11', NULL, '2021-05-18', '2021-05-196', 3, '2021-05-18', '2021-05-18', 'Bail Bond', '2021-05-26 06:21:47', '2022-03-04 03:49:06'),
 (32, 'Alberto', 'Panganiban', 'Alfonso', 'male', NULL, '1967-05-23', '2021-05-13', NULL, '2021-06-10', '2021-06-219', 3, '2021-06-10', '2021-06-10', '(Transferred to BJMP)', '2021-05-26 06:22:51', '2022-03-04 05:08:37'),
 (33, 'Eduardo', NULL, 'Valenzuela Jr', 'male', NULL, NULL, '2021-05-14', NULL, '2021-06-10', '2021-06-219', 3, '2021-06-10', '2021-06-10', '(Transferred to BJMP)', '2021-05-26 06:24:02', '2022-03-04 05:08:38'),
-(34, 'Ruben', 'Udtuhan', 'Gio', 'male', 'Theft', '1974-02-24', '2021-05-16', NULL, '2022-03-10', '2022-03-114', 3, '2022-03-10', '2022-03-10', 'Provisionally Dismissed', '2021-05-26 06:25:01', '2022-03-10 11:16:47'),
+(34, 'Ruben', 'Odtohan', 'Gio', 'male', 'Theft', '1974-02-24', '2021-05-16', NULL, '2022-03-10', '2022-03-114', 3, '2022-03-10', '2022-03-10', 'Provisionally Dismissed', '2021-05-26 06:25:01', '2022-03-10 11:16:47'),
 (35, 'Paulo', NULL, 'Samson', 'male', NULL, '1994-08-21', '2021-05-19', NULL, '2021-06-10', '2021-06-219', 3, '2021-06-10', '2021-06-10', '(Transferred to BJMP)', '2021-05-26 06:31:11', '2022-03-04 05:08:34'),
 (36, 'Nolasco', 'Dearoz', 'Cabaylo', 'male', NULL, '1967-01-31', '2021-05-20', NULL, '2021-06-10', '2021-06-219', 3, '2021-06-10', '2021-06-10', '(Transferred to BJMP)', '2021-05-26 06:32:21', '2022-03-04 05:08:36'),
 (37, 'Jefferson', 'Vicencio', 'Natanauan', 'male', NULL, '1982-07-04', '2021-05-20', NULL, '2021-06-10', '2021-06-219', 3, '2021-06-10', '2021-06-10', '(Transferred to BJMP)', '2021-05-26 06:33:46', '2022-03-04 05:08:37'),
@@ -476,7 +476,7 @@ INSERT INTO `detainees` (`id`, `first_name`, `middle_name`, `last_name`, `gender
 (398, 'Marlon', 'Aquino', 'Lontoc', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1981-08-10', '2022-04-06', '2022-04-27', '2022-05-20', '2022-05-235', 3, '2022-05-20', '2022-05-20', '(Transferred to BJMP)', '2022-04-07 03:54:38', '2022-05-21 10:28:21'),
 (399, 'Reynold', 'Basbas', 'Requieron', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1989-02-24', '2022-04-06', '2022-04-27', '2022-05-20', '2022-05-235', 3, '2022-05-20', '2022-05-20', '(Transferred to BJMP)', '2022-04-07 03:55:17', '2022-05-21 10:28:21'),
 (400, 'Joey', 'Cantina', 'Fortuna', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1987-09-15', '2022-04-07', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-07 03:55:42', '2022-04-07 03:59:17'),
-(401, 'Joharra', 'Guarda', 'Bedico', 'female', 'Sec. 5 and 11 ART II of RA 9165', '1989-10-29', '2022-04-07', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-07 03:56:08', '2022-05-16 01:49:33'),
+(401, 'Joharra', 'Guarda', 'Bedico', 'female', 'Sec. 5 and 11 ART II of RA 9165', '1989-10-29', '2022-04-07', NULL, '2022-06-01', '2022-06-256', 3, '2022-06-01', '2022-06-01', 'Surety Bond', '2022-04-07 03:56:08', '2022-06-01 10:50:20'),
 (402, 'Harold', 'Comintan', 'Roa', 'male', 'Qualified Theft', '1982-05-19', '2022-04-09', NULL, '2022-04-19', '2022-04-180', 3, '2022-04-19', '2022-04-19', 'Surety Bond', '2022-04-10 11:12:26', '2022-04-19 10:17:27'),
 (403, 'Aira Jane', 'Abezar', 'Cabus', 'female', 'Theft', '1975-04-04', '2022-04-10', NULL, '2022-04-19', '2022-04-179', 3, '2022-04-19', '2022-04-19', 'Cash Bond', '2022-04-11 10:28:06', '2022-04-19 07:40:28'),
 (404, 'Nilda', 'Costimiano', 'Tolosa', 'female', 'RIR IN DAMAGE TO PROPERTY (RPC Art. 365)', NULL, '2022-04-12', NULL, '2022-04-12', '2022-04-169', 3, '2022-04-12', '2022-04-12', 'Cash Bond', '2022-04-12 12:24:16', '2022-04-12 12:24:40'),
@@ -510,7 +510,12 @@ INSERT INTO `detainees` (`id`, `first_name`, `middle_name`, `last_name`, `gender
 (432, 'Boniclyde', 'Rosell', 'Maglinte', 'male', 'Sec. 5E (2) in Relation to 5 (i) of RA 9262', NULL, '2022-05-25', NULL, '2022-05-25', '2022-05-244', 6, '2022-05-25', '2022-05-25', 'Cash Bond', '2022-05-25 03:33:15', '2022-05-25 10:00:52'),
 (433, 'Ricardo', 'Dela Vera', 'Sanje', 'male', 'Sec. 5 and 11 ART II of RA 9165', NULL, '2022-05-24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-25 03:42:32', '2022-05-25 03:42:32'),
 (434, 'Hazel', 'Trinidad', 'Navarro', 'male', 'Sec. 5 and 11 ART II of RA 9165', NULL, '2022-05-24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-25 03:43:56', '2022-05-25 03:43:56'),
-(435, 'Henry', 'Estobio', 'Del Rosario', 'male', 'Qualified Theft', NULL, '2022-05-25', NULL, '2022-05-25', '2022-05-243', 6, '2022-05-25', '2022-05-25', 'Surety Bond', '2022-05-25 09:59:08', '2022-05-25 09:59:08');
+(435, 'Henry', 'Estobio', 'Del Rosario', 'male', 'Qualified Theft', '1980-07-09', '2022-05-25', NULL, '2022-05-25', '2022-05-243', 6, '2022-05-25', '2022-05-25', 'Surety Bond', '2022-05-25 09:59:08', '2022-05-31 04:10:09'),
+(436, 'Michael', 'Samosa', 'Talento', 'male', 'Sec. 11 ART II of RA 9165', '1989-09-14', '2022-05-25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-26 01:49:36', '2022-05-26 01:49:36'),
+(437, 'Keith James', 'Boco', 'Pasigan', 'male', 'Theft', '2001-05-17', '2022-05-28', NULL, '2022-06-02', '2022-06-259', 6, '2022-06-02', '2022-06-02', 'Cash Bond', '2022-05-28 16:51:36', '2022-06-02 07:46:55'),
+(438, 'Roger', 'Belando', 'Avila', 'male', 'Theft', '1992-04-07', '2022-05-28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-29 01:08:01', '2022-05-31 04:07:33'),
+(439, 'Justine Michael', 'Mondejar', 'Castillo', 'male', 'Sec. 5 and 11 Art. II of RA 9165', '2001-09-19', '2022-05-31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-31 15:28:02', '2022-05-31 15:28:02'),
+(440, 'Jinma', NULL, 'Shan', 'male', 'Grave Threats (RPC Art. 282)', NULL, '2022-06-01', NULL, '2022-06-01', '2022-06-257', 3, '2022-06-01', '2022-06-01', 'Cash Bond', '2022-06-01 10:47:13', '2022-06-01 10:48:03');
 
 -- --------------------------------------------------------
 
@@ -696,7 +701,7 @@ ALTER TABLE `chief_police`
 -- AUTO_INCREMENT for table `detainees`
 --
 ALTER TABLE `detainees`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=436;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=441;
 
 --
 -- AUTO_INCREMENT for table `jailers`
