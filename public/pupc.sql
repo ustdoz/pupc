@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2022 at 04:16 PM
+-- Generation Time: Jun 04, 2022 at 06:52 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.3.29
 
@@ -429,7 +429,7 @@ INSERT INTO `detainees` (`id`, `first_name`, `middle_name`, `last_name`, `gender
 (350, 'Jayvee', 'Babila', 'Balaye', 'male', 'Sec. 5(b) of RA 7610 (Warrant)', NULL, '2022-01-21', NULL, '2022-01-25', '2022-01-036', 3, '2022-01-25', '2022-01-25', 'Surety Bond', '2022-01-21 23:34:22', '2022-01-25 09:40:15'),
 (351, 'Norman Jason', 'Alamag', 'Abenes', 'male', 'RIR Homicide', NULL, '2022-01-23', NULL, '2022-01-24', '2022-01-035', 4, '2022-01-24', '2022-01-24', 'Affidavit (Kasunduan)', '2022-01-25 09:38:57', '2022-01-25 09:38:57'),
 (352, 'Gregorio', 'Mendoza', 'Leyban', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1970-05-25', '2022-01-28', '2022-02-18', '2022-04-29', '2022-04-200', 6, '2022-04-29', '2022-04-29', '(Transferred to BJMP)', '2022-01-29 08:03:44', '2022-04-29 09:43:07'),
-(353, 'Ivan', 'Boncato', 'Sentillas', 'male', 'Rape under Art. 266-A, 1 of the RPC (Warrant)', '1987-07-05', '2022-02-03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-02-03 11:44:00', '2022-05-24 09:24:43'),
+(353, 'Ivan', 'Boncato', 'Sentillas', 'male', 'Rape under Art 266-A, par1 RPC (2 counts)\r\nRape under Art 266-A, par2 RPC (1 count)', '1987-07-05', '2022-02-03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-02-03 11:44:00', '2022-06-03 06:32:29'),
 (354, 'Virgilio', 'Diaros', 'Bayadna', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1964-04-17', '2022-02-04', '2022-02-18', '2022-04-29', '2022-04-200', 6, '2022-04-29', '2022-04-29', '(Transferred to BJMP)', '2022-02-04 14:29:35', '2022-04-29 09:44:07'),
 (355, 'Nilson', 'Toñacao', 'Campos', 'male', 'Sec. 5 and 11 ART II of RA 9165', '1965-08-14', '2022-02-04', '2022-02-18', '2022-04-29', '2022-04-200', 6, '2022-04-29', '2022-04-29', '(Transferred to BJMP)', '2022-02-04 14:30:27', '2022-04-29 09:43:43'),
 (356, 'Joanne', 'Nicolas', 'Mercado', 'female', 'ESTAFA under Art. 315par.1(B) of the RPC', NULL, '2022-02-08', NULL, '2022-02-08', '2022-02-055', 4, '2022-02-08', '2022-02-08', 'Bail Bond', '2022-02-08 11:29:43', '2022-02-08 11:29:43'),
@@ -513,7 +513,7 @@ INSERT INTO `detainees` (`id`, `first_name`, `middle_name`, `last_name`, `gender
 (435, 'Henry', 'Estobio', 'Del Rosario', 'male', 'Qualified Theft', '1980-07-09', '2022-05-25', NULL, '2022-05-25', '2022-05-243', 6, '2022-05-25', '2022-05-25', 'Surety Bond', '2022-05-25 09:59:08', '2022-05-31 04:10:09'),
 (436, 'Michael', 'Samosa', 'Talento', 'male', 'Sec. 11 ART II of RA 9165', '1989-09-14', '2022-05-25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-26 01:49:36', '2022-05-26 01:49:36'),
 (437, 'Keith James', 'Boco', 'Pasigan', 'male', 'Theft', '2001-05-17', '2022-05-28', NULL, '2022-06-02', '2022-06-259', 6, '2022-06-02', '2022-06-02', 'Cash Bond', '2022-05-28 16:51:36', '2022-06-02 07:46:55'),
-(438, 'Roger', 'Belando', 'Avila', 'male', 'Theft', '1992-04-07', '2022-05-28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-29 01:08:01', '2022-05-31 04:07:33'),
+(438, 'Roger', 'Belando', 'Avila', 'male', 'Theft', '1992-04-07', '2022-05-28', NULL, '2022-06-03', '2022-06-260', 6, '2022-06-03', '2022-06-03', 'Cash Bond', '2022-05-29 01:08:01', '2022-06-04 00:37:50'),
 (439, 'Justine Michael', 'Mondejar', 'Castillo', 'male', 'Sec. 5 and 11 Art. II of RA 9165', '2001-09-19', '2022-05-31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-31 15:28:02', '2022-05-31 15:28:02'),
 (440, 'Jinma', NULL, 'Shan', 'male', 'Grave Threats (RPC Art. 282)', NULL, '2022-06-01', NULL, '2022-06-01', '2022-06-257', 3, '2022-06-01', '2022-06-01', 'Cash Bond', '2022-06-01 10:47:13', '2022-06-01 10:48:03');
 
