@@ -59,6 +59,8 @@ class SubsistenceExport implements FromArray, WithTitle
                     number_format($detainee->total_budget),
                 ];
 
+                // dd($detainee);
+
                 $a4++;
             }
 
@@ -72,7 +74,7 @@ class SubsistenceExport implements FromArray, WithTitle
                 null,
                 null,
                 null,
-                'TOTAL AMOUNT',
+                number_format($this->detainees->sum('days_detained')),
                 "₱ " . number_format($this->detainees->sum('total_budget')),
             ];
         }
@@ -100,7 +102,7 @@ class SubsistenceExport implements FromArray, WithTitle
     public function styles(Worksheet $sheet)
     {
         $end_number = $this->detainees->count() + 3;
-        $row_names = $end_number + 3;
+        $row_names = $end_number + 4;
         $row_titles = $row_names + 1;
 
         $sheet->mergeCells('A1:K1');
@@ -146,6 +148,8 @@ class SubsistenceExport implements FromArray, WithTitle
 
         $sheet->getStyle('J' . ($end_number + 1))->applyFromArray($border_style);
         $sheet->getStyle('K' . ($end_number + 1))->applyFromArray($border_style);
+        $sheet->getStyle('J' . ($end_number + 2))->applyFromArray($border_style);
+        $sheet->getStyle('K' . ($end_number + 2))->applyFromArray($border_style);
 
         $loop_arr = [
             'columns' => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'],
@@ -162,7 +166,8 @@ class SubsistenceExport implements FromArray, WithTitle
         $sheet->getRowDimension(1)->setRowHeight(31.5);
         $sheet->getRowDimension(3)->setRowHeight(30);
         $sheet->getRowDimension($end_number + 1)->setRowHeight(30);
-        $sheet->getRowDimension($end_number + 2)->setRowHeight(75);
+        $sheet->getRowDimension($end_number + 2)->setRowHeight(30);
+        $sheet->getRowDimension($end_number + 3)->setRowHeight(75);
 
 
         $align_center_arr = [
@@ -181,6 +186,13 @@ class SubsistenceExport implements FromArray, WithTitle
             'horizontal' => 'center',
             'vertical' => 'center',
         ]);
+        $sheet->getStyle('G4:K' . ($end_number + 2))->getAlignment()->applyFromArray([
+            'horizontal' => 'center',
+            'vertical' => 'center',
+        ]);
+
+        $sheet->setCellValue('J' . ($end_number + 2), "Total number\r\nof Days");
+        $sheet->setCellValue('K' . ($end_number + 2), "TOTAL\r\nAMOUNT");
 
         $sheet->setCellValue('A' . $row_names, (isset($this->data['jailer']) ? $this->data['jailer'] : config('detainees.names.0')));
         $sheet->setCellValue('A' . $row_titles, config('detainees.titles.0'));
@@ -194,6 +206,7 @@ class SubsistenceExport implements FromArray, WithTitle
         return [
             1 => ['font' => ['bold' => true, 'size' => 14]],
             ($end_number + 1) => ['font' => ['bold' => true]],
+            ($end_number + 2) => ['font' => ['bold' => true]],
 
         ];
     }
