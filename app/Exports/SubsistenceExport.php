@@ -193,6 +193,8 @@ class SubsistenceExport implements FromArray, WithTitle
 
         $sheet->setCellValue('J' . ($end_number + 2), "Total number\r\nof Days");
         $sheet->setCellValue('K' . ($end_number + 2), "TOTAL\r\nAMOUNT");
+        $sheet->getStyle('J' . ($end_number + 2))->getAlignment()->setWrapText(true);
+        $sheet->getStyle('K' . ($end_number + 2))->getAlignment()->setWrapText(true);
 
         $sheet->setCellValue('A' . $row_names, (isset($this->data['jailer']) ? $this->data['jailer'] : config('detainees.names.0')));
         $sheet->setCellValue('A' . $row_titles, config('detainees.titles.0'));

@@ -419,7 +419,7 @@ class DetaineesController extends Controller
         }
 
         $detainees_export = new DetaineesExport($detainees, $recap, $discharge, $data);
-        return Excel::download($detainees_export, 'PUPC Carmona ' . $data['month_year'] . ' Reports.xls');
+        return Excel::download($detainees_export, 'PUPC Carmona ' . $data['month_year'] . ' Reports.xlsx');
     }
 
     public function discharge($detainees)

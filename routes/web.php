@@ -1,6 +1,6 @@
 <?php
 
-Route::get('_test', 'HomeController@test');
+Route::get('_test', 'HomeController@_test');
 
 // Welcome Route
 Route::get('/', function () {
